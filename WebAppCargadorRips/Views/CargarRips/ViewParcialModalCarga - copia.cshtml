@@ -1,0 +1,238 @@
+﻿<div class="card-panel hoverable" id="vistaparcialFormCarga">
+    <div class="modal-header">
+        <h3>DATOS DE REPORTE</h3>
+    </div>
+
+    <form id="formulariocargaarchivo" enctype="multipart/form-data" method="post" novalidate="novalidate">
+        <div class="card-panel blue lighten-3"> DATOS GENERALES</div>
+        @Html.AntiForgeryToken()
+        <div class="row">
+        </div>
+        <div class="row">
+
+            <div class="input-field col s12 m6">
+                <select name="tipoUsuario" id="tipoUsuario" required="" aria-required="true">
+                    <option value="" disabled selected>Seleccione...</option>
+                </select>
+                <label>Tipo Usuario</label>
+            </div>
+
+            <div class="input-field col s12 m6">
+                <select name="categoria" id="categoria">
+                    <option value="" disabled selected>Seleccione...</option>
+                </select>
+                <label>Categoria</label>
+            </div>
+        </div>
+
+        <div class="card-panel blue lighten-3">CONDICIONES ESPECIALES</div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <input type="checkbox" name="IVE" id="IVE" />
+                <label for="IVE">Interrupción involuntaria del embarazo </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <input type="checkbox" name="NOPOS" id="NOPOS" />
+                <label for="NOPOS">Atenciones no POS</label>
+            </div>
+        </div>
+        <div id="DIVtipocalendario">
+            <div class="card-panel blue lighten-3">PERIODO DE REPORTE</div>
+
+            <div class="row">
+                <!--SE OCULTA POR REQUERIMINETOS DONDE DESDE AHORA SE PEDIRAN REPORTES MENSUALES
+                    PROXIMAMENTE DEJAR ADMINISTRABEL
+                    <div class="col s12 m6">
+                    <input type="radio" name="opcparticular" id="opcsemestral" />
+                    <label for="opcsemestral">Semestral:</label>
+                </div>
+                    <div class="col s12 m6">
+                    <input type="radio" name="opcparticular" id="opcmensual" />
+                    <label for="opcmensual">Mensual:</label>
+                </div>
+                    -->
+
+            </div>
+        </div>
+        <div id="DIVsemestral" class="hide">
+            <div class="card-panel blue lighten-4">SEMESTRAL</div>
+
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <select name="semestre" id="semestre">
+                        <option value="" disabled selected>Seleccione...</option>
+                        <option value="1">semestre 1</option>
+                        <option value="2">semestre 2</option>
+                    </select>
+                    <label>Semestre</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <select name="aniosemestre" id="aniosemestre">
+                        <option value="" disabled selected>Seleccione...</option>
+                        <option value="1">año 1</option>
+                        <option value="2">año 2</option>
+                    </select>
+                    <label>Año</label>
+                </div>
+            </div>
+        </div>
+        <div id="DIVmensual" style="display:none">
+
+
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <label>Fecha Inicio</label>
+                    <input type="text" class="datepicker" name="fechaInicio" id="fechaInicio" required="" aria-required="true" />
+                    <label for="fechaInicio"></label>
+                </div>
+
+                <div class="col s12 m6">
+                    <label>Fecha Fin:</label>
+                    <input type="text" class="datepicker" name="fechaFin" id="fechaFin" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col l12 s12">
+
+                <!--<div class="file-field input-field">
+    <div class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Oprime para seleccionar multiples archivos">
+        <span>Archivos</span>
+        <input type="file" name="archivos[]" id="archivos" multiple>
+    </div>
+    <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Seleccione y adjunte varios archivos" id="rips" name="rips" required>
+    </div>-->
+                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                <div class="file-field input-field">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <div class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Oprime para seleccionar multiples archivos">
+                        <span>Archivos</span>
+                        <input type="file" name="files[]" id="archivos" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" id="ocultar">
+                    </div>
+                    <!-- The global file processing state -->
+                    <span class="fileupload-process"></span>
+                    <!-- The global progress state -->
+                    <div class="col l12 s12 fade">
+                        <!-- The global progress bar -->
+                        <div class="progress progress-striped hide" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                        </div>
+                        <!-- The extended global progress state -->
+                        <div class="progress-extended">&nbsp;</div>
+                    </div>
+                </div>
+                <!-- este div mantiene la vista de los archivos cargados -->
+                <div class="row">
+                    <div class="files "></div>
+                </div>
+
+                <!-- The template to display files available for upload -->
+                <script id="template-upload" type="text/x-tmpl">
+                    {% for (var i=0, file; file=o.files[i]; i++) { %}
+                    <div class="row template-upload fade">
+                        <div class="col l6 s12">
+                            <p class="name">{%=file.name%}</p>
+                            <strong class="error text-danger"></strong>
+                        </div>
+                        <div class="col l4 s12">
+                            <p class="size">Procesando...</p>
+                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+                        </div>
+                        <div class="col l2 s12">
+                            {% if (!i) { %}
+
+                            <a class="btn-floating btn-small waves-effect waves-light red cancel"><i class="material-icons">clear</i></a>
+
+                            {% } %}
+                        </div>
+                    </div>
+                    {% } %}
+                </script>
+                <!-- The template to display files available for download no se puede eliminar aun-->
+                <script id="template-download" type="text/x-tmpl">
+                    {% for (var i=0, file; file=o.files[i]; i++) { %}
+                    <tr class="template-download fade">
+                        <td>
+                            <span class="preview">
+                                {% if (file.thumbnailUrl) { %}
+                                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                                {% } %}
+                            </span>
+                        </td>
+                        <td>
+                            <p class="name">
+                                {% if (file.url) { %}
+                                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                                {% } else { %}
+                                <span>{%=file.name%}</span>
+                                {% } %}
+                            </p>
+                            {% if (file.error) { %}
+                            <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                            {% } %}
+                        </td>
+                        <td>
+                            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+                        </td>
+                        <td>
+                            {% if (file.deleteUrl) { %}
+                            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Delete</span>
+                            </button>
+                            <input type="checkbox" name="delete" value="1" class="toggle">
+                            {% } else { %}
+                            <button class="btn btn-warning cancel">
+                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                <span>Cancelar</span>
+                            </button>
+                            {% } %}
+                        </td>
+                    </tr>
+                    {% } %}
+                </script>
+
+            </div><!-- en div  col -->
+        </div><!-- en div  row -->
+
+        <input type="hidden" name="idUsuario" id="idUsuario" value="1" />
+
+        <br />
+        <button class="btn waves-effect waves-light green z-depth-2 tooltipped" type="submit" name="action" data-position="bottom" data-delay="50" data-tooltip="Oprime para iniciar la cargar de RIPS">cargar rips<i class="material-icons right">file_upload</i></button>
+        <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="cancelado()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la cargar de RIPS"><i class="material-icons right">close</i>CANCELAR</a>
+    </form>
+</div>
+
+
+
+<div class="row">
+    <div id="result"></div>
+    <pre id="fileDisplayArea"></pre>
+</div>
+
+<!--div class="modal-footer">
+    <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="loadRIPS()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la cargar de RIPS"><i class="material-icons right">close</i>CANCELARrrr</a>
+
+    <a class="btn waves-effect waves-light green z-depth-2 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Oprime para iniciar la cargar de RIPS" onclick="readFile()">cargar rips<i class="material-icons right">file_upload</i></a>
+    <input class="waves-effect waves-light btn green z-depth-2" type="submit"></input>
+    <a class="waves-effect waves-light btn green z-depth-2" onclick="validandonoduplicados()"><i class="material-icons right">file_upload</i>CARGAR</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn green lighten-2 z-depth-5" onclick="validandonoduplicados()">CARGAR</a>
+    <a href="#!" class="waves-effect waves-red btn red lighten-2 z-depth-5" onclick="cancelado()">CANCELAR</a>
+</div>-->
+@section Scripts {
+
+}

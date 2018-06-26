@@ -1,0 +1,64 @@
+﻿@{
+    //VISTA INDICADORES
+    ViewBag.Title = "Indicadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+    .chart-container {
+        width: 10%;
+        height: 980px;
+        margin: 0 auto;
+    }
+
+    .pie-chart-container {
+        height: 20px;
+        width: 20px;
+        float: left;
+    }
+
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
+
+<div class="row">
+    <div class="col s12">
+        <h2 class="header center">INDICADORES</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col m6 s12">
+            <canvas id="canvascantidadestadoripscargadostodosanios" />
+    </div>
+    <div class="col m6 s12">
+        <canvas id="canvascantidadestadoripscargadosxestados"></canvas>
+    </div>
+   
+</div>
+<div class="row">
+    <div class="col m6 s12">
+        <canvas id="canvascantidadestadoripscargadostodosaniospreradicados" />
+    </div>
+    <div class="col m6 s12">
+        <canvas id="canvascantidadestadoripscargadosxestadospreradicados"></canvas>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col m4 s12">
+        
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/chartjs")
+    @Scripts.Render("~/bundles/indicadoresjs")
+    <script>
+
+    </script>
+}

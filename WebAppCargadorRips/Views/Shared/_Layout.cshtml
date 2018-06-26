@@ -1,43 +1,152 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>@ViewBag.Title - Cargador RIPS</title>
+    @Styles.Render("~/Content/material")
+    @Styles.Render("~/Content/estilosexternos")
+    @Styles.Render("~/Content/tinglecss")
+    @Styles.Render("~/Content/fuentescss")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="@Url.Content("~/Img/logo.ico")" />
+    <noscript>Tu navegador no soporta JavaScript, la aplicación requiere que tengas activado javascript</noscript>
+
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <header>
+
+        <!-- Menu -->
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="@Url.Content("~/Img/sidemenu-hero.jpg")">
+                    </div>
+                    <a href="#!user"><img class="circle" id="imguser"></a>
+                    <a href="#!name"><span class="white-text name" id="nombreuserspan"></span></a>
+                    <a href="#!" class="dropdown-button dropdown" data-activates="droupdown1"><span class="white-text email"><b id="emailspan"> </b><i class="material-icons tooltipped" data-position="bottom" data-delay="20" data-tooltip="Más acciones">arrow_drop_down_circle</i></span></a>
+                    <span class="white-text hide"><b id="codigospan">@HttpContext.Current.User.Identity.Name </b></span>
+                    @Html.Partial("_DropdownUserPartial")
+                </div>
+            </li>
+
+            <div id="tokenacces">
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
+
+            <li id="li-cargar"><a href="/Home"><i class="material-icons">error_outline</i>Listado RIPS</a></li>
+            <li id="li-cargar"><a href="/CargarRips/ViewCargaRips"><i class="material-icons">note_add</i>Cargar RIPS</a></li>
+            <li id="li-reportes"><a href="/Reportes"><i class="material-icons">picture_as_pdf</i>Indicadores</a></li>
+            <!--<li id="li-auditorias"><a href="#!"><i class="material-icons">rate_review</i>Auditorias</a></li>-->
+            <li><div class="divider"></div></li>
+            <li id="li-descargarvalidador"><a class="waves-effect" href="#!" onclick="vistaDescargarValidador()"><i class="material-icons">loupe</i>Descargar Validador RIPS escritorio</a></li>
+            <li id="li-ayuda"><a class="waves-effect" href="/Ayuda"><i class="material-icons">import_contacts</i>Ayuda</a></li>
+        </ul>
+
+
+        <!--/ Menu -->
+        <!--Navbar-->
+        <nav class="nav-extended deep-blue blue darken-4">
+            <div class="nav-wrapper">
+                <a id="logo-container" href="#!" class="brand-logo"><img src="@Url.Content("~/Img/logo2.png")" alt="logo"></a>
+            </div>
+            <div class="nav-content" id="contenidoNav">
+                <div id="tabsNav">
+
+                </div>
+                <div>
+                    <a href="#!" data-activates="slide-out" id="button-collapse" class="btn-floating btn-large halfway-fab waves-effect blue tooltipped" data-position="bottom" data-delay="50" data-tooltip="Menu">
+                        <i class="material-icons">menu</i>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <!--/.Navbar-->
+
+    <br />
+    <main>
+        <!-- contenido -->
+
+        <div id="contenedor" class="container">
+            @RenderBody()
+        </div>
+
+    </main>
+
+    <footer class="page-footer blue lighten-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l4 s12">
+                    <h5 class="white-text">Entes de Control</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Personería de Bogotá</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Procuraduría General de la Nación</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Contraloría General de la Nación</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Concejo de Bogotá</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Veeduría Distrital</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Portal de Contratación a la Vista</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Portal de Contratación - SECOP</a></li>
+                    </ul>
+                </div>
+                <div class="col l4 s12">
+                    <h5 class="white-text">Entes del Gobierno</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Ministerio de Salud y Protección Social</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Gobierno en Línea</a></li>
+                    </ul>
+                </div>
+                <div class="col l4 s12">
+                    <h6 class="white-text">Secretaria Distrital de Salud</h6>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Cra 32 # 12-81 Bogotá,Colombia</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Teléfono: (571) 3649090</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Código Postal:0571</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">contactenos@saludcapital.gov.co</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Construido Por:</h5>
+                    <!--<iv class="chip">
+                        <img src="@Url.Content("~/Img/avatarsusers/yop.jpg")" alt="desarrollador">
+                        Alex Cifuentes Sánchez &copy; - @DateTime.Now.Year
+                    </div>-->
+                    <div class="chip">
+                        <img src="@Url.Content("~/Img/team.jpg")" alt="EGI">
+                        Equipo de Gestion de la Información &copy; - @DateTime.Now.Year
+                    </div>
+
+                    <div class="chip">
+                        <img src="@Url.Content("~/Img/alcaldia_logo.png")" alt="sds">
+                        Secretaria Distrital de Salud &copy; Bogotá D.C.
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+        <div class="footer-copyright">
+
+            <div class="container">
+                Impulsado por Materialize © 2014-2017, All rights reserved.
+                <img src="@Url.Content("~/Img/alcaldia_logo.png")" alt="Bogotá">
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jsmaterial")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/layoutjs")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

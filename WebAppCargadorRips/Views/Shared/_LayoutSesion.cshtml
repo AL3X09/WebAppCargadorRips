@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="es-co">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Cargador RIPS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/mdbcss")
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/fonts/roboto/Roboto-Bold.woff" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- Seccion del <noscript>  -->
+    <noscript>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-image">
+                    <div class="text-center d-flex align-items-center py-5 px-4 my-5">
+                        <div>
+                            <h1 class="card-title pt-3 mb-5 font-bold"><strong>Tu navegador no soporta JAVASCRIPT!!</strong></h1>
+                            <p class="mx-5 mb-5">
+                                La aplicación requiere JAVASCRIPT para funcionar de manera correcta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </noscript>
+    <!--fin  Seccion del <noscript>  -->
+    <link rel="icon" href="@Url.Content("~/Img/logo.ico")" />
+</head>
+
+<body>
+
+    <div class="">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jsmdb")
+    @Scripts.Render("~/bundles/loginval")
+    @RenderSection("scripts", required: true)
+</body>
+</html>
+

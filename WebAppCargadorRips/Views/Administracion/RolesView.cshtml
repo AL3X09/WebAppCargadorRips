@@ -1,0 +1,33 @@
+﻿@{
+    //VISTA ADMINISTRACIÓN DE ROLES, NO FUNCIONAL YA QUE EL APLICATIVO POR AHORA NO MANEJA ROLES
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/jsgridcss")
+<div class="row">
+    <div class="col s12">
+        <h4 class="header center orange-text">MÓDULO ROLES</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m12 l12">
+        <!--cargo la grilla-->
+        <div id="jsGrid"></div>
+    </div>
+</div>
+
+<!--el modal para editar la información-->
+<div class="row">
+    <div class="col s12 m12 l12">
+       
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jsGrid")
+    @Scripts.Render("~/bundles/rolesjs")
+    <script>
+
+    </script>
+
+}

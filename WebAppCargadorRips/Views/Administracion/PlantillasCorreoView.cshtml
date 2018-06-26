@@ -1,0 +1,78 @@
+﻿
+@{
+    //VISTA ADMINISTRACIÓN DE PLANTILLAS CORREO
+    ViewBag.Title = "Plantillas Correo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/jsgridcss")
+<div class="row">
+    <div class="col s12">
+        <h4 class="header center orange-text">MÓDULO PLANTILLAS CORREO</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m12 l12">
+        <!--cargo la grilla-->
+        <div id="jsGrid"></div>
+    </div>
+</div>
+
+<!--modal form editar o crear plantilla-->
+<div class="row hide">
+    <div id="dialogPlantilla" class="tingle-modal--overflow">
+        <div class="row">
+            <h4 class="center-align"><span id="tipomodal"></span></h4>
+        </div>
+        <form id="formplantillascorreo" method="post">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <input type="hidden" id="IdPlantilla_Correo" name="IdPlantilla_Correo">
+                <div class="input-field col s12">
+                    <label for="avatar">Nombre</label>
+                    <input type="text" id="NombrePlantilla_Correo" name="NombrePlantilla_Correo" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Descripción</label>
+                    <input type="text" id="DescripcionPlantilla_Correo" name="DescripcionPlantilla_Correo" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Asunto Correo</label>
+                    <input type="text" id="AsuntoPlantilla_Correo" name="AsuntoPlantilla_Correo" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="CuerpoPlantilla_Correo" name="CuerpoPlantilla_Correo" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Cuerpo Correo</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="FK_Estado_Plantillas_Correo" name="FK_Estado_Plantillas_Correo"></select>
+                    <label>Estado</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="fkEstado" name="fkEstado"></select>
+                    <label>Estado</label>
+                </div>
+            </div>
+
+            <div id="divclaims">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/tinglejs")
+    @Scripts.Render("~/bundles/jsGrid")
+    @Scripts.Render("~/bundles/plantillacorreojs")
+    <script>
+
+    </script>
+
+}

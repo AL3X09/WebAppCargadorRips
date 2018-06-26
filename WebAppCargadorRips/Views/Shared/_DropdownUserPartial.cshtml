@@ -1,0 +1,13 @@
+﻿@if (Request.IsAuthenticated)
+{
+        <!--Dropdown -->
+<ul id="droupdown1" class="dropdown-content">
+    <li><a href="@Url.Action("PerfilUsuario", "Cuenta")" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Oprime para actualizar tus datos"><i class="material-icons">person</i>Perfil</a></li>
+    <li><a href="@Url.Action("CambiarContrasenia", "Cuenta")" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Oprime para cambiar la contraseña" ><i class="material-icons">lock</i><h6>Cambiar contraseña</h6></a></li>
+    @using (Html.BeginForm("Logout", "Cuenta", FormMethod.Post))
+    {
+        <li><a href="javascript:;" onclick="document.forms[0].submit();" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Oprime para Cerrar Sesión" id="acerrarsesion"><i class="material-icons">power_settings_new</i><h6>Cerrar sesión</h6></a></li>
+    }
+</ul>
+        <!--/Dropdown -->
+}

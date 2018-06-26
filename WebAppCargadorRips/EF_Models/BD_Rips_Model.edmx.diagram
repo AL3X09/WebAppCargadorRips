@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e7e8162962f245ff80ccea70037aa93e" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="Rips_Model.Radicacion" Width="1.5" PointX="6" PointY="94.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Servicio_Validacion" Width="1.5" PointX="8.25" PointY="105.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Servicio_Validacion_Error" Width="1.5" PointX="10.5" PointY="100.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Cargador_Rips" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Acto_Quirurgico" Width="1.5" PointX="3" PointY="65.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Ambito_Procedimiento" Width="1.5" PointX="3" PointY="68.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Año_Permitido" Width="1.5" PointX="3" PointY="71.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Categoria" Width="1.5" PointX="3" PointY="74.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Causa_Externa" Width="1.5" PointX="3" PointY="79" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Control_Prenatal" Width="1.5" PointX="3" PointY="82.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Destino_Salida" Width="1.5" PointX="3" PointY="85.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Estado_Salida" Width="1.5" PointX="3" PointY="89" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Estructura" Width="1.5" PointX="3" PointY="92.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Estructura_Campo" Width="1.5" PointX="8.25" PointY="94.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Finalidad_Consulta" Width="1.5" PointX="3" PointY="96" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Finalidad_Procedimiento" Width="1.5" PointX="3" PointY="99.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Medida_Edad" Width="1.5" PointX="5.25" PointY="100.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Personal_Atiende" Width="1.5" PointX="3" PointY="102.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Sexo" Width="1.5" PointX="3" PointY="113.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Tipo_Diagnostico" Width="1.5" PointX="3" PointY="125.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Tipo_Identificacion" Width="1.5" PointX="3" PointY="128.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Tipo_Medicamento" Width="1.5" PointX="3" PointY="133.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Tipo_Servicio" Width="1.5" PointX="3" PointY="136.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Tipo_Usuario" Width="1.5" PointX="3" PointY="143.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Via_Ingreso" Width="1.5" PointX="3" PointY="140" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Zona_Residencia" Width="1.5" PointX="3" PointY="149.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Administradora" Width="1.5" PointX="5.25" PointY="125.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.BDUA" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.CIE10" Width="1.5" PointX="5.25" PointY="105.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.CUPS" Width="1.5" PointX="5.25" PointY="116.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.DIVIPOLA" Width="1.5" PointX="5.25" PointY="131.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Estado_RIPS" Width="1.5" PointX="0.75" PointY="93" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Fallecidos" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Localidad" Width="1.5" PointX="3" PointY="156.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Medicamento_ATC_Completo" Width="1.5" PointX="11.25" PointY="121.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Medicamento_ATC_POS" Width="1.5" PointX="13.5" PointY="131.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Medicamento_CUM" Width="1.5" PointX="11.25" PointY="126.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Pais" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Poblacion_Especial" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Prestador" Width="1.5" PointX="5.25" PointY="154.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SISBEN" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Tipo_Error" Width="1.5" PointX="8.25" PointY="100.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.UPZ" Width="1.5" PointX="3" PointY="159.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.MSYPS_Consulta" Width="1.5" PointX="7.5" PointY="112.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Consulta" Width="1.5" PointX="13.5" PointY="111.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Factura" Width="1.5" PointX="11.25" PointY="93.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Hospitalizacion" Width="1.5" PointX="16.5" PointY="111.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Medicamento" Width="1.5" PointX="13.5" PointY="122" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Otro_Servicio" Width="1.5" PointX="16.5" PointY="122.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Procedimiento" Width="1.5" PointX="13.5" PointY="100.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Recien_Nacido" Width="1.5" PointX="19.5" PointY="113" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Urgencia" Width="1.5" PointX="19.5" PointY="102.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.SDS_Usuario" Width="1.5" PointX="8.25" PointY="122.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Consulta" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Consulta_MSYPS" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Factura" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Hospitalizacion" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Medicamento" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Otro_Servicio" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Procedimiento" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Recien_Nacido" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Urgencia" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Usuario" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Rips_Model.Errores_Usuario_MSYPS" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Rips_Model.FK__Radicacio__carga__336AA144" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Radicacio__radic__345EC57D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Radicacio__servi__3552E9B6" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__radic__7167D3BD" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Factu__radic__7908F585" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__radic__075714DC" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__radic__13BCEBC1" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___radic__1E3A7A34" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__radic__30592A6F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__radic__3CBF0154" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__radic__4EDDB18F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___admin__36470DEF" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___categ__373B3228" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___estad__382F5661" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___tipo___39237A9A" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___valid__3BFFE745" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___estru__3A179ED3" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Servicio___tipo___3B0BC30C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Acto_Quir__estad__3CF40B7E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__acto___23F3538A" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Ambito_Pr__estad__3DE82FB7" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__ambit__25DB9BFC" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Año_Permi__estad__3EDC53F0" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Categoria__estad__3FD07829" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Causa_Ext__estad__40C49C62" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__causa__59904A2C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__causa__66EA454A" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__causa__7AF13DF7" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__causa__436BFEE3" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Control_P__estad__41B8C09B" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__contr__361203C5" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Destino_S__estad__42ACE4D4" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__desti__4460231C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Estado_Sa__estad__43A1090D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__estad__038683F8" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__estad__4B0D20AB" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Estructur__estad__44952D46" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Estructur__estru__467D75B8" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Estructur__estad__4589517F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Finalidad__estad__477199F1" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__final__603D47BB" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__final__6E8B6712" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Finalidad__estad__4865BE2A" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__final__2C88998B" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__med_e__61316BF4" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__med_e__6F7F8B4B" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__med_e__056ECC6A" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__med_e__0FEC5ADD" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___med_e__1C5231C2" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__med_e__2D7CBDC4" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__med_e__3AD6B8E2" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__med_e__4CF5691D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Personal___estad__4959E263" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__perso__2E70E1FD" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__CIE10__sexo_id__51EF2864" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__CUPS__sexo_id__52E34C9D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__sexo___3DB3258D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Usuar__sexo___53A266AC" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Sexo__estado_rip__4A4E069C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__tipo___6319B466" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__tipo___725BF7F6" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Tipo_Diag__estad__4B422AD5" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Usuar__tipo___54968AE5" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Tipo_Iden__estad__4C364F0E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__tipo___14B10FFA" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Tipo_Medi__estad__4D2A7347" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___tipo___2116E6DF" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Tipo_Serv__estad__4E1E9780" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__tipo___640DD89F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__tipo___73501C2F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__tipo___74444068" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__tipo___084B3915" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__tipo___093F5D4E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__tipo___15A53433" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__tipo___1699586C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___tipo___1F2E9E6D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___tipo___2022C2A6" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__tipo___314D4EA8" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__tipo___324172E1" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__tipo___3EA749C6" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__tipo___3F9B6DFF" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__tipo___4FD1D5C8" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__tipo___50C5FA01" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Tipo_Usua__estad__4F12BBB9" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__via_i__0B27A5C0" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Via_Ingre__estad__5006DFF2" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__zona___762C88DA" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__zona___0C1BC9F9" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__zona___1881A0DE" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___zona___22FF2F51" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__zona___3429BB53" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__zona___4183B671" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__zona___52AE4273" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Zona_Resi__estad__50FB042B" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__admin__589C25F3" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__admin__65F62111" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Factu__admin__7720AD13" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__admin__79FD19BE" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__admin__0D0FEE32" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___admin__1975C517" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__admin__24E777C3" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__admin__351DDF8C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__admin__4277DAAA" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__diagn__5B78929E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__diagn__5C6CB6D7" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__diagn__5D60DB10" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__diagn__5E54FF49" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__diagn__68D28DBC" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__diagn__69C6B1F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__diagn__6ABAD62E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__diagn__6BAEFA67" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__00AA174D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__019E3B86" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__7BE56230" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__7CD98669" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__7DCDAAA2" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__7EC1CEDB" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__diagn__7FB5F314" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__diagn__27C3E46E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__diagn__28B808A7" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__diagn__29AC2CE0" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__diagn__370627FE" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__diagn__37FA4C37" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__diagn__45544755" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__diagn__46486B8E" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__diagn__473C8FC7" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__diagn__4830B400" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__diagn__4924D839" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__codig__5A846E65" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__codig__67DE6983" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__codig__26CFC035" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__divip__5F492382" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__divip__6CA31EA0" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__divip__02925FBF" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__divip__0E04126B" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___divip__1A69E950" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__divip__2AA05119" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__divip__38EE7070" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__divip__4A18FC72" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Prestador__local__55BFB948" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__UPZ__localidad_i__57A801BA" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Medicamen__medic__53D770D6" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Medicamen__medic__54CB950F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__medic__10E07F16" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__medic__11D4A34F" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__prest__6225902D" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__Prestador__upz_i__56B3DD81" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__prest__7073AF84" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Factu__prest__7814D14C" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__prest__0662F0A3" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__prest__12C8C788" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___prest__1D4655FB" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__prest__2F650636" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__prest__3BCADD1B" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__prest__4DE98D56" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__MSYPS_Con__usuar__6501FCD8" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__factu__6D9742D9" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Consu__usuar__753864A1" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__factu__047AA831" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__factu__0EF836A4" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___factu__1B5E0D89" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__factu__2B947552" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__factu__39E294A9" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__factu__4C0144E4" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Hospi__usuar__0A338187" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Medic__usuar__178D7CA5" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Otro___usuar__220B0B18" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Proce__usuar__3335971A" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Recie__usuar__408F9238" ManuallyRouted="false" />
+        <AssociationConnector Association="Rips_Model.FK__SDS_Urgen__usuar__51BA1E3A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Rips_Model.Correo" Width="1.5" PointX="3" PointY="167.25" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Mensaje" Width="1.5" PointX="3" PointY="52.25" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Permiso" Width="1.5" PointX="3" PointY="109.375" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Rol" Width="1.5" PointX="3" PointY="56" />
+        <EntityTypeShape EntityType="Rips_Model.Web_RolHasPermiso" Width="1.5" PointX="5.25" PointY="82.375" />
+        <EntityTypeShape EntityType="Rips_Model.Plantilla_Correo" Width="1.5" PointX="3" PointY="163.625" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Pregunta_Frecuente" Width="1.5" PointX="3" PointY="118.125" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Usuario" Width="1.5" PointX="10.5" PointY="104.375" />
+        <AssociationConnector Association="Rips_Model.FK__Correo__FK_corre__0DCF0841" />
+        <AssociationConnector Association="Rips_Model.FK__Correo__FK_corre__1FEDB87C" />
+        <AssociationConnector Association="Rips_Model.FK__Correo__FK_corre__33008CF0" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Mensa__FK_me__2F2FFC0C" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Permi__FK_pe__0EC32C7A" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Permi__FK_pe__20E1DCB5" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Permi__FK_pe__33F4B129" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__1293BD5E" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__24B26D99" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__37C5420D" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Rol__FK_rol___10AB74EC" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Rol__FK_rol___22CA2527" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Rol__FK_rol___35DCF99B" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__119F9925" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__23BE4960" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__36D11DD4" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__16644E42" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__2882FE7D" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__3B95D2F1" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__1387E197" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__25A691D2" />
+        <AssociationConnector Association="Rips_Model.FK__Web_RolHa__FK_ro__38B96646" />
+        <AssociationConnector Association="Rips_Model.FK__Plantilla__FK_pl__0FB750B3" />
+        <AssociationConnector Association="Rips_Model.FK__Plantilla__FK_pl__21D600EE" />
+        <AssociationConnector Association="Rips_Model.FK__Plantilla__FK_pl__34E8D562" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Pregu__FK_pr__0CDAE408" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Pregu__FK_pr__1EF99443" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Pregu__FK_pr__320C68B7" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__15702A09" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__278EDA44" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__3AA1AEB8" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__147C05D0" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__269AB60B" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__39AD8A7F" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Correo_Sin_Restriccion" Width="1.5" PointX="3" PointY="49" />
+        <AssociationConnector Association="Rips_Model.FK_correo_sin_restriccion_estado_rips" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Administrador" Width="1.5" PointX="5.25" PointY="77.625" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Admin__FK_we__48BAC3E5" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Admin__FK_we__49AEE81E" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Documento" Width="1.5" PointX="3" PointY="62.25" />
+        <AssociationConnector Association="Rips_Model.FK__Web_Docum__FK_we__4F67C174" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Validacion" Width="1.5" PointX="15.75" PointY="107" />
+        <AssociationConnector Association="Rips_Model.FK_web_validacion_categoria" />
+        <AssociationConnector Association="Rips_Model.FK_web_validacion_estado_rips" />
+        <AssociationConnector Association="Rips_Model.FK_web_validacion_tipo_usuario" />
+        <AssociationConnector Association="Rips_Model.FK_web_validacion_web_usuario" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Preradicacion" Width="1.5" PointX="18" PointY="98.625" />
+        <AssociationConnector Association="Rips_Model.FK_web_preradicacion_estado_rips" />
+        <AssociationConnector Association="Rips_Model.FK_web_preradicacion_web_validacion" />
+        <EntityTypeShape EntityType="Rips_Model.VW_Listado_Estado_Rips" Width="1.5" PointX="13.375" PointY="14.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

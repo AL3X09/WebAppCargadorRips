@@ -1,0 +1,149 @@
+﻿<div class="card-panel hoverable" id="vistaparcialFormCarga">
+    <div class="modal-header">
+        <h3>DATOS DE REPORTE</h3>
+    </div>
+
+
+
+    <form id="formulariocargaarchivo" enctype="multipart/form-data" method="post" novalidate="novalidate">
+        <div class="card-panel blue lighten-3"> DATOS GENERALES</div>
+        @Html.AntiForgeryToken()
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <select name="tipoUsuario2" id="tipoUsuario2" class="validate" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                </select>
+                <label for="tipoUsuario">Tipo Usuario <span class="red-text" id="fortipo">*</span></label>
+
+            </div>
+            <div class="input-field col s12 m6">
+                <select name="categoria" id="categoria" class="validate">
+                    <option value="" disabled selected>Seleccione...</option>
+                </select>
+                <label for="categoria">Categoria <span class="red-text" id="forcate">*</span></label>
+            </div>
+            <input type="hidden" name="tipoUsuario" id="tipoUsuario" />
+        </div>
+        
+        <div class="card-panel blue lighten-3">CONDICIONES ESPECIALES</div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <input type="checkbox" name="IVE" id="IVE" />
+                <label for="IVE">Interrupción Voluntaria del Embarazo (IVE) </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <input type="checkbox" name="NOPOS" id="NOPOS" />
+                <label for="NOPOS">Atenciones no POS</label>
+            </div>
+        </div>
+        <div id="DIVtipocalendario">
+            <div class="card-panel blue lighten-3">PERIODO DE REPORTE</div>
+
+            <div class="row">
+
+            </div>
+        </div>
+        <div id="DIVsemestral" class="hide">
+            <div class="card-panel blue lighten-4">SEMESTRAL</div>
+
+            <div class="row">
+            </div>
+            <div class="row">
+
+
+
+                <div class="input-field col s12 m6">
+                    <select name="semestre" id="semestre">
+                        <option value="" disabled selected>Seleccione...</option>
+                        <option value="1">semestre 1</option>
+                        <option value="2">semestre 2</option>
+                    </select>
+                    <label>Semestre</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <select name="aniosemestre" id="aniosemestre">
+                        <option value="" disabled selected>Seleccione...</option>
+                        <option value="1">año 1</option>
+                        <option value="2">año 2</option>
+                    </select>
+                    <label>Año</label>
+                </div>
+            </div>
+        </div>
+        <div id="DIVmensual" style="display:none">
+
+
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <label for="fechaInicio">Fecha Inicio: <span class="red-text">*</span></label>
+                    <input type="text" class="datepicker" name="fechaInicio" id="fechaInicio" />
+                </div>
+
+                <div class="col s12 m6">
+                    <label for="FechaFin">Fecha Fin: <span class="red-text">*</span></label>
+                    <input type="text" class="datepicker" name="fechaFin" id="fechaFin" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+            </div>
+
+            <div class="col l12 s12">
+
+                <div id="drop-zone">
+                    <p></p>
+                    <div id="clickHere">
+                        Seleccione <span class="red-text">*</span><i class="fa fa-upload"></i>
+                        <input type="file" name="rips" id="rips" multiple accept=".txt" />
+                    </div>
+                    <div id='aqui'></div>
+                    <div id='filename'></div>
+                </div>
+
+            </div><!-- en div  col -->
+        </div><!-- en div  row -->
+
+        <div id="divclaims" style="display:none;">
+        </div>
+
+        <div id="divcontainer" style="display:none;">
+            <h5 class="red-text">Por favor complete los campos obligatorios para continuar.</h5>
+            <ol></ol>
+        </div>
+
+        <br />
+        <button class="btn waves-effect waves-light green z-depth-2 tooltipped" type="submit" name="action" data-position="bottom" data-delay="50" data-tooltip="Oprime para iniciar la cargar de RIPS">cargar rips<i class="material-icons right">file_upload</i></button>
+        <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="cancelado()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la cargar de RIPS"><i class="material-icons right">close</i>CANCELAR</a>
+    </form><!-- /FORM -->
+
+</div>
+
+<div class="row">
+    <!--modal del progres bar-->
+
+    <div class="tingle_addon_window hide">
+        <div class="row">
+             <div class="progress">
+                    <div class="indeterminate"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+}

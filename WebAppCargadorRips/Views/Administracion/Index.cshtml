@@ -1,0 +1,152 @@
+﻿
+@{
+    //VISTA DE ADMINISTRACIÓN
+    ViewBag.Title = "Administración";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col s10">
+        <h2 class="center-align center-on-small-only">Administración</h2>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col s12 m4 l4">
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="/Administracion/UsuariosView">
+                    <img class="circle responsive-img" src="@Url.Content("~/img/administracion/user_card.png")">
+                    <span class="card-title black-text">Usuarios</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra administrar cada uno de los roles del aplicativo.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col s12 m4 l4">
+
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="/Administracion/RolesView">
+                    <img class="activator" src="@Url.Content("~/img/administracion/shield_card.png")">
+                    <span class="card-title black-text">Roles</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra administrar cada uno de los roles del aplicativo.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col s12 m4 l4">
+
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="/Administracion/PlantillasCorreoView">
+                    <img class="activator" src="@Url.Content("~/img/administracion/email_card.png")">
+                    <span class="card-title black-text">Plantillas Correos</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra administrar cada uno de las plantillas usadas por los correos que envia el alplicativo.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m4 l4">
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="/Administracion/PreguntasView">
+                    <img class="activator" src="@Url.Content("~/img/administracion/sidemenu-hero.jpg")">
+                    <span class="card-title black-text">Preguntas frecuentes</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra administrar las preguntas frecuentes que pueden ver los usuarios en el módulo de ayuda.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4 l4">
+
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="/Administracion/PresentacionesView">
+                    <img class="activator responsive-img" src="@Url.Content("~/img/administracion/present_card.png")">
+                    <span class="card-title black-text">Presentaciones Ayuda</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra administrar las presentaciones que pueden ver los usuarios en el módulo de ayuda.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4 l4">
+
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="@Url.Action("Index", "Help")" target="_blank">
+                    <img class="activator" src="@Url.Content("~/img/administracion/sidemenu-hero.jpg")">
+                    <span class="card-title black-text">API'S</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra ver una descrición y ayudas de las diferentes APIS que impactan el aplicativo.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m4 l4">
+
+        <div class="card hoverable">
+            <div class="card-image">
+                <a href="/Administracion/AuditoriasView">
+                    <img class="activator" src="@Url.Content("~/img/administracion/medal_card.png")">
+                    <span class="card-title black-text">Auditorias</span>
+                </a>
+            </div>
+            <div class="card-content">
+                <p>
+                    Aquí podra ver cada una de las acciones y cambios realizados dentro del aplicativo.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="divclaims" style="display:none;">
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/administracionjs")
+    <script>
+
+    </script>
+
+}
+

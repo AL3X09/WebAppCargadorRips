@@ -1,0 +1,77 @@
+﻿@{
+    //VISTA ADMINISTRACIÓN DE USUARIO
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/jsgridcss")
+<h2>Administración Usuarios</h2>
+
+<div class="row" id="divProductos">
+    <div class="col s12 m12 l12">
+        <!--cargo la grilla-->
+        <div id="jsGrid"></div>
+    </div>
+</div>
+
+<!--modal form editar o crear plantilla-->
+<div class="row hide">
+    <div id="dialogPlantilla" class="tingle-modal--overflow">
+        <div class="row">
+            <h4 class="center-align"><span id="tipomodal">Editar</span></h4>
+        </div>
+        <form id="formusuarios" method="post">
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <input type="hidden" id="IdUsuario" name="IdUsuario">
+                <div class="input-field col s12">
+                    <label for="avatar">Codigo</label>
+                    <input type="text" id="CodPrestadorUsuario" name="CodPrestadorUsuario" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Nombre</label>
+                    <input type="text" id="NombresUsuario" name="NombresUsuario" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Apellido</label>
+                    <input type="text" id="ApellidosUsuario" name="ApellidosUsuario" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Correo</label>
+                    <input type="text" id="CorreoUsuario" name="CorreoUsuario" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Razon Social</label>
+                    <input type="text" id="RazonSocialUsuario" name="RazonSocialUsuario" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <label for="avatar">Telefono</label>
+                    <input type="text" id="TelefonoUsuario" name="TelefonoUsuario">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="fkRol" name="fkRol"></select>
+                    <label>Rol</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="fkEstado" name="fkEstado"></select>
+                    <label>Estado</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/tinglejs")
+    @Scripts.Render("~/bundles/jsGrid")
+    @Scripts.Render("~/bundles/admusuariosjs")
+    <script>
+
+    </script>
+
+}
+

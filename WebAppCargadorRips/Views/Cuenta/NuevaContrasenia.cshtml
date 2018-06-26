@@ -1,0 +1,187 @@
+﻿@model WebAppCargadorRips.Models.CambiarContraseniaViewModel
+@{
+    //vista para digitar nueva contraseña external
+    ViewBag.Title = "Nueva Contraseña";
+    Layout = "~/Views/Shared/_LayoutSesion.cshtml";
+}
+
+<!--.jarallax-->
+<div class="view jarallax img-fluid" data-jarallax='{"speed": 0.2,"type": "scroll-opacity" }' style="background-image: url(@Url.Content("~/img/bg.jpg"));">
+    <div class="full-bg-img">
+        <div class="mask rgba-blue-slight"></div>
+    </div>
+    <section class="login-form">
+        <div class="col-md-12 col-sm-12 wow fadeIn mb-3 text-center">
+            <h1 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s"> <a class="indigo-text font-weight-bold">CARGADOR</a></h1>
+        </div>
+        <div class="text-center">
+            <img src="@Url.Content("~/img/logo.png")" class="img-fluid" alt="" />
+        </div>
+        <br />
+        <div class="col-md-12 col-sm-12">
+            <button type="button" class="btn blue accent-4 btn-lg btn-block" data-toggle="modal" data-target="#modalLRForm">Iniciar Sesión</button>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="form-links">
+                <a href="#">&copy; @DateTime.Now.Year - Bogotá D.C.</a>
+                <p href="#">Contruido con:</p>
+                <a href="#">http://www.mdbootstrap.com/</a>
+                <a href="#">http://www.bootstrapzen.com/</a>
+                <a href="#">http://www.materializecss.com/</a>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+
+                <!--Modal: recuperar contraseña-->
+                <div class="modal fade" id="modalRecuperarContra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                    <div class="modal-dialog cascading-modal" role="document">
+                        <!--Content-->
+                        <div class="modal-content">
+
+                            <!--Modal cascading tabs-->
+                            <div class="modal-c-tabs">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs tabs-2 blue accent-3" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active " data-toggle="tab" href="#panel1" role="tab" id="btnSesion"><i class="fa fa-envelope prefix"></i> Recuperar Contraseña</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panels -->
+                                <div class="tab-content">
+                                    <!--Modal 1-->
+                                    <!--Vista recuperar contraseña-->
+                                    <!--Panel 1-->
+                                    <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                                        <!--Body-->
+                                        <div class="modal-body mb-1">
+                                            <section id="forgotForm">
+                                                @using (Html.BeginForm("NuevaContrasenia", "Cuenta", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "", runat = "" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <h6>Campos marcados con (*) son obligatorios.</h6>
+                                                    <hr />
+
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                    <div class="md-form form-sm">
+                                                        <i class="fa fa-qrcode prefix"></i>
+                                                        @Html.LabelFor(model => model.contrasenia, new { @class = "" })
+                                                        @Html.PasswordFor(model => model.contrasenia, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.contrasenia, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="md-form form-sm">
+                                                        <i class="fa fa-qrcode prefix"></i>
+                                                        @Html.LabelFor(model => model.contraseniaconfirm, new { @class = "" })
+                                                        @Html.PasswordFor(model => model.contraseniaconfirm, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.contraseniaconfirm, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <hr>
+                                                    <!--captcha-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="text-center">
+                                                                <div class="g-recaptcha" data-sitekey="6Lf7v0UUAAAAAHR6TDCi8jPihFtb0NGvWlVobwW2"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--hidden-->
+                                                    <div id="data">
+
+                                                    </div>
+
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="text-center">
+                                                                <input type="submit" value="Recuperar contraseña" class="btn blue accent-4" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </section>
+
+                                        </div>
+                                        <!--Footer of tab-->
+                                        <div class="modal-footer display-footer">
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h3>@ViewBag.json</h3>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--/.Modal 1-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--/.Content-->
+                    </div>
+                </div>
+                <!--Modal: Login / Register Form-->
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
+
+        <!--Call to action-->
+        <div class="text-center">
+            <ul class="list-unstyled list-inline mb-0">
+                <li class="list-inline-item">
+                    <img src="@Url.Content("~/img/alcaldia_logo.png")" class="img-fluid" alt="" />
+                </li>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+        <!--Copyright-->
+        <div class="footer-copyright pt-3 mt-4 text-center">
+            Equipo de Gestión de la Información © 2018 Copyright:
+            <!--<a href="#"> Alex Cifuentes Sánchez </a>-->
+            <a href="#">Secretaria Distrital de Salud</a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+</div>
+<!--/.jarallax-->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.TokenP != null)
+{
+    <script type="application/javascript">
+        $(document).ready(function () {
+        var token =@Html.Raw(ViewBag.TokenP);
+
+            if(token !== undefined ){
+                $('#data').html('<input type="hidden" id="idUsuario" name="idUsuario" value="'+token+'">');
+                //ShowAlert(json.tipo,json.mensaje)
+            }else{
+                window.location.href = "/Cuenta";
+               }
+
+        });
+    </script>
+}

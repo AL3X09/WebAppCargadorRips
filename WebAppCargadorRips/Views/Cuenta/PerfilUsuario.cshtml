@@ -1,0 +1,45 @@
+﻿@{
+    //vista del perfil de usaurio
+    ViewBag.Title = "Perfil Usuario";
+}
+
+@Styles.Render("~/Content/dropifycss")
+@Styles.Render("~/Content/jsgridcss")
+
+<!-- titulos -->
+<div class="row">
+
+    <div class="col s12">
+        <h2 class="center-align">PERFIL USUARIO</h2>
+    </div>
+    <div class="col s12">
+        <blockquote>Hola <span id="nombreUser"></span> !! desde aqui puedes actualizar tu información...</blockquote>
+    </div>
+
+</div>
+
+<!-- Tabla con los datos del usuario -->
+<div class="row">
+    <div class="col m12 l12 s12">
+        <div id="jsGrid"></div>
+    </div>
+</div>
+<!-- Modal que tiene el formulario de la imagen -->
+<div class="row hide">
+    <div id="dialog" class="tingle_addon_window">
+        <form id="formuserimage" enctype="multipart/form-data" method="post">
+            @Html.AntiForgeryToken()
+            <label for="avatar">adjunta una imagen ".JPEG"</label>
+            <input type="file" id="avatar" name="avatar" class="dropify">
+            <div id="divclaims">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/dropifyjs")
+    @Scripts.Render("~/bundles/tinglejs")
+    @Scripts.Render("~/bundles/jsGrid")
+    @Scripts.Render("~/bundles/perfilusuariojs")
+}

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Carga Rips";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col s10">
+        <h2 class="center-align center-on-small-only">MÓDULO DE CARGA RIPS</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <blockquote>
+            Recuerde que para no presentar problemas con el cargue, se le recomienda haber validado sus RIPS con la herramienta de escritorio.
+            <br />Diligencie el  formulario para cargar sus RIPS, tenga en cuenta que solo se admiten archivos de texto es decir con extencion <strong>".txt"</strong>,
+            <br />Los campos con el simbolo asterisco (<span class="red-text">*</span>) son de caracter obligatorio
+        </blockquote>
+    </div>
+</div>
+<div class="row" id="DIVformCargaRips">
+        @Html.Partial("ViewParcialModalCarga")
+
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/multifilejs")
+    @Scripts.Render("~/bundles/tinglejs")
+    @Scripts.Render("~/bundles/loadgojs")
+    @Scripts.Render("~/bundles/validarformarchivo")
+    @Scripts.Render("~/bundles/homeval")
+
+    <script>
+
+        $(document).ready(function () {
+            //inicializo la llamada de los tipos de usuarios
+            callTipoUsuario();
+            //inicializo selects
+            inicilizoDiv();
+            //inicializo picker en cascada
+            inicilizoDatepicker();
+            //inicializo multifile
+            inicilizoMultifile();
+            //inicializo la zona de los archivos
+            zonaarchvos();
+            //inicializo el llamado de las estructuras
+            callEstructuraCampo();
+
+        });
+
+    </script>
+
+}

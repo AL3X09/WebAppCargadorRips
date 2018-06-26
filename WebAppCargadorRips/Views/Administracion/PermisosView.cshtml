@@ -1,0 +1,18 @@
+﻿
+@{
+    //VISTA ADMINISTRACIÓN DE PERMISOS NOT FUNCIONAL
+    ViewBag.Title = "PermisosViw";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pruebas</h2>
+
+<div class="row" id="divProductos">
+    <div class="col s12 m12 l12">
+        <!--cargo la grilla-->
+        <div id="jsGrid"></div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jsGrid")
+@Scripts.Render("~/bundles/pruebasjs")

@@ -1,31 +1,82 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    //Tener en cuenta que si se sierra esta vista automaticamente, se debe revizar el home.js, linea de autenticaci'on de usuario
+    //VISTA DE ESTADO DE RIPS
+    ViewBag.Title = "RIPS";
 }
+@Styles.Render("~/Content/datatablescss")
+<div id="divtabEstado">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <div class="row">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <div class="col s12">
+            <h2 class="center-align">LISTADO RIPS</h2>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="col s12">
+            <!--<a class="btn btn-floating btn-large pulse blue" href="#!" onclick="mostrarFormCargueRips()"><i class="material-icons">note_add</i></a>-->
+            <blockquote>
+                Este módulo te da una visión del estado de tus RIPS cargados.
+            </blockquote>
+        </div>
+        <div class="col s12">
+            <blockquote id="leyenda_estados"></blockquote>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+        <div id="DIVestado" class="hide">
+
+        </div>
+
+        <div id="DIVlistado" class="row">
+
+            <table id="listaRips" class="table" width="100%">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Tipo Usuario</th>
+                        <th>Categoria</th>
+                        <th>Periodo Inicio Reportado</th>
+                        <th>Periodo Fin Reportado</th>
+                        <th>Fecha de Carga</th>
+                        <th>Estado Validacion Web</th>
+                        <th>Estado Validacion Preradicación</th>
+                        <th>Estado Servicion de Validación</th>
+                        <th>Estado Radicacion</th>
+                    </tr>
+                </thead>
+                <!--<tbody id="tbodylistarips"></tbody>-->
+                <tfoot>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Tipo Usuario</th>
+                        <th>Categoria</th>
+                        <th>Periodo Inicio Reportado</th>
+                        <th>Periodo Fin Reportado</th>
+                        <th>Fecha de Carga</th>
+                        <th>Estado Validacion Web</th>
+                        <th>Estado Validacion Preradicación</th>
+                        <th>Estado Servicion de Validación</th>
+                        <th>Estado Radicacion</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+
+
+        <div id="divclaims" style="display:none;">
+        </div>
+
     </div>
-</div>
+
+<!--Modal pruebas-->
+@section Scripts {
+    @Scripts.Render("~/bundles/datatablesjs")
+    @Scripts.Render("~/bundles/homeval")
+    @Scripts.Render("~/bundles/listadoripsjs")
+    <script>
+
+    </script>
+
+}
