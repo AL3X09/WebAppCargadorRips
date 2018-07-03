@@ -145,6 +145,8 @@ namespace WebAppCargadorRips.Models
     public class RecuperarContraseniaViewModel
     {
         [Required]
+        [StringLength(12, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 12)]
+        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numericos, sin espacios y maximo de 12 caracteres")]
         [Display(Name = "Codigo Prestador (*)")]
         //[RegularExpression("^[0-9]?(11001.{7})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numericos y sin espacios")]
         public string Usuario { get; set; }
