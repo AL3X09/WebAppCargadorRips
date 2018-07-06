@@ -53,7 +53,7 @@ $(document).ready(function () {
     },
     //For custom messages
     messages: {
-      tipoUsuario: "Seleccione un tipo de usuario",
+      tipoUsuario2: "Seleccione un tipo de usuario",
       categoria: "Seleccione una categoria",
       fechaInicio: "Indique una fecha de inicio",
       fechaFin: "Indique una fecha de fin",

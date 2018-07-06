@@ -499,6 +499,7 @@
         </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.ArchivosController.GetListadoRipstAsync2(System.Int32)">
             <summary>
+            TODO VALIDAR
              Metodo asincrono carga un archivo con datos de su respectivo formulario
             </summary>
         </member>

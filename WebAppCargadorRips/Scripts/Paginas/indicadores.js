@@ -324,14 +324,14 @@ function ripscargadosyestados(token) {
         }
 
     });
-    ripscargadosyestadosPreradicados(token);
+    ripscargadosyestadosXaniosXmeses(token);
 }
 
 //Pinto grafica preradicados x estados x años x meses
-function ripscargadosyestadosPreradicados(token) {
+function ripscargadosyestadosXaniosXmeses(token) {
 
     $.ajax({
-        url: baseURL + 'api/Indicadores/ListarXEstadosWebRadicacion',
+        url: baseURL + 'api/Indicadores/ListarEstadosXAniosXmes',
         method: 'GET',
         data: { iduser: token },
         beforeSend: function () {
@@ -364,26 +364,57 @@ function ripscargadosyestadosPreradicados(token) {
             });
             
             //SECCION PARA ARMAR LA GRAFICA
-            var barChartData = {
-                labels: [""],
-                datasets: datos
-            }
-
-            var ctx = document.getElementById("canvascantidadestadoripscargadosxanioxmes").getContext("2d");
-            window.myBar = new Chart(ctx, {
-                type: 'bar',
-                data: barChartData,
-                options: {
-                    title: {
-                        display: true,
-                        text: "Estado RIPS cargados para el año " + (new Date()).getFullYear()
-                    }, 
+             var MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'];
+        var config = {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
+                    data: [
+                        10,
+                        20,                        
+                        30						
+                    ],
+                    fill: false,
+                }, {
+                    label: 'My Second dataset',
+                    fill: false,
+                    backgroundColor: window.chartColors.blue,
+                    borderColor: window.chartColors.blue,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
                 scales: {
                     xAxes: [{
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Estado'
+                            labelString: 'Meses'
                         }
                     }],
                     yAxes: [{
@@ -393,13 +424,12 @@ function ripscargadosyestadosPreradicados(token) {
                             labelString: 'Cantidad'
                         }
                     }]
-                },
-                    responsive: false,
                 }
-            });
-
-
-
+            }
+        };
+            var ctx = document.getElementById("canvascantidadestadoripscargadosxanioxmes").getContext("2d");
+			window.myLine = new Chart(ctx, config);
+         
             //FIN SECCION PARA ARMAR LA GRAFICA
 
         }

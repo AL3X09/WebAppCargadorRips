@@ -87,7 +87,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         /// Lista cantidad los estados de los rips enviados por la plataforma WEB y sus estados por años y meses
         ///</summary>
         [HttpGet]
-        [Route("ListarEstadosXAniosXEstados")]
+        [Route("ListarEstadosXAniosXmes")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> GetEstadosXAniosXEstados(int iduser)
         {
