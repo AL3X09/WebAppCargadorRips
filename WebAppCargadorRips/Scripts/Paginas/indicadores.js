@@ -67,7 +67,7 @@ function ripscargadostodosanios(token) {
         },
         success: function (data) {
             
-            var Estado = [];
+            var Anio = [];
             var total = [];
 
             $.each(data, function (k, v) {
@@ -79,12 +79,12 @@ function ripscargadostodosanios(token) {
                     v.Anio = "Sin definir"
                 }
                 
-                Estado.push(v.Anio);
-                total.push(v.Cantidad);
+                Anio.push(v.Anio);
+                total.push(parseInt(v.Cantidad));
             });
 
             var chartdata = {
-                labels: Estado,
+                labels: Anio,
                 datasets: [
                     {
                         borderWidth: 1,
@@ -245,9 +245,9 @@ function ripscargadosyestados(token) {
                         $('#total_rips_anio_actual_errores_estructura').html('Tiene un total de '+v.Cantidad+' registros de carga de archivos con errores de estructura para el año '+v.Anio+' .')
                     }
 
-                    Estados.push(v.Estado);
+                    //Estados.push(v.Estado);
 
-                    total.push(v.Cantidad);
+                    //total.push(parseInt(v.Cantidad));
                     if (k == 0) {
                         color = window.chartColors.green
                     } else if (k == 1) {
@@ -260,7 +260,7 @@ function ripscargadosyestados(token) {
                         backgroundColor: color,
                         fillColor: window.chartColors.blue,
                         strokeColor: color,
-                        data: [v.Cantidad]
+                        data: [parseInt(v.Cantidad)]
                     });
                 }else if((v.Anio == (new Date()).getFullYear() && v.Cantidad < 0) && v.Anio == (new Date()).getFullYear()-1 ){ // si no hay valores para el año actual 
                     
@@ -270,9 +270,8 @@ function ripscargadosyestados(token) {
                     }
                     
 
-                    Estados.push(v.Estado);
-
-                    total.push(v.Cantidad);
+                    //Estados.push(v.Estado);
+                    //total.push(v.Cantidad);
                     if (k == 0) {
                         color = window.chartColors.green
                     } else if (k == 1) {
@@ -285,7 +284,7 @@ function ripscargadosyestados(token) {
                         backgroundColor: color,
                         fillColor: window.chartColors.blue,
                         strokeColor: color,
-                        data: [v.Cantidad]
+                        data: [parseInt(v.Cantidad)]
                     });
 
                 }
@@ -297,7 +296,7 @@ function ripscargadosyestados(token) {
                 //Distritos = $.merge( $.merge( [], Distritos ), Distritos1 );
 
             });
-            
+            console.log(datos);
             //SECCION PARA ARMAR LA GRAFICA
             var barChartData = {
                 labels: [""],
