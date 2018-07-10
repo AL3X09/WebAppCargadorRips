@@ -424,7 +424,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             //Sorting for String columns
             if (iSortCol == 1 || iSortCol == 0)
             {
-                Func<VW_Listado_Estado_Rips, long> orderingFunction = (c => iSortCol == 1 ? c.codigo : c.codigo); // compare the sorting column
+                Func<VW_Listado_Estado_Rips, long> orderingFunction = (c => iSortCol == 1 ? c.codigo : c.codigo); // compara la columna a ordenar
 
                 if (sortOrder == "desc")
                 {
@@ -439,7 +439,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             //Sorting for Int columns TODO
             else if (iSortCol == 2)
             {
-                Func<VW_Listado_Estado_Rips, long> orderingFunction = (c => iSortCol == 2 ? c.validacion_id : c.codigo); // compare the sorting column
+                Func<VW_Listado_Estado_Rips, long> orderingFunction = (c => iSortCol == 2 ? c.validacion_id : c.codigo); // compara la columna a ordenar
 
                 if (sortOrder == "desc")
                 {
