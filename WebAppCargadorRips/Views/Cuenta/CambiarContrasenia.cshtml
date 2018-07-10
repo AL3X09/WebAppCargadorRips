@@ -21,32 +21,33 @@
 <!-- Formulario de cambio de contraseña -->
 <div class="row ">
     <form id="formusercontrasenia" method="post">
-        @Html.AntiForgeryToken()
-
-        <div class="input-field col s12">
-            <i class="material-icons prefix">lock</i>
-            <input id="contrasenia" name="contrasenia" type="password" class="validate" minlength=8 required >
-            <label for="contrasenia">Contraseña Nueva</label>
-        </div>
-        <div class="row">
-        </div>
-        <div class="input-field col s12">
-            <i class="material-icons prefix">lock_outline</i>
-            <input id="contraseniaconfirm" name="contraseniaconfirm" type="password" class="validate" required oninput="check(this)">
-            <label for="confirm">Comfirmar Contraseña</label>
-        </div>
-        <div class="row">
+   
+            @Html.AntiForgeryToken()
+            <br />
+            @Html.ValidationSummary(true, "", new { @class = "validate" })
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light green z-depth-2 tooltipped" type="submit" name="action" data-position="bottom" data-delay="50" data-tooltip="Oprime para cambiar la contraseña">Cambiar<i class="material-icons right">file_upload</i></button>
-                <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="cancelado()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la operación"><i class="material-icons right">close</i>CANCELAR</a>
+                <i class="material-icons prefix">lock</i>
+                <input id="contrasenia" name="contrasenia" type="password" class="validate" minlength=8 pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+                <label for="contrasenia">Contraseña Nueva</label>
             </div>
-        </div>
-        <div id="divclaims">
-        </div>
-
+            <div class="row">
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">lock_outline</i>
+                <input id="contraseniaconfirm" name="contraseniaconfirm" type="password" class="validate" required oninput="check(this)">
+                <label for="confirm">Comfirmar Contraseña</label>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light green z-depth-2 tooltipped" type="submit" name="action" data-position="bottom" data-delay="50" data-tooltip="Oprime para cambiar la contraseña">Cambiar<i class="material-icons right">file_upload</i></button>
+                    <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="cancelado()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la operación"><i class="material-icons right">close</i>CANCELAR</a>
+                </div>
+            </div>
+            <div id="divclaims">
+            </div>      
     </form>
-    </div>
+</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/cambiocontraseniajs")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/cambiocontraseniajs")
+    }

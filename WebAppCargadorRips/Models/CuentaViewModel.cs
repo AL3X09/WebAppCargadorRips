@@ -129,8 +129,6 @@ namespace WebAppCargadorRips.Models
         [Required]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        //[RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9]))$", ErrorMessage = "La contraseña debe contener 3 mayúsculas, minúsculas, números y caracteres especiales (por ejemplo,! @ # $% ^ & *)")]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$", ErrorMessage = "La contraseña debe contener: minimo 8 caracteres una letra mayúscula, una letra minúsculas, un número y caracteres especiales (por ejemplo,! @ # $% ^ & *)")]
         [Display(Name = "Contraseña (*)")]
         public string contrasenia { get; set; }
 

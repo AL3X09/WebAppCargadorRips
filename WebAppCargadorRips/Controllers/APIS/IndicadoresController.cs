@@ -69,13 +69,13 @@ namespace WebAppCargadorRips.Controllers.APIS
                           && WV.FK_web_validacion_estado_rips != 5
                           && WV.FK_web_validacion_estado_rips != 2
                           //&& WV.fecha_modificacion.Year == fechaActual.Year
-                          group ER by new { WV.fecha_modificacion.Year, ER.nombre, ER.estado_rips_id } into d
+                          group ER by new { WV.fecha_modificacion.Year, ER.estado_rips_id,ER } into d
                           orderby d.Key.Year descending
                           select new
                           {
                               Anio = d.Key.Year,
                               Fk_estado = d.Key.estado_rips_id,
-                              Estado = d.Key.nombre,
+                              Estado = d.Key.ER.nombre,
                               Cantidad = d.Count(),
                           });
 
