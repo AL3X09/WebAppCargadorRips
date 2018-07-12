@@ -56,7 +56,7 @@ function getAllME() {
   //ripscargadosyestados();
 }
 
-// pinto 
+// pinto el primer pie mostrando la cantida de cargados por años
 function ripscargadostodosanios(token) {
 
     $.ajax({
@@ -194,7 +194,7 @@ function ripscargadostodosanios(token) {
                 title: {
                     display: true,
                     position: "top",
-                    text: "Cantidad RIPS validados por años",
+                    text: "Cantidad RIPS Cargados por años",
                     fontSize: 10,
                 },
                 legend: {
@@ -219,10 +219,183 @@ function ripscargadostodosanios(token) {
         }
     });
 
-    ripscargadosyestados(token);
+    ripsvalidadosxestados(token);
 }
 
-function ripscargadosyestados(token) {
+/**
+ * 
+ */
+// pinto el primer pie mostrando la cantida de cargados por años
+function ripscargadostodosanios(token) {
+
+    $.ajax({
+        url: baseURL + 'api/Indicadores/ListarCantidadaniosCargadosaWebValidacion',
+        method: 'GET',
+        data: {iduser:token},
+        beforeSend: function () {
+        },
+        success: function (data) {
+            
+            var Anio = [];
+            var total = [];
+
+            $.each(data, function (k, v) {
+                if (v.Anio == (new Date()).getFullYear()) { //recorro el vector y valido que sea el anio actual
+                    //envio a la primera tarjeta el valor retornado por la api
+                    $('#total_rips_anio_actual').html('Tiene un total de '+v.Cantidad+' archivos cargados en el año '+v.Anio+' .')
+                }
+                if (v.Cantidad == 0) {
+                    v.Anio = "Sin definir"
+                }
+                
+                Anio.push(v.Anio);
+                total.push(parseInt(v.Cantidad));
+            });
+
+            var chartdata = {
+                labels: Anio,
+                datasets: [
+                    {
+                        borderWidth: 1,
+                        backgroundColor: [
+                            window.chartColors.orange,
+                            window.chartColors.silver,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.turkesa,
+                            window.chartColors.blue,
+                            window.chartColors.purple,
+                            window.chartColors.grey,
+                            window.chartColors.black,
+                            window.chartColors.red,
+                            /*colores claros*/
+                            window.chartColors.orangeclear,
+                            window.chartColors.silverclear,
+                            window.chartColors.yellowclear,
+                            window.chartColors.greenclear,
+                            window.chartColors.turkesaclear,
+                            window.chartColors.blueclear,
+                            window.chartColors.purpleclear,
+                            window.chartColors.greyclear,
+                            window.chartColors.blackclear,
+                            window.chartColors.redclear
+                        ],
+                        borderColor: [
+                            window.chartColors.orange,
+                            window.chartColors.silver,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.turkesa,
+                            window.chartColors.blue,
+                            window.chartColors.purple,
+                            window.chartColors.grey,
+                            window.chartColors.black,
+                            window.chartColors.red,
+                            /*colores claros*/
+                            window.chartColors.orangeclear,
+                            window.chartColors.silverclear,
+                            window.chartColors.yellowclear,
+                            window.chartColors.greenclear,
+                            window.chartColors.turkesaclear,
+                            window.chartColors.blueclear,
+                            window.chartColors.purpleclear,
+                            window.chartColors.greyclear,
+                            window.chartColors.blackclear,
+                            window.chartColors.redclear
+                        ],
+                        hoverBackgroundColor: [
+                            window.chartColors.orange,
+                            window.chartColors.silver,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.turkesa,
+                            window.chartColors.blue,
+                            window.chartColors.purple,
+                            window.chartColors.grey,
+                            window.chartColors.black,
+                            window.chartColors.red,
+                            /*colores claros*/
+                            window.chartColors.orangeclear,
+                            window.chartColors.silverclear,
+                            window.chartColors.yellowclear,
+                            window.chartColors.greenclear,
+                            window.chartColors.turkesaclear,
+                            window.chartColors.blueclear,
+                            window.chartColors.purpleclear,
+                            window.chartColors.greyclear,
+                            window.chartColors.blackclear,
+                            window.chartColors.redclear
+
+                        ],
+                        hoverBorderColor: [
+                            window.chartColors.orange,
+                            window.chartColors.silver,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.turkesa,
+                            window.chartColors.blue,
+                            window.chartColors.purple,
+                            window.chartColors.grey,
+                            window.chartColors.black,
+                            window.chartColors.red,
+                            /*colores claros*/
+                            window.chartColors.orangeclear,
+                            window.chartColors.silverclear,
+                            window.chartColors.yellowclear,
+                            window.chartColors.greenclear,
+                            window.chartColors.turkesaclear,
+                            window.chartColors.blueclear,
+                            window.chartColors.purpleclear,
+                            window.chartColors.greyclear,
+                            window.chartColors.blackclear,
+                            window.chartColors.redclear
+                        ],
+                        data: total
+                    }
+                ]
+            };
+
+            var ctx = $("#canvascantidadestadoripsvalidadostodosanios");
+            //options
+            var option = {
+
+                responsive: true,
+                title: {
+                    display: true,
+                    position: "top",
+                    text: "Cantidad RIPS Cargados por años",
+                    fontSize: 10,
+                },
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    labels: {
+                        fontSize: 10
+                    }
+                }
+
+            };
+
+
+            var barGraph = new Chart(ctx, {
+                type: 'pie',
+                data: chartdata,
+                options: option
+            });
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+
+    ripsvalidadosxestados(token);
+}
+
+
+/**
+ * 
+ */
+function ripsvalidadosxestados(token) {
 
     $.ajax({
         url: baseURL + 'api/Indicadores/ListarEstadosXAnios',
