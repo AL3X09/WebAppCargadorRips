@@ -64,7 +64,7 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content deep-orange darken-3">
-                    <p id="total_rips_anio_actual" class="white-text">Tiene un total de - archivos con errores de validación para el año - .</p>
+                    <p id="total_rips_errores_validacion_anio_actual" class="white-text"></p>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content teal darken-1">
-                    <p id="total_rips_anio_actual" class="white-text">Tiene un total de - archivos radicados para el año - .</p>
+                    <p id="total_rips_radicados_anio_actual" class="white-text"></p>
                 </div>
             </div>
         </div>
@@ -90,18 +90,24 @@
     <div class="col m4 s12">
         <canvas id="canvascantidadestadoripsvalidadostodosanios"></canvas>
     </div>
-    <div class="col m6 s12">
+    <div class="col m4 s12">
         <canvas id="" />
     </div>
 </div>
 
 <div class="row">
-    
-    <div class="col m4 s12">
-        <canvas id="canvascantidadestadoripscargadosestados"></canvas>
+
+    <div class="col m3 s12">
+        <canvas id="canvascantidadestadoripswebvalidados"></canvas>
     </div>
-    <div class="col m6 s12">
-        <canvas id="" />
+    <div class="col m3 s12">
+        <canvas id="canvascantidadestadoripsprecargados"></canvas>
+    </div>
+    <div class="col m3 s12">
+        <canvas id="canvascantidadestadoripsserviciovalido"></canvas>
+    </div>
+    <div class="col m3 s12">
+        <canvas id="canvascantidadestadoripsradicados"></canvas>
     </div>
 </div>
 

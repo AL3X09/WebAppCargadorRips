@@ -174,15 +174,14 @@ namespace WebAppCargadorRips.Controllers.APIS
                           join WU in bd.Web_Usuario on P.prestador_id equals WU.FK_usuario_prestador
                           where WU.usuario_id == 1
                           && R.radicacion_estado_id != 2
-                          && R.radicacion_estado_id != 12
-                          && R.radicacion_estado_id != 13
+                          && (R.radicacion_estado_id == 10 || R.radicacion_estado_id == 11)
                           group ER by new { SV.fecha_modificacion.Year, ER.estado_rips_id, ER } into d
                           orderby d.Key.Year descending
                           select new
                           {
                               Anio = d.Key.Year,
                               Fk_estado = d.Key.estado_rips_id,
-                              Estado = d.Key.ER.nombre,
+                              Estado = "Radicado".ToString(),
                               Cantidad = d.Count(),
                           }).Take(5);
 
@@ -234,7 +233,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         /// Lista cantidad de rips cargados en WEB Validacion y sus estados todo el tiempo
         ///</summary>
         [HttpGet]
-        [Route("ListarCantidadaniosCargadosaWebPreradicacion")]
+        [Route("ListarCantidadporValidar")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> GetWebPreradicacion(int iduser)
         {
@@ -252,28 +251,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             return result;
         }
 
-        ///<summary>
-        /// Lista cantidad de rips cargados en WEB Preradicacion y sus estados año actual
-        ///</summary>
-        [HttpGet]
-        [Route("ListarXEstadosWebRadicacion")]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public IEnumerable<Object> GetanioactualWebPreradicacion(int iduser)
-        {
-            var result = from WPR in bd.Web_Preradicacion
-                         join WV in bd.Web_Validacion on WPR.FK_web_preradicacion_web_validacion equals WV.validacion_id
-                         join ER in bd.Estado_RIPS on WV.FK_web_validacion_estado_rips equals ER.estado_rips_id
-                         where WV.FK_web_validacion_web_usuario == iduser && WPR.FK_preradicacion_estado_rips != 2
-                         orderby ER.nombre ascending
-                         group WPR by ER.nombre into d
-                         select new
-                         {
-                             Estado = d.Key,
-                             Cantidad = d.Count(),
-                         };
-
-            return result;
-        }
+       
     }
 }
 /**

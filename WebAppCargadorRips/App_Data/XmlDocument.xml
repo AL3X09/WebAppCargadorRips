@@ -544,14 +544,34 @@
             Gets some very important data from the server.
             </summary>
         </member>
-        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetWebValidacion(System.Int32)">
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetCantidadCargadorWeb(System.Int32)">
             <summary>
-             Lista cantidad de rips cargados en la plataforma WEB y sus estados, los ultimos 5 años
+             Lista cantidad de rips cargados en la plataforma WEB y sus estados, 5 años mas actuales en tabla web validacion
             </summary>
         </member>
-        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetEstadosXAnios(System.Int32)">
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetCantidadServicioWeb(System.Int32)">
             <summary>
-             Lista cantidad los estados de los rips enviados por la plataforma WEB y sus estados por años
+             Lista cantidad de rips validados por el servicio Integral y sus estados, 5 años mas actuales en tabla servicio validación
+            </summary>
+        </member>
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetEstadosXAniosWebValidacion(System.Int32)">
+            <summary>
+             Lista cantidad los estados de los rips enviados por la plataforma WEB, agrupados por años solo en web validación
+            </summary>
+        </member>
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetEstadosXAniosWebPreRadicacion(System.Int32)">
+            <summary>
+             Lista cantidad los estados de los rips enviados por la plataforma WEB, agrupados por años solo en web validación
+            </summary>
+        </member>
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetEstadosXAniosServicioValidacion(System.Int32)">
+            <summary>
+             Lista cantidad los estados de los rips enviados por la plataforma WEB, agrupados por años solo en servicio validación
+            </summary>
+        </member>
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetEstadosXAniosRadicacion(System.Int32)">
+            <summary>
+             Lista cantidad los estados de los rips enviados por la plataforma WEB, agrupados por años solo en radicacion
             </summary>
         </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetEstadosXAniosXEstados(System.Int32)">
@@ -562,11 +582,6 @@
         <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetWebPreradicacion(System.Int32)">
             <summary>
              Lista cantidad de rips cargados en WEB Validacion y sus estados todo el tiempo
-            </summary>
-        </member>
-        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetanioactualWebPreradicacion(System.Int32)">
-            <summary>
-             Lista cantidad de rips cargados en WEB Preradicacion y sus estados año actual
             </summary>
         </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.ManualesController.Get">

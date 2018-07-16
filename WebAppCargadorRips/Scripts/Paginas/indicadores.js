@@ -56,7 +56,7 @@ function getAllME() {
   //ripscargadosyestados();
 }
 
-// pinto el primer pie mostrando la cantida de cargados por años
+// pinto el primer pie mostrando la cantida de cargados ultimos 5 años
 function ripscargadostodosanios(token) {
 
     $.ajax({
@@ -219,17 +219,17 @@ function ripscargadostodosanios(token) {
         }
     });
 
-    ripsvalidadosxestados(token);
+    ripsradicadoscincoanios(token);
 }
 
 /**
  * 
  */
-// pinto el primer pie mostrando la cantida de cargados por años
-function ripscargadostodosanios(token) {
+// pinto el segundo pie mostrando la cantida de rips radicados ultimos 5 años
+function ripsradicadoscincoanios(token) {
 
     $.ajax({
-        url: baseURL + 'api/Indicadores/ListarCantidadaniosCargadosaWebValidacion',
+        url: baseURL + 'api/Indicadores/ListarCantidadaniosRadicados',
         method: 'GET',
         data: {iduser:token},
         beforeSend: function () {
@@ -258,6 +258,17 @@ function ripscargadostodosanios(token) {
                     {
                         borderWidth: 1,
                         backgroundColor: [
+						/*colores claros*/
+                            window.chartColors.orangeclear,
+                            window.chartColors.silverclear,
+                            window.chartColors.yellowclear,
+                            window.chartColors.greenclear,
+                            window.chartColors.turkesaclear,
+                            window.chartColors.blueclear,
+                            window.chartColors.purpleclear,
+                            window.chartColors.greyclear,
+                            window.chartColors.blackclear,
+                            window.chartColors.redclear,							
                             window.chartColors.orange,
                             window.chartColors.silver,
                             window.chartColors.yellow,
@@ -268,19 +279,20 @@ function ripscargadostodosanios(token) {
                             window.chartColors.grey,
                             window.chartColors.black,
                             window.chartColors.red,
-                            /*colores claros*/
-                            window.chartColors.orangeclear,
-                            window.chartColors.silverclear,
-                            window.chartColors.yellowclear,
-                            window.chartColors.greenclear,
-                            window.chartColors.turkesaclear,
-                            window.chartColors.blueclear,
-                            window.chartColors.purpleclear,
-                            window.chartColors.greyclear,
-                            window.chartColors.blackclear,
-                            window.chartColors.redclear
+                            
                         ],
                         borderColor: [
+						/*colores claros*/
+                            window.chartColors.orangeclear,
+                            window.chartColors.silverclear,
+                            window.chartColors.yellowclear,
+                            window.chartColors.greenclear,
+                            window.chartColors.turkesaclear,
+                            window.chartColors.blueclear,
+                            window.chartColors.purpleclear,
+                            window.chartColors.greyclear,
+                            window.chartColors.blackclear,
+                            window.chartColors.redclear,					
                             window.chartColors.orange,
                             window.chartColors.silver,
                             window.chartColors.yellow,
@@ -291,17 +303,7 @@ function ripscargadostodosanios(token) {
                             window.chartColors.grey,
                             window.chartColors.black,
                             window.chartColors.red,
-                            /*colores claros*/
-                            window.chartColors.orangeclear,
-                            window.chartColors.silverclear,
-                            window.chartColors.yellowclear,
-                            window.chartColors.greenclear,
-                            window.chartColors.turkesaclear,
-                            window.chartColors.blueclear,
-                            window.chartColors.purpleclear,
-                            window.chartColors.greyclear,
-                            window.chartColors.blackclear,
-                            window.chartColors.redclear
+                            
                         ],
                         hoverBackgroundColor: [
                             window.chartColors.orange,
@@ -363,7 +365,7 @@ function ripscargadostodosanios(token) {
                 title: {
                     display: true,
                     position: "top",
-                    text: "Cantidad RIPS Cargados por años",
+                    text: "Cantidad RIPS Radicados por años",
                     fontSize: 10,
                 },
                 legend: {
@@ -388,17 +390,17 @@ function ripscargadostodosanios(token) {
         }
     });
 
-    ripsvalidadosxestados(token);
+    ripsvalidadosxestadoswebvalidacion(token);
 }
 
 
 /**
- * 
+ * Lista la cantidad de estados obtenidos en la validacion por la plataforma web
  */
-function ripsvalidadosxestados(token) {
+function ripsvalidadosxestadoswebvalidacion(token) {
 
     $.ajax({
-        url: baseURL + 'api/Indicadores/ListarEstadosXAnios',
+        url: baseURL + 'api/Indicadores/ListarEstadosXAniosWebValidacion',
         method: 'GET',
         data: { iduser: token },
         beforeSend: function () {
@@ -439,11 +441,11 @@ function ripsvalidadosxestados(token) {
                     
                     //envio a la primera tarjeta el valor retornado por la api
                     if(v.Fk_estado == 4){
-                        $('#total_rips_anio_actual_errores_estructura').html('Tiene un total de '+v.Cantidad+' registros de carga de archivos con errores de estructura para el año '+v.Anio+' .')
+                        $('#total_rips_anio_actual_errores_estructura').html('Tuvo un total de '+v.Cantidad+' registros de carga de archivos con errores de estructura para el año '+v.Anio+' .')
                     }
                     
 
-                    //Estados.push(v.Estado);
+                    Estados.push(v.Estado.toString());
                     //total.push(v.Cantidad);
                     if (k == 0) {
                         color = window.chartColors.green
@@ -469,21 +471,370 @@ function ripsvalidadosxestados(token) {
                 //Distritos = $.merge( $.merge( [], Distritos ), Distritos1 );
 
             });
-            console.log(datos);
+            
             //SECCION PARA ARMAR LA GRAFICA
             var barChartData = {
-                labels: [""],
+                labels: ['Pre-Validados'],
                 datasets: datos
             }
 
-            var ctx = document.getElementById("canvascantidadestadoripscargadosestados").getContext("2d");
+            var ctx = document.getElementById("canvascantidadestadoripswebvalidados").getContext("2d");
             window.myBar = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,
                 options: {
+					 scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					},
                     title: {
                         display: true,
-                        text: "Estado RIPS validados para el año " + (new Date()).getFullYear()
+                        text: "Cantidad RIPS pre validados para el año " + (new Date()).getFullYear()+" por estado."
+                    }, 
+                    responsive: true,
+                }
+            });
+
+
+
+            //FIN SECCION PARA ARMAR LA GRAFICA
+
+        }
+
+    });
+    ripsvalidadosxestadoswebpreradicacion(token);
+}
+
+/**
+ * Lista la cantidad de estados obtenidos en la pre carga por la plataforma web
+ */
+function ripsvalidadosxestadoswebpreradicacion(token) {
+
+    $.ajax({
+        url: baseURL + 'api/Indicadores/ListarEstadosXAniosWebPreRadicacion',
+        method: 'GET',
+        data: { iduser: token },
+        beforeSend: function () {
+        },
+        success: function (data) {
+            //console.log(data);
+            var Estados = [];
+            var total = [];
+            var datos = [];
+            var color ;
+            $.each(data, function (k, v) {
+                //Si el año es el actual y los valores estan vacios
+                if(v.Anio == (new Date()).getFullYear() && v.Cantidad > 0){
+                    
+                    //TODO sin uso
+                    if(v.Fk_estado == 4){
+                     
+                    }
+
+                    //Estados.push(v.Estado);
+
+                    //total.push(parseInt(v.Cantidad));
+                    if (k == 0) {
+                        color = window.chartColors.green
+                    } else if (k == 1) {
+                        color = window.chartColors.blue
+                    } else if (k==2){
+                        color=window.chartColors.red
+                    }
+                    datos.push({
+                        label: v.Estado.toString(),
+                        backgroundColor: color,
+                        fillColor: window.chartColors.blue,
+                        strokeColor: color,
+                        data: [parseInt(v.Cantidad)]
+                    });
+                }else if((v.Anio == (new Date()).getFullYear() && v.Cantidad < 0) && v.Anio == (new Date()).getFullYear()-1 ){ // si no hay valores para el año actual 
+                    
+                    //TODO sin uso
+                    if(v.Fk_estado == 4){
+                     
+                    }
+                    
+
+                    Estados.push(v.Estado.toString());
+                    //total.push(v.Cantidad);
+                    if (k == 0) {
+                        color = window.chartColors.green
+                    } else if (k == 1) {
+                        color = window.chartColors.blue
+                    } else if (k==2){
+                        color=window.chartColors.red
+                    }
+                    datos.push({
+                        label: v.Estado.toString(),
+                        backgroundColor: color,
+                        fillColor: window.chartColors.blue,
+                        strokeColor: color,
+                        data: [parseInt(v.Cantidad)]
+                    });
+
+                }
+                
+
+            });
+            
+            //SECCION PARA ARMAR LA GRAFICA
+            var barChartData = {
+                labels: ['Cargados'],
+                datasets: datos
+            }
+
+            var ctx = document.getElementById("canvascantidadestadoripsprecargados").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+					 scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					},
+                    title: {
+                        display: true,
+                        text: "Cantidad RIPS cargados para el año " + (new Date()).getFullYear()+" por estado."
+                    }, 
+                    responsive: true,
+                }
+            });
+
+
+
+            //FIN SECCION PARA ARMAR LA GRAFICA
+
+        }
+
+    });
+    ripsvalidadosxestadosserviciovalida(token);
+}
+
+/**
+ * Lista la cantidad de estados obtenidos por el servicio de validacion
+ */
+function ripsvalidadosxestadosserviciovalida(token) {
+
+    $.ajax({
+        url: baseURL + 'api/Indicadores/ListarEstadosXAniosServicioValidacion',
+        method: 'GET',
+        data: { iduser: token },
+        beforeSend: function () {
+        },
+        success: function (data) {
+            //console.log(data);
+            var Estados = [];
+            var total = [];
+            var datos = [];
+            var color ;
+			var rescantidad = 0;
+            $.each(data, function (k, v) {
+                //Si el año es el actual y los valores estan vacios
+                if(v.Anio == (new Date()).getFullYear() && v.Cantidad > 0){
+                    
+					//envio a la tercera tarjeta el valor retornado por la api
+                    if(v.Fk_estado == 8 || v.Fk_estado == 9){
+						rescantidad=+v.Cantidad;
+						$('#total_rips_errores_validacion_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos con errores de validación para el año '+v.Anio+' .')
+                    }else{
+						console.log('hola');
+						$('#total_rips_errores_validacion_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos con errores de validación para el año '+((new Date()).getFullYear())+' .')
+					}
+
+                    if (k == 0) {
+                        color = window.chartColors.green
+                    } else if (k == 1) {
+                        color = window.chartColors.blue
+                    } else if (k==2){
+                        color=window.chartColors.red
+                    }
+                    datos.push({
+                        label: v.Estado.toString(),
+                        backgroundColor: color,
+                        fillColor: window.chartColors.blue,
+                        strokeColor: color,
+                        data: [parseInt(v.Cantidad)]
+                    });
+                }else if((v.Anio == (new Date()).getFullYear() && v.Cantidad < 0) && v.Anio == (new Date()).getFullYear()-1 ){ // si no hay valores para el año actual 
+                    
+                    //envio a la tercera tarjeta el valor retornado por la api
+                    if(v.Fk_estado == 8 || v.Fk_estado == 9){
+						rescantidad=+v.Cantidad;
+						$('#total_rips_errores_validacion_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos con errores de validación para el año '+v.Anio+' .')
+                    }else{
+						
+						$('#total_rips_errores_validacion_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos con errores de validación para el año '+((new Date()).getFullYear()-1)+' .')
+					}
+                    
+
+                    Estados.push(v.Estado.toString());
+                    //total.push(v.Cantidad);
+                    if (k == 0) {
+                        color = window.chartColors.green
+                    } else if (k == 1) {
+                        color = window.chartColors.blue
+                    } else if (k==2){
+                        color=window.chartColors.red
+                    }
+                    datos.push({
+                        label: v.Estado.toString(),
+                        backgroundColor: color,
+                        fillColor: window.chartColors.blue,
+                        strokeColor: color,
+                        data: [parseInt(v.Cantidad)]
+                    });
+
+                }
+                
+
+            });
+            
+            //SECCION PARA ARMAR LA GRAFICA
+            var barChartData = {
+                labels: ['Validados'],
+                datasets: datos
+            }
+
+            var ctx = document.getElementById("canvascantidadestadoripsserviciovalido").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+					 scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					},
+                    title: {
+                        display: true,
+                        text: "Cantidad RIPS validados para el año " + (new Date()).getFullYear()+" por estado."
+                    }, 
+                    responsive: true,
+                }
+            });
+
+
+
+            //FIN SECCION PARA ARMAR LA GRAFICA
+
+        }
+
+    });
+    ripsvalidadosxestadosradicados(token);
+}
+
+/**
+ * Lista la cantidad de estados obtenidos en radicacion
+ */
+function ripsvalidadosxestadosradicados(token) {
+
+    $.ajax({
+        url: baseURL + 'api/Indicadores/ListarEstadosXAniosRadicacion',
+        method: 'GET',
+        data: { iduser: token },
+        beforeSend: function () {
+        },
+        success: function (data) {
+            //console.log(data);
+            var Estados = [];
+            var total = [];
+            var datos = [];
+            var color ;
+			var rescantidad = 0;
+            $.each(data, function (k, v) {
+                //Si el año es el actual y los valores estan vacios
+                if(v.Anio == (new Date()).getFullYear() && v.Cantidad > 0){
+                    
+                    //envio a la cuarta tarjeta el valor retornado por la api
+                    if(v.Fk_estado == 10 || v.Fk_estado == 11 ){
+                        rescantidad=+v.Cantidad;
+						$('#total_rips_radicados_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos radicados para el año '+v.Anio+' .')
+                    }else{
+						
+						$('#total_rips_radicados_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos radicados para el año '+((new Date()).getFullYear()-1)+' .')
+					}
+
+                    //Estados.push(v.Estado);
+
+                    //total.push(parseInt(v.Cantidad));
+                    if (k == 0) {
+                        color = window.chartColors.green
+                    } else if (k == 1) {
+                        color = window.chartColors.blue
+                    } else if (k==2){
+                        color=window.chartColors.red
+                    }
+                    datos.push({
+                        label: v.Estado.toString(),
+                        backgroundColor: color,
+                        fillColor: window.chartColors.blue,
+                        strokeColor: color,
+                        data: [parseInt(v.Cantidad)]
+                    });
+                }else if((v.Anio == (new Date()).getFullYear() && v.Cantidad < 0) && v.Anio == (new Date()).getFullYear()-1 ){ // si no hay valores para el año actual 
+                    
+                    //envio a la cuarta tarjeta el valor retornado por la api
+                    if(v.Fk_estado == 10 || v.Fk_estado == 11 ){
+                        rescantidad=+v.Cantidad;
+						$('#total_rips_radicados_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos radicados para el año '+v.Anio+' .')
+                    }else{
+						
+						$('#total_rips_radicados_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos radicados para el año '+((new Date()).getFullYear()-1)+' .')
+					}
+                    
+
+                    Estados.push(v.Estado.toString());
+                    //total.push(v.Cantidad);
+                    if (k == 0) {
+                        color = window.chartColors.green
+                    } else if (k == 1) {
+                        color = window.chartColors.blue
+                    } else if (k==2){
+                        color=window.chartColors.red
+                    }
+                    datos.push({
+                        label: v.Estado.toString(),
+                        backgroundColor: color,
+                        fillColor: window.chartColors.blue,
+                        strokeColor: color,
+                        data: [parseInt(v.Cantidad)]
+                    });
+
+                }
+                
+
+            });
+            
+            //SECCION PARA ARMAR LA GRAFICA
+            var barChartData = {
+                labels: ['Radicados'],
+                datasets: datos
+            }
+
+            var ctx = document.getElementById("canvascantidadestadoripsradicados").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+					 scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					},
+                    title: {
+                        display: true,
+                        text: "Cantidad RIPS radicados para el año " + (new Date()).getFullYear()+" por estado."
                     }, 
                     responsive: true,
                 }
@@ -498,6 +849,7 @@ function ripsvalidadosxestados(token) {
     });
     ripscargadosyestadosXaniosXmeses(token);
 }
+
 
 //Pinto grafica preradicados x estados x años x meses
 function ripscargadosyestadosXaniosXmeses(token) {
