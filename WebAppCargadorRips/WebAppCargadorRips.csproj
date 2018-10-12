@@ -462,12 +462,6 @@
     <Compile Include="EF_Models\SP_Ingreso_Usuario_Result.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\SP_Insert_Datos_Rips_a_Validar_Result.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SP_Insert_Rips_a_Preradicar_Result.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\SP_ListarTipoUsuario_Result.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
@@ -483,13 +477,19 @@
     <Compile Include="EF_Models\SP_UpdateDatosUser_Result.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\SP_Update_Estado_Disponible_Preradicado_Result.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SP_Update_Estado_Error_Carga_WebValidacion_Result.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\SP_ValidarDatosRestablecimientoContrasenia_Result.cs">
+      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\SP_Web_Insert_Datos_Rips_a_Validar_Result.cs">
+      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\SP_Web_Insert_Rips_a_Preradicar_Result.cs">
+      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\SP_Web_Update_Estado_Disponible_Preradicado_Result.cs">
+      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_Models\SP_Web_Update_Estado_Error_Carga_WebValidacion_Result.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Tipo_Diagnostico.cs">
@@ -1113,7 +1113,8 @@
     <Content Include="Content\MaterialIcons-Regular.ttf" />
     <Content Include="Content\MaterialIcons-Regular.woff" />
     <Content Include="Content\MaterialIcons-Regular.woff2" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="libman.json" />
+    <None Include="Properties\PublishProfiles\Pc2profile.pubxml" />
     <None Include="Properties\PublishProfiles\WebAppCargadorRips20180625pruebas2 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1202,7 +1203,9 @@
     <Content Include="Scripts\validaciones\validaCargaArchivo.js" />
     <Content Include="Scripts\validaciones\validarFormRegistro.js" />
     <Content Include="Scripts\validaciones\validator.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

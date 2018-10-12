@@ -308,3 +308,31 @@ System.IO.IOException: No se puede crear un archivo que ya existe.
    en System.IO.File.InternalMove(String sourceFileName, String destFileName, Boolean checkHost)
    en System.IO.File.Move(String sourceFileName, String destFileName)
    en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__4.MoveNext() en D:\NETAPPS\WebAppCargadorRips_V02\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 159
+
+-------------------------------------- 12/10/2018 08:19:39 a. m. --------------------------
+System.Net.Mail.SmtpException: Error al enviar correo. ---> System.Net.WebException: No es posible conectar con el servidor remoto ---> System.Net.Sockets.SocketException: Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder 40.97.24.2:587
+   en System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   en System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpConnection.ConnectAndHandshakeAsyncResult.End(IAsyncResult result)
+   en System.Net.Mail.SmtpTransport.EndGetConnection(IAsyncResult result)
+   en System.Net.Mail.SmtpClient.ConnectCallback(IAsyncResult result)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   en WebAppCargadorRips.Controllers.APIS.EnviarCorreoController.<PostSendEmail>d__24.MoveNext() en D:\NetApps\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\EnviarCorreoController.cs:línea 120//smtp.office365.com
+
+-------------------------------------- 12/10/2018 08:19:39 a. m. --------------------------
+System.Net.Mail.SmtpException: Error al enviar correo. ---> System.Net.WebException: No es posible conectar con el servidor remoto ---> System.Net.Sockets.SocketException: Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder 52.96.9.178:587
+   en System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   en System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Net.Mail.SmtpConnection.ConnectAndHandshakeAsyncResult.End(IAsyncResult result)
+   en System.Net.Mail.SmtpTransport.EndGetConnection(IAsyncResult result)
+   en System.Net.Mail.SmtpClient.ConnectCallback(IAsyncResult result)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   en WebAppCargadorRips.Controllers.APIS.EnviarCorreoController.<PostSendEmail>d__24.MoveNext() en D:\NetApps\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\EnviarCorreoController.cs:línea 120//smtp.office365.com

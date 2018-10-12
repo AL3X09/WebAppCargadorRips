@@ -155,7 +155,7 @@ function readlines(lineas, namefile, cantidad) {
         poslec = 0;
         swal(
             'Error!',
-            'Estas intentando cargar archivos con un nombre no permitido, por favor corrigelos!',
+            'Estas intentando cargar archivos con un nombre no permitido, por favor corrijalos!',
             'error'
         )
     } else {
