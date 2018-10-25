@@ -109,7 +109,8 @@ namespace WebAppCargadorRips.Controllers
                 APIS.LogsController log = new APIS.LogsController(e.ToString());
                 log.createFolder();
                 //envio error mensaje al usuario
-                ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                //ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                ModelState.AddModelError(string.Empty, e.ToString());
             }
             //retorno la vista en caso de que no se efectue el regsitro
             return View("Index", model);
