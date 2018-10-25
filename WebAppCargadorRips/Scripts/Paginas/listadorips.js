@@ -85,7 +85,7 @@ function cargaratabla(token) {
         
 }
 
-//metodo no funcional
+
 function cargaratabla2() {
     
     $("#listaRips").DataTable(

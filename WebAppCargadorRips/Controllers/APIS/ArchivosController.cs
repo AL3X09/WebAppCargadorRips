@@ -1,4 +1,4 @@
-﻿//CONTROLADOR ENCARGADO DE LOS ARCHIVOS Y RIPS
+﻿//CONTROLADOR ENCARGADO DE LOS RIPS
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,7 +100,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             {
                 //inserto en la tabla web_validacion
                 //3 es estado aprobado sin errores
-                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario,"3").First();
+                var result = bd.SP_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario,"3").First();
 
                 //si la respuesta del porcedimeinto de insercion a la tabla validacion, es satisfactoria realizo el almacenamiento de los archivos
                 if (result.codigo == 201)
@@ -108,7 +108,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                     
                     try {
                         //Inserto en la tabla web_preradicado
-                        var preradicadoResult = bd.SP_Web_Insert_Rips_a_Preradicar(Convert.ToInt64(idUsuario), result.ultimoIdInsert).First();
+                        var preradicadoResult = bd.SP_Insert_Rips_a_Preradicar(Convert.ToInt64(idUsuario), result.ultimoIdInsert).First();
                         //Si el SP de insert de preradicado retorno el una respuesta satisfactoria cargo el archivo
                         if (preradicadoResult.codigo==201)
                         {
@@ -199,9 +199,9 @@ namespace WebAppCargadorRips.Controllers.APIS
                             catch (Exception e) // si hay un error al crear y guardar el fichero cambio el estado del registro en la tabla Auditoria.Web_Validacion
                             {
                                 //Cambio el estado la tabla web_preradicado a disponible
-                                var UpdatepreradicadoResult = bd.SP_Web_Update_Estado_Disponible_Preradicado(result.ultimoIdInsert, preradicadoResult.ultimoIdInsertPreradicado).First();
+                                var UpdatepreradicadoResult = bd.SP_Update_Estado_Disponible_Preradicado(result.ultimoIdInsert, preradicadoResult.ultimoIdInsertPreradicado).First();
                                 //Cambio el estado la tabla web_validacion estado error de carga 
-                                var UpdatewebvalidacionError = bd.SP_Web_Update_Estado_Error_Carga_WebValidacion(result.ultimoIdInsert).First();
+                                var UpdatewebvalidacionError = bd.SP_Update_Estado_Error_Carga_WebValidacion(result.ultimoIdInsert).First();
 
                                 //envio log a archivo de logs 
                                 LogsController log = new LogsController(e.ToString());
@@ -300,7 +300,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             {
                 //inserto en la tabla web_validacion
                 //3 es estado aprobado con errores de estructura
-                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario,"4").First();
+                var result = bd.SP_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario,"4").First();
                 
                 //si la respuesta del porcedimeinto de insercion a la tabla validacion, es satisfactoria realizo el almacenamiento de los archivos
                 if (result.codigo == 201)
