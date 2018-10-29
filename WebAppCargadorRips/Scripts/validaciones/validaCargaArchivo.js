@@ -1,7 +1,6 @@
 ﻿/**
  * @author ALEXANDER CIFUENTES SANCHEZ
- * @description este archivo se encarga de validar los adjuntos para que el servidor no se cuelgue
- * en esta operación
+ * @description este archivo se encarga de validar los adjuntos para que el servidor no se cuelgue en esta operación
  * 26-10-2017
  */
 //Variable mantiene el modal desplegado
@@ -12,7 +11,7 @@ var modalButtonOnly = new tingle.modal({
 });
 
 //variable mantiene los errores
-var errores = []; //new Array(100);
+var errores = [];
 //variable mantiene la posicion de lectura
 var poslec = 0;
 
@@ -53,7 +52,7 @@ $(document).ready(function () {
     },
     //For custom messages
     messages: {
-      tipoUsuario2: "Seleccione un tipo de usuario",
+      tipoUsuario: "Seleccione un tipo de usuario",
       categoria: "Seleccione una categoria",
       fechaInicio: "Indique una fecha de inicio",
       fechaFin: "Indique una fecha de fin",
@@ -234,7 +233,7 @@ function terminaLectura() {
     //envio notificación del error
     swal({
       title: 'Error',
-      text: 'Tus archivos presentan Errores de estructura!! se enviara un correo con los diferentes ' +
+      text: 'Tus archivos presentan problemas!! se enviara un correo con los diferentes ' +
       'errores encontrados, por favor corrijalos eh intente nuevamente.',
       type: 'warning',
       showCancelButton: false,
@@ -243,10 +242,7 @@ function terminaLectura() {
       allowOutsideClick: false
     }).then((result) => {
       //if (result.value) {
-        //envio a la api de errores
-        UploadValidacionConErrores(errores.slice(0,100));
-        //con slice envio del primer error al 100 para no saturar el servidor de correo
-        //enviarCorreoErrores(errores.slice(0,100));
+        enviarCorreoErrores(errores);
       //}
     })
     //llamo funcion para enviar correo

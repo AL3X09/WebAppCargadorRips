@@ -3,17 +3,54 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewBag.Title - Cargador RIPS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/mdbcss")
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/fonts/roboto/Roboto-Bold.woff" rel="stylesheet" />
+    @Styles.Render("~/Content/mdb")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
 
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+        @@media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 1000px;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .view {
+                height: 650px;
+            }
+        }
+
+        @@media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331 !important;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/fonts/roboto/Roboto-Bold.woff" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    
+
     <!-- Seccion del <noscript>  -->
     <noscript>
         <div class="row">
@@ -37,13 +74,89 @@
 
 <body>
 
-    <div class="">
-        @RenderBody()
+    <div class="full-bg-img">
+        <div class="mask rgba-blue-slight"></div>
     </div>
 
+    <!-- Full Page Intro -->
+    <div class="view full-page-intro" style="background-image: url(@Url.Content("~/Img/bg.jpg")); background-repeat: no-repeat; background-size: cover;">
+
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="container">
+
+                <section class="login-form">
+                    <div class="col-md-12 col-sm-12 wow fadeIn mb-3 text-center">
+                        <h1 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s"> <a class="indigo-text font-weight-bold">CARGADOR</a></h1>
+                    </div>
+                    <div class="text-center">
+                        <img src="@Url.Content("~/Img/logo.png")" class="img-fluid" alt="" />
+                    </div>
+                    <br />
+
+                    <!--Call to action button-->
+                    <div class="text-center py-3">
+                        <ul class="list-unstyled list-inline mb-0">
+                            <li class="list-inline-item">
+                                <button type="button" class="btn blue accent-4 btn-lg btn-block btn-rounded" data-toggle="modal" data-target="#modalLRForm">Iniciar Sesión</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.Call to action button-->
+
+                </section>
+
+                <div>
+                    @RenderBody()
+                </div>
+
+
+            </div>
+            <!-- Content -->
+
+        </div>
+        <!-- Mask & flexbox options-->
+
+    </div>
+    <!-- Full Page Intro -->
+    <!--Footer-->
+    <footer class="page-footer text-center font-small mt-0 wow fadeIn stylish-color-dark">
+
+        <!--Escudo action-->
+        <div class="pt-4">
+            <img src="@Url.Content("~/Img/alcaldia_logo.png")" class="img-fluid" alt="" />
+
+        </div>
+        <!--/.Call to action-->
+
+        <hr class="my-4">
+
+        <!-- Diecciones icons -->
+        <div class="pb-4">
+            SECRETARÍA DISTRITAL DE SALUD | Subsecretaria de Gestión y Planeación Sectorial | Direccion de Planeación Sectorial
+        </div>
+        <!-- Social icons -->
+        <!--Copyright-->
+        <div class="footer-copyright py-3">
+            <a href="#">&copy; @DateTime.Now.Year - Bogotá D.C. | </a>
+            <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com | </a>
+            <a href="#" target="_blank"> MDBootstrap.com | http://www.bootstrapzen.com/</a>
+            <a href="#" target="_blank"> MDBootstrap.com | http://www.materializecss.com/</a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+    <!-- SCRIPTS -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jsmdb")
     @Scripts.Render("~/bundles/loginval")
     @RenderSection("scripts", required: true)
 </body>
+
 </html>
 

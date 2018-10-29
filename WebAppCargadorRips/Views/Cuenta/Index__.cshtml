@@ -1,0 +1,73 @@
+﻿@{
+    //vista de la sesión
+    ViewBag.Title = "Sesión";
+    Layout = "~/Views/Shared/_LayoutSesion.cshtml";
+}
+
+<!--Button to action-->
+<div class="text-center py-3">
+    <ul class="list-unstyled list-inline mb-0">
+        <li class="list-inline-item">
+            <button type="button" class="btn blue accent-4 btn-lg btn-block btn-rounded" data-toggle="modal" data-target="#modalLRForm">Iniciar Sesión</button>
+        </li>
+    </ul>
+</div>
+<!--/.Button to action-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12">
+
+            <!--Modal: Login / Register Form-->
+            <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog cascading-modal" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+
+                        <!--Modal cascading tabs-->
+                        <div class="modal-c-tabs">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tabs-2 blue accent-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active  " data-toggle="tab" href="#panel1" role="tab" onclick="cerrarpanel2()" id="btnSesion"><i class="fa fa-user mr-1"></i> Iniciar Sesión</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#panel2" role="tab" id="btnRegistro"><i class="fa fa-user-plus mr-1"></i> Registrar</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panels -->
+                            <div class="tab-content">
+                                <!--Modal 1-->
+                                @{
+                                    Html.RenderPartial("ViewPartialLogin", new WebAppCargadorRips.Models.LoginViewModel());
+                                }
+
+                                <!--/.Modal 1-->
+                                <!--Modal 2-->
+                                @{
+                                    Html.RenderPartial("ViewPartialRegistro", new WebAppCargadorRips.Models.RegisterViewModel());
+                                }
+                                <!--/.Modal 2-->
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!--Modal: Login / Register Form-->
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

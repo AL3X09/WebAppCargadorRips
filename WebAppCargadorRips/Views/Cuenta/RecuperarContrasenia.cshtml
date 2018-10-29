@@ -7,33 +7,7 @@
 }
 
 
-<!--.jarallax-->
-<div class="view jarallax img-fluid" data-jarallax='{"speed": 0.2,"type": "scroll-opacity" }' style="background-image: url(@Url.Content("~/img/bg.jpg"));">
-    <div class="full-bg-img">
-        <div class="mask rgba-blue-slight"></div>
-    </div>
-    <section class="login-form">
-        <div class="col-md-12 col-sm-12 wow fadeIn mb-3 text-center">
-            <h1 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s"> <a class="indigo-text font-weight-bold">CARGADOR</a></h1>
-        </div>
-        <div class="text-center">
-            <img src="@Url.Content("~/img/logo.png")" class="img-fluid" alt="" />
-        </div>
-        <br />
-        <div class="col-md-12 col-sm-12">
-            <button type="button" class="btn blue accent-4 btn-lg btn-block" data-toggle="modal" data-target="#modalLRForm">Iniciar Sesión</button>
-        </div>
-        <div class="col-md-12 col-sm-12">
-            <div class="form-links">
-                <a href="#">&copy; @DateTime.Now.Year - Bogotá D.C.</a>
-                <p href="#">Contruido con:</p>
-                <a href="#">http://www.mdbootstrap.com/</a>
-                <a href="#">http://www.bootstrapzen.com/</a>
-                <a href="#">http://www.materializecss.com/</a>
-            </div>
-        </div>
-    </section>
-
+<!--MODAL DE RECUPERACION DE CONTRASEÑA -->
 
     <div class="container-fluid">
 
@@ -142,31 +116,9 @@
         </div>
     </div>
 
-    <!--Footer-->
-    <footer class="page-footer font-small stylish-color-dark pt-4 mt-4">
+   
 
-        <!--Call to action-->
-        <div class="text-center">
-            <ul class="list-unstyled list-inline mb-0">
-                <li class="list-inline-item">
-                    <img src="@Url.Content("~/img/alcaldia_logo.png")" class="img-fluid" alt="" />
-                </li>
-            </ul>
-        </div>
-        <!--/.Call to action-->
-        <!--Copyright-->
-        <div class="footer-copyright pt-3 mt-4 text-center">
-            Equipo de Gestión de la Información © 2018 Copyright:
-            <!--<a href="#"> Alex Cifuentes Sánchez </a>-->
-            <a href="#">Secretaria Distrital de Salud</a>
-        </div>
-        <!--/.Copyright-->
-
-    </footer>
-    <!--/.Footer-->
-
-</div>
-<!--/.jarallax-->
+<!--/.MODAL DE RECUPERACION DE CONTRASEÑA-->
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
