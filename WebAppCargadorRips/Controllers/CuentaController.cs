@@ -9,6 +9,8 @@ using System.Web.Security;
 using Newtonsoft.Json;
 using WebAppCargadorRips.Controllers.APIS;
 using WebAppCargadorRips.EF_Models;
+using System.Configuration;
+using System.IO;
 
 namespace WebAppCargadorRips.Controllers
 {
@@ -43,16 +45,33 @@ namespace WebAppCargadorRips.Controllers
             try
             {
 
+                /*
+                //MEJORAR PROCESO
+                var status = false;
                 //sección del recaptcha
                 var captcharesponse = Request["g-recaptcha-response"];
-                string secretKey = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"]; //esta linea esta en el web config
-                var client = new WebClient();
-                var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, captcharesponse));
-                var obj = JObject.Parse(result);
-                var status = (bool)obj.SelectToken("success");
-                //valido que el status del recapcha sea verdadero
-                if (status == true)
+                string secretKey = ConfigurationManager.AppSettings["recaptchaPrivateKey"]; //esta linea esta en el web config
+                //Mas infromación  en https://www.c-sharpcorner.com/article/integration-of-google-recaptcha-in-websites/
+                var apiUrl = "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}";
+                var requestUri = string.Format(apiUrl, secretKey, captcharesponse);
+                var request = (HttpWebRequest)WebRequest.Create(requestUri);
+                using (WebResponse response = request.GetResponse())
                 {
+                    using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+                    {
+                        
+                        JObject obj = JObject.Parse(stream.ReadToEnd());
+                        //var status = (bool)obj.SelectToken("success");
+                        var isSuccess = obj.Value<bool>("success");
+                        status = (isSuccess) ? true : false;
+                        stream.Close();
+                    }
+                }
+
+                    //valido que el status del recapcha sea verdadero
+                    if (status == true)
+                {
+                */
 
                     //Ejecuto los valores
                     Object response = bd.SP_Ingreso_Usuario(model.Usuario, model.Password).ToArray();
@@ -93,12 +112,14 @@ namespace WebAppCargadorRips.Controllers
 
                     }
 
+                    /*
                 }//fin if captcha
+                
                 else
                 {
                     ModelState.AddModelError(string.Empty, "El captcha no se ingresó correctamente.");
                 }//fin else captcha
-
+                */
 
             }
             catch (Exception e)
@@ -109,7 +130,9 @@ namespace WebAppCargadorRips.Controllers
                 APIS.LogsController log = new APIS.LogsController(e.ToString());
                 log.createFolder();
                 //envio error mensaje al usuario
-                ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                //ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                ModelState.AddModelError(string.Empty, e.ToString());
+
             }
             //retorno la vista en caso de que no se efectue el regsitro
             return View("Index", model);
