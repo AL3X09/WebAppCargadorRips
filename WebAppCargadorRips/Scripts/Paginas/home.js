@@ -183,6 +183,7 @@ function getAllME() {
 
 // TODO YA NO SE USA EN ESTE SCRIPT funcion trae la informacion de los archivos cargados
 // funcion trae la informacion de los archivos cargados
+/*
 function cantidadRipsCargados(token) {
 
   $.ajax({
@@ -264,6 +265,8 @@ function estadoRipsCargados(token) {
     
   })
 }
+*/
+
 
 //muestro el div oculto
 function inicilizoDiv() {

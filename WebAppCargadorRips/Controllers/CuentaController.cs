@@ -112,9 +112,8 @@ namespace WebAppCargadorRips.Controllers
 
                     }
 
-                    /*
+                /*
                 }//fin if captcha
-                
                 else
                 {
                     ModelState.AddModelError(string.Empty, "El captcha no se ingresó correctamente.");
@@ -132,7 +131,6 @@ namespace WebAppCargadorRips.Controllers
                 //envio error mensaje al usuario
                 //ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
                 ModelState.AddModelError(string.Empty, e.ToString());
-
             }
             //retorno la vista en caso de que no se efectue el regsitro
             return View("Index", model);

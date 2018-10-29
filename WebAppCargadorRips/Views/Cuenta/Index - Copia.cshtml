@@ -1,0 +1,125 @@
+﻿@{
+    //vista de la sesión
+    ViewBag.Title = "Sesión";
+    Layout = "~/Views/Shared/_LayoutSesion.cshtml";
+}
+
+<!--.jarallax-->
+<div class="view jarallax img-fluid" style="background-image: url(@Url.Content("~/Img/bg.jpg"));">
+    <div class="full-bg-img">
+        <div class="mask rgba-blue-slight"></div>
+    </div>
+    <section class="login-form">
+        <div class="col-md-12 col-sm-12 wow fadeIn mb-3 text-center">
+            <h1 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s"> <a class="indigo-text font-weight-bold">CARGADOR</a></h1>
+        </div>
+        <div class="text-center">
+            <img src="@Url.Content("~/Img/logo.png")" class="img-fluid" alt="" />
+        </div>
+        <br />
+
+        <!--Call to action-->
+        <div class="text-center py-3">
+            <ul class="list-unstyled list-inline mb-0">
+                <li class="list-inline-item">
+                    <button type="button" class="btn blue accent-4 btn-lg btn-block btn-rounded" data-toggle="modal" data-target="#modalLRForm">Iniciar Sesión</button>
+                </li>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+
+
+
+        <div class="col-md-12 col-sm-12">
+            <div class="form-links">
+                <a href="#">&copy; @DateTime.Now.Year - Bogotá D.C.</a>
+                <p href="#">Contruido con:</p>
+                <a href="#">http://www.mdbootstrap.com/</a>
+                <a href="#">http://www.bootstrapzen.com/</a>
+                <a href="#">http://www.materializecss.com/</a>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+
+                <!--Modal: Login / Register Form-->
+                <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog cascading-modal" role="document">
+                        <!--Content-->
+                        <div class="modal-content">
+
+                            <!--Modal cascading tabs-->
+                            <div class="modal-c-tabs">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs tabs-2 blue accent-3" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active  " data-toggle="tab" href="#panel1" role="tab" onclick="cerrarpanel2()" id="btnSesion"><i class="fa fa-user mr-1"></i> Iniciar Sesión</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#panel2" role="tab" id="btnRegistro"><i class="fa fa-user-plus mr-1"></i> Registrar</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panels -->
+                                <div class="tab-content">
+                                    <!--Modal 1-->
+                                    @{
+                                        Html.RenderPartial("ViewPartialLogin", new WebAppCargadorRips.Models.LoginViewModel());
+                                    }
+
+                                    <!--/.Modal 1-->
+                                    <!--Modal 2-->
+                                    @{
+                                        Html.RenderPartial("ViewPartialRegistro", new WebAppCargadorRips.Models.RegisterViewModel());
+                                    }
+                                    <!--/.Modal 2-->
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--/.Content-->
+                    </div>
+                </div>
+                <!--Modal: Login / Register Form-->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer font-small stylish-color-dark pt-3 mt-3">
+
+        <!--Call to action-->
+        <div class="text-center">
+            <ul class="list-unstyled list-inline mb-0">
+                <li class="list-inline-item">
+                    <img src="@Url.Content("~/Img/alcaldia_logo.png")" class="img-fluid" alt="" />
+                </li>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            SECRETARÍA DISTRITAL DE SALUD | Subsecretaria de Gestion y Planeacion Sectorial | Direccion de Planeación Sectorial © 2018 Copyright:
+            <!--<a href="#"> Alex Cifuentes Sánchez </a>-->
+            <a href="#"> Equipo de gestión de la información  </a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+</div>
+<!--/.jarallax-->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

@@ -36,9 +36,11 @@ function getAllME() {
               $("#divclaims").append('<input type="hidden" name="idUsuario" id="idUsuario" value="'+v.IdUsuario+'" />');  
             }
     
-            if (document.getElementById("divtabEstado")!=undefined || document.getElementById("divtabEstado")!=null) {
+            /*
+                if (document.getElementById("divtabEstado") != undefined || document.getElementById("divtabEstado") != null) {
               cantidadRipsCargados(v.usuario_id);
             }
+            */
     
           });
     
