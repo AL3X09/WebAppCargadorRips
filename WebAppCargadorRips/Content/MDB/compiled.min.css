@@ -4033,7 +4033,8 @@ button.close {
 	background-color:#000
 }
 .modal-backdrop.fade {
-	opacity:0
+	opacity:0;
+	z-index:auto;
 }
 .modal-backdrop.show {
 	opacity:.5
