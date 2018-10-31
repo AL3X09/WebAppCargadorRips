@@ -17,11 +17,11 @@ namespace WebAppCargadorRips.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Codigo Prestador (*)")]
+        [Display(Name = "Código Prestador (*)")]
         public string Usuario { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 8)]
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser mínimo {2}.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña (*)")]
         public string Password { get; set; }
@@ -41,21 +41,21 @@ namespace WebAppCargadorRips.Models
 
         [EmailAddress]
         [Display(Name = "Confirmar Correo electrónico (*)")]
-        [Compare("Email", ErrorMessage = "El correro y el correo de confirmación no coinciden.")]
+        [Compare("Email", ErrorMessage = "El correo y el correo de confirmación no coinciden.")]
         public string ConfirmEmail { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 8)]
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser mínimo {2}.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        //[RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9]))$", ErrorMessage = "La contraseña debe contener 3 mayúsculas, minúsculas, números y caracteres especiales (por ejemplo,! @ # $% ^ & *)")]
         [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$", ErrorMessage = "La contraseña debe contener: minimo 8 caracteres una letra mayúscula, una letra minúsculas, un número y caracteres especiales (por ejemplo,! @ # $% ^ & *)")]
         [Display(Name = "Contraseña (*)")]
-        public string Password { get; set; }
+        public string Pasword { get; set; }
+
 
         [Required]
         [DataType(DataType.Password)]        
         [Display(Name = "Confirmar contraseña (*)")]
-        [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
+        [Compare("Pasword", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -67,21 +67,21 @@ namespace WebAppCargadorRips.Models
         public string Apellidos { get; set; }
 
         [Required]
-        [Display(Name = "Razon Social (*)")]
+        [Display(Name = "Razón Social (*)")]
         public string RazonSocial { get; set; }
 
         [MaxLength(10, ErrorMessage = "El número de caracteres de {0} debe ser maximo de 10.")]
         //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{7})?([0-9]{7})*$", ErrorMessage = "Para {0} ingrese valores numericos")]
         //[RegularExpression(@"^[+-]?\d+(\.\d+)?$")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Para {0} ingrese solo valores numericos")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Para {0} ingrese solo valores numéricos")]
         [Display(Name = "Teléfono")]
         public string Telefono { get; set; }
 
         
         [Required]
         [StringLength(12, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 12)]
-        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numericos, sin espacios y maximo de 12 caracteres")]
-        [Display(Name = "Codigó Prestador (*)")]
+        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numéricos, sin espacios y máximo de 12 caracteres")]
+        [Display(Name = "Código Prestador (*)")]
         public string CodPrestador { get; set; }
 
         [Required]
@@ -96,7 +96,7 @@ namespace WebAppCargadorRips.Models
         public int usuario_id { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 1)]
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser mínimo de {2}.", MinimumLength = 1)]
         [Display(Name = "Codigó Prestador (*)")]
         public string codigo { get; set; }
 

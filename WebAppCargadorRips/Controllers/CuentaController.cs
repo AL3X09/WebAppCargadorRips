@@ -26,7 +26,10 @@ namespace WebAppCargadorRips.Controllers
         // GET: Cuenta
         public ActionResult ViewPartialLogin()
         {
+            //Limpio campos
+            ModelState.Clear();
             return View("Index");
+            
         }
 
         //Metodo que ejecuta el inicio de sesion
@@ -102,10 +105,12 @@ namespace WebAppCargadorRips.Controllers
                             }
                             else
                             {
-                                //envio error a la api logs errores
-                                //TODO
-                                //envio un mensaje al usuario
-                                ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
+                            //envio error a la api logs errores
+                            //TODO
+                            //Limpio campos
+                            ModelState.Clear();
+                            //envio un mensaje al usuario
+                            ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
                             }
 
                         }
@@ -128,10 +133,13 @@ namespace WebAppCargadorRips.Controllers
                 //envio a la carpeta logs
                 APIS.LogsController log = new APIS.LogsController(e.ToString());
                 log.createFolder();
+                //Limpio campos
+                ModelState.Clear();
                 //envio error mensaje al usuario
                 //ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
                 ModelState.AddModelError(string.Empty, e.ToString());
             }
+
             //retorno la vista en caso de que no se efectue el regsitro
             return View("Index", model);
 
@@ -140,6 +148,8 @@ namespace WebAppCargadorRips.Controllers
 
         public ActionResult ViewPartialRegistro()
         {
+            //Limpio campos
+            ModelState.Clear();
             return View("Index");
         }
 
@@ -167,7 +177,7 @@ namespace WebAppCargadorRips.Controllers
                     {
 
                         //Ejecuto los valores en el SP
-                        Object response = bd.SP_Registro_Usuario(usuario.CodPrestador, usuario.Email, usuario.Password, usuario.Nombres, usuario.Apellidos, usuario.RazonSocial, usuario.Telefono, "/Img/avatarsusers/avatar.png", 1, 1, 1, 2).ToArray();
+                        Object response = bd.SP_Registro_Usuario(usuario.CodPrestador, usuario.Email, usuario.Pasword, usuario.Nombres, usuario.Apellidos, usuario.RazonSocial, usuario.Telefono, "/Img/avatarsusers/avatar.png", 1, 1, 1, 2).ToArray();
                         //
                         await bd.SaveChangesAsync();
 
@@ -196,12 +206,14 @@ namespace WebAppCargadorRips.Controllers
                     //envio a la carpeta logs
                     APIS.LogsController log = new APIS.LogsController(e.ToString());
                     log.createFolder();
+                    //Limpio campos
+                    ModelState.Clear();
                     //envio error mensaje al usuario
                     ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
                 }
 
             }
-
+           
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View("Index", usuario);
         }
@@ -233,6 +245,8 @@ namespace WebAppCargadorRips.Controllers
         [AllowAnonymous]
         public ActionResult RecuperarContrasenia()
         {
+            //Limpio campos
+            ModelState.Clear();
             return View();
         }
 
