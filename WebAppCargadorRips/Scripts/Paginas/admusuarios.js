@@ -62,7 +62,7 @@ function getAllME() {
       }).fail(function (jqXHR, textStatus, errorThrown) {
         //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
         //console.error(textStatus, errorThrown); // Algo fallo
-        window.location.href = "/Cuenta";
+          window.location.href = baseURL + "/Cuenta";
         //envio a la api errores para que almacene el error
       })
   //

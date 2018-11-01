@@ -123,7 +123,7 @@
 
 @if (ViewBag.TokenP != null)
 {
-    <script type="application/javascript">
+<script type="application/javascript">
         $(document).ready(function () {
         var token =@Html.Raw(ViewBag.TokenP);
 
@@ -131,9 +131,9 @@
                 $('#data').html('<input type="hidden" id="idUsuario" name="idUsuario" value="'+token+'">');
                 //ShowAlert(json.tipo,json.mensaje)
             }else{
-                window.location.href = "/Cuenta";
+                  window.location.href = baseURL+"/Cuenta";
                }
 
         });
-    </script>
+</script>
 }

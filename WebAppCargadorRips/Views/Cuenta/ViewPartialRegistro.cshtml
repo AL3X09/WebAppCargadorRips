@@ -128,7 +128,7 @@
     <script type="application/javascript">
         $(document).ready(function () {
         var json =@Html.Raw(ViewBag.SomeData);
-        //debugger;
+        debugger;
         if(json[0]=== undefined ){
             ShowAlert(json.tipo,json.mensaje)
         }
