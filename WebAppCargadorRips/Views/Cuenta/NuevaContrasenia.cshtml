@@ -1,4 +1,5 @@
-﻿@model WebAppCargadorRips.Models.CambiarContraseniaViewModel
+﻿@using CaptchaMvc.HtmlHelpers;
+@model WebAppCargadorRips.Models.CambiarContraseniaViewModel
 @{
     //vista para digitar nueva contraseña external
     ViewBag.Title = "Nueva Contraseña";
@@ -63,8 +64,9 @@
                                                 <!--captcha-->
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <div class="text-center">
-                                                            <div class="g-recaptcha" data-sitekey="6Lf7v0UUAAAAAHR6TDCi8jPihFtb0NGvWlVobwW2"></div>
+                                                        <div class="md-form form-sm">
+                                                            @Html.MathCaptcha("", "Ingrese el valor de la operación")
+                                                            @ViewBag.ErrorMessage
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,7 +125,7 @@
 
 @if (ViewBag.TokenP != null)
 {
-<script type="application/javascript">
+    <script type="application/javascript">
         $(document).ready(function () {
         var token =@Html.Raw(ViewBag.TokenP);
 
@@ -135,5 +137,5 @@
                }
 
         });
-</script>
+    </script>
 }

@@ -140,7 +140,7 @@ function getAllME() {
             } else {
                 apellido = v.apellidos;
             }
-        $("#imguser").attr("src", v.imagen);
+        $("#imguser").attr("src", baseURL + v.imagen);
         $("#nombreuserspan").html(v.nombres + " " + apellido);
         $('#emailspan').html(v.correo);
         if (v.nombre_rol === "Administrador") {

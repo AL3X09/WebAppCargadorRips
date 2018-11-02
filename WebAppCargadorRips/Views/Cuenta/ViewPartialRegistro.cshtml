@@ -1,4 +1,5 @@
 ﻿@using WebAppCargadorRips.Models;
+@using CaptchaMvc.HtmlHelpers;
 @model RegisterViewModel
 @{
 
@@ -98,8 +99,9 @@
                 <!--captcha-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="text-center">
-                            <div class="g-recaptcha" data-sitekey="6Lf7v0UUAAAAAHR6TDCi8jPihFtb0NGvWlVobwW2"></div>
+                        <div class="md-form form-sm">                           
+                                @Html.MathCaptcha("", "Ingrese el valor de la operación")
+                                @ViewBag.ErrorMessage                            
                         </div>
                     </div>
                 </div>
@@ -125,10 +127,10 @@
 
 @if (ViewBag.SomeData != null)
 {
-    <script type="application/javascript">
+<script type="application/javascript">
         $(document).ready(function () {
-        var json =@Html.Raw(ViewBag.SomeData);
         debugger;
+        var json =@Html.Raw(ViewBag.SomeData);
         if(json[0]=== undefined ){
             ShowAlert(json.tipo,json.mensaje)
         }
@@ -137,6 +139,6 @@
         }
         ShowAlert(json[0].tipo,json[0].mensaje)
         });
-    </script>
+</script>
 }
 <!--/ Vista parcial-->

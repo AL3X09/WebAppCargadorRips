@@ -41,23 +41,25 @@ namespace WebAppCargadorRips.Controllers
         public async Task<ActionResult> ViewPartialLogin(LoginViewModel model)
         {
 
-            //Valido los campos del modelo
+            //alido los modelos
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            //Valido el capcha
+            //alido el capcha
             if (!this.IsCaptchaValid("Captcha is not valid"))
             {
                 ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
             }
-            //si el captcha es valido
+            //si el capccha es alido
             else
             {
 
                 try
                 {
+
+                  
 
                     //Ejecuto los valores
                     Object response = bd.SP_Ingreso_Usuario(model.Usuario, model.Password).ToArray();
@@ -100,22 +102,31 @@ namespace WebAppCargadorRips.Controllers
 
                     }
 
+
+                    /*
+                    }//fin if captcha
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "El captcha no se ingresó correctamente.");
+                    }//fin else captcha
+                    */
+
                 }
                 catch (Exception e)
                 {
                     //envio error a la api logs errores
-                    
-                    //y envio a la carpeta logs
+                    //TODO
+                    //envio a la carpeta logs
                     APIS.LogsController log = new APIS.LogsController(e.ToString());
                     log.createFolder();
                     //Limpio campos
                     ModelState.Clear();
                     //envio error mensaje al usuario
-                    ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
-                    //ModelState.AddModelError(string.Empty, e.ToString());
+                    //ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                    ModelState.AddModelError(string.Empty, e.ToString());
                 }
 
-            }//fin else captcha
+            }
 
             //retorno la vista en caso de que no se efectue el regsitro
             return View("Index", model);
@@ -137,19 +148,20 @@ namespace WebAppCargadorRips.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ViewPartialRegistro(RegisterViewModel usuario)
         {
-            //Valido los campos del modelo
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     //sección del recaptcha
-                    //Valido el capcha
-                    if (!this.IsCaptchaValid("Captcha is not valid"))
-                    {
-                        ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
-                    }
-                    //si el captcha es valido
-                    else
+                    var captcharesponse = Request["g-recaptcha-response"];
+                    string secretKey = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"]; //esta linea esta en el web config
+                    var client = new WebClient();
+                    var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, captcharesponse));
+                    var obj = JObject.Parse(result);
+                    var status = (bool)obj.SelectToken("success");
+                    //valido que el status del recapcha sea verdadero
+                    if (status == true)
                     {
 
                         //Ejecuto los valores en el SP
@@ -167,12 +179,18 @@ namespace WebAppCargadorRips.Controllers
                             dynamic dynJson = JsonConvert.DeserializeObject(json);
                             ViewBag.SomeData = dynJson;
                         }
+                    }//fin if captcha
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "El captcha no se ingresó correctamente.");
                     }//fin else captcha
 
-                }//fin try
+
+                }
                 catch (Exception e)
                 {
                     //envio error a la api logs errores
+                    //TODO
                     //envio a la carpeta logs
                     APIS.LogsController log = new APIS.LogsController(e.ToString());
                     log.createFolder();
@@ -235,15 +253,15 @@ namespace WebAppCargadorRips.Controllers
                 var MSG = new EnviarCorreoRecuperacionModel();
                 try
                 {
-
                     //sección del recaptcha
-                    //Valido el capcha
-                    if (!this.IsCaptchaValid("Captcha is not valid"))
-                    {
-                        ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
-                    }
-                    //si el captcha es valido
-                    else
+                    var captcharesponse = Request["g-recaptcha-response"];
+                    string secretKey = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"]; //esta linea esta en el web config
+                    var client = new WebClient();
+                    var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, captcharesponse));
+                    var obj = JObject.Parse(result);
+                    var status = (bool)obj.SelectToken("success");
+                    //valido que el status del recapcha sea verdadero
+                    if (status == true)
                     {
                         //Ejecuto los valores en el SP
                         var response = bd.SP_GenerarCodigoRecuperacionContraseniaUser(model.Usuario, model.Email).First();//.ToArray();
@@ -288,6 +306,7 @@ namespace WebAppCargadorRips.Controllers
                             catch (Exception e)
                             {
                                 // envio error a la api logs errores
+                                //TODO
                                 //envio a la carpeta logs
                                 APIS.LogsController log = new APIS.LogsController(e.ToString());
                                 log.createFolder();
@@ -301,14 +320,17 @@ namespace WebAppCargadorRips.Controllers
                             ModelState.AddModelError(string.Empty, response.mensaje);
                         }
 
-
-
+                    }//fin if captcha
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "El captcha no se ingresó correctamente.");
                     }//fin else captcha
 
-                }//fin try
+                }
                 catch (Exception e)
                 {
                     // envio error a la api logs errores
+                    //TODO
                     //envio a la carpeta logs
                     APIS.LogsController log = new APIS.LogsController(e.ToString());
                     log.createFolder();
@@ -406,13 +428,14 @@ namespace WebAppCargadorRips.Controllers
                 try
                 {
                     //sección del recaptcha
-                    //Valido el capcha
-                    if (!this.IsCaptchaValid("Captcha is not valid"))
-                    {
-                        ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
-                    }
-                    //si el captcha es valido
-                    else
+                    var captcharesponse = Request["g-recaptcha-response"];
+                    string secretKey = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"]; //esta linea esta en el web config
+                    var client = new WebClient();
+                    var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, captcharesponse));
+                    var obj = JObject.Parse(result);
+                    var status = (bool)obj.SelectToken("success");
+                    //valido que el status del recapcha sea verdadero
+                    if (status == true)
                     {
                         //Ejecuto los valores en el SP
                         //borrarSP_Updaterestacontra
@@ -439,10 +462,13 @@ namespace WebAppCargadorRips.Controllers
                             return RedirectToAction("Index");
                         }
 
-                   
+                    }//fin if captcha
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "El captcha no se ingresó correctamente.");
                     }//fin else captcha
 
-                }//fin try
+                }
                 catch (Exception e)
                 {
                     // envio error a la api logs errores

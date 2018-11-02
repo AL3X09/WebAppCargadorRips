@@ -91,7 +91,7 @@ function cerrarpanel2() {
  }
 // función usada alertas
 function ShowAlert(tipo, msj) {
-
+    debugger;
     var toast ="iziToast."+tipo+"({"+
         "timeout: 20000,"+
         "title: '" + tipo.toUpperCase() +"'," +

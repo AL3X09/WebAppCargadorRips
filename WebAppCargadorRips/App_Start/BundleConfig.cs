@@ -19,7 +19,7 @@ namespace WebAppCargadorRips
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jsbootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                        "~/Scripts/validaciones/validator.js",

@@ -149,11 +149,12 @@
     <!--/.Footer-->
     <!-- SCRIPTS -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    @RenderSection("scripts", required: true)
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jsbootstrap")
     @Scripts.Render("~/bundles/jsmdb")
     @Scripts.Render("~/bundles/loginval")
-    @RenderSection("scripts", required: true)
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-﻿
+﻿@using CaptchaMvc.HtmlHelpers;
 @model WebAppCargadorRips.Models.RecuperarContraseniaViewModel
 @{
     //vista para la recuperación de contraseña
@@ -9,114 +9,115 @@
 
 <!--MODAL DE RECUPERACION DE CONTRASEÑA -->
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12">
 
-                <!--Modal: recuperar contraseña-->
-                <div class="modal fade" id="modalRecuperarContra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-                    <div class="modal-dialog cascading-modal" role="document">
-                        <!--Content-->
-                        <div class="modal-content">
+            <!--Modal: recuperar contraseña-->
+            <div class="modal fade" id="modalRecuperarContra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog cascading-modal" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
 
-                            <!--Modal cascading tabs-->
-                            <div class="modal-c-tabs">
+                        <!--Modal cascading tabs-->
+                        <div class="modal-c-tabs">
 
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs tabs-2 blue accent-3" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active " data-toggle="tab" href="#panel1" role="tab" id="btnSesion"><i class="fa fa-envelope prefix"></i> Recuperar Contraseña</a>
-                                    </li>
-                                </ul>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tabs-2 blue accent-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active " data-toggle="tab" href="#panel1" role="tab" id="btnSesion"><i class="fa fa-envelope prefix"></i> Recuperar Contraseña</a>
+                                </li>
+                            </ul>
 
-                                <!-- Tab panels -->
-                                <div class="tab-content">
-                                    <!--Modal 1-->
-                                    <!--Vista recuperar contraseña-->
-                                    <!--Panel 1-->
-                                    <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-                                        <!--Body-->
-                                        <div class="modal-body mb-1">
-                                            <section id="forgotForm">
-                                                @using (Html.BeginForm("RecuperarContrasenia", "Cuenta", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "", runat = "" }))
-                                                {
-                                                    @Html.AntiForgeryToken()
-                                                    <h6>Campos marcados con (*) son obligatorios.</h6>
-                                                    <hr />
+                            <!-- Tab panels -->
+                            <div class="tab-content">
+                                <!--Modal 1-->
+                                <!--Vista recuperar contraseña-->
+                                <!--Panel 1-->
+                                <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                                    <!--Body-->
+                                    <div class="modal-body mb-1">
+                                        <section id="forgotForm">
+                                            @using (Html.BeginForm("RecuperarContrasenia", "Cuenta", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "", runat = "" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <h6>Campos marcados con (*) son obligatorios.</h6>
+                                                <hr />
 
-                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                    <div class="md-form form-sm">
-                                                        <i class="fa fa-qrcode prefix"></i>
-                                                        @Html.LabelFor(model => model.Usuario, new { @class = "" })
-                                                        @Html.TextBoxFor(model => model.Usuario, new { @class = "" })
-                                                        @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
-                                                    </div>
-                                                    <div class="md-form form-sm">
-                                                        <i class="fa fa-envelope prefix"></i>
-                                                        @Html.LabelFor(model => model.Email, new { @class = "" })
-                                                        @Html.TextBoxFor(model => model.Email, new { @class = "" })
-                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                    </div>
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                <div class="md-form form-sm">
+                                                    <i class="fa fa-qrcode prefix"></i>
+                                                    @Html.LabelFor(model => model.Usuario, new { @class = "" })
+                                                    @Html.TextBoxFor(model => model.Usuario, new { @class = "" })
+                                                    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="md-form form-sm">
+                                                    <i class="fa fa-envelope prefix"></i>
+                                                    @Html.LabelFor(model => model.Email, new { @class = "" })
+                                                    @Html.TextBoxFor(model => model.Email, new { @class = "" })
+                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                </div>
 
-                                                    <hr>
-                                                    <!--captcha-->
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="text-center">
-                                                                <div class="g-recaptcha" data-sitekey="6Lf7v0UUAAAAAHR6TDCi8jPihFtb0NGvWlVobwW2"></div>
-                                                            </div>
+                                                <hr>
+                                                <!--captcha-->
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="md-form form-sm">
+                                                            @Html.MathCaptcha("", "Ingrese el valor de la operación")
+                                                            @ViewBag.ErrorMessage
                                                         </div>
                                                     </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="text-center">
-                                                                <input type="submit" value="Recuperar contraseña" class="btn blue accent-4" />
-                                                            </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="text-center">
+                                                            <input type="submit" value="Recuperar contraseña" class="btn blue accent-4" />
                                                         </div>
                                                     </div>
-                                                }
-                                            </section>
+                                                </div>
+                                            }
+                                        </section>
 
+                                    </div>
+                                    <!--Footer of tab-->
+                                    <div class="modal-footer display-footer">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="options text-center text-md-right mt-1">
+                                                    <p>@Html.ActionLink("Volver", "")</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!--Footer of tab-->
-                                        <div class="modal-footer display-footer">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="options text-center text-md-right mt-1">
-                                                        <p>@Html.ActionLink("Volver", "")</p>
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3>@ViewBag.json</h3>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <h3>@ViewBag.json</h3>
-                                                </div>
-                                            </div>
-
                                         </div>
 
                                     </div>
 
-                                    <!--/.Modal 1-->
-
                                 </div>
 
-                            </div>
-                        </div>
-                        <!--/.Content-->
-                    </div>
-                </div>
-                <!--Modal: Login / Register Form-->
+                                <!--/.Modal 1-->
 
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
             </div>
+            <!--Modal: Login / Register Form-->
 
         </div>
-    </div>
 
-   
+    </div>
+</div>
+
+
 
 <!--/.MODAL DE RECUPERACION DE CONTRASEÑA-->
 
