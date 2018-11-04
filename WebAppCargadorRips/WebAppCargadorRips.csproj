@@ -1118,8 +1118,11 @@
     <Content Include="Content\MaterialIcons-Regular.ttf" />
     <Content Include="Content\MaterialIcons-Regular.woff" />
     <Content Include="Content\MaterialIcons-Regular.woff2" />
+    <None Include="Properties\PublishProfiles\Pc2profile.pubxml" />
     <None Include="Properties\PublishProfiles\TrabajoProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\WebAppCargadorRips20180625pruebas2 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WebAppCargadorRips20180625pruebas2 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\WebAppCargadorRips20180625pruebas2 - Web Deploy1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
