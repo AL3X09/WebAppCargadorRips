@@ -15,7 +15,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link rel="icon" href="@Url.Content("~/Img/logo.ico")" />
     <noscript>Tu navegador no soporta JavaScript, la aplicación requiere que tengas activado javascript</noscript>
-
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 <body>
@@ -85,73 +85,73 @@
         <div class="container">
             <div class="row">
                 <div class="col l4 s12">
-                    <h5 class="white-text">Entes de Control</h5>
+                    <h5 class="white-text"><a class="grey-text text-lighten-3" href="http://www.saludcapital.gov.co/Paginas2/Inicio.aspx" target="_blank">SECRETARÍA DISTRITAL DE SALUD</a></h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Personería de Bogotá</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Procuraduría General de la Nación</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Contraloría General de la Nación</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Concejo de Bogotá</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Veeduría Distrital</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Portal de Contratación a la Vista</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Portal de Contratación - SECOP</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Cra 32 # 12-81 Bogotá, Colombia</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Teléfono: (571) 3649090</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Código Postal: 111611</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">contactenos@saludcapital.gov.co</a></li>
                     </ul>
                 </div>
                 <div class="col l4 s12">
                     <h5 class="white-text">Entes del Gobierno</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Ministerio de Salud y Protección Social</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Gobierno en Línea</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://www.saludcapital.gov.co/Paginas2/Inicio.aspx" target="_blank">Ministerio de Salud y Protección Social</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://estrategia.gobiernoenlinea.gov.co/623/w3-channel.html" target="_blank">Gobierno Digital</a></li>
                     </ul>
                 </div>
                 <div class="col l4 s12">
-                    <h6 class="white-text">SECRETARÍA DISTRITAL DE SALUD</h6>
+                    <h6 class="white-text" href="http://www.saludcapital.gov.co/DPYS/Paginas/RegistroIndividualdePrestaciondeServicios.aspx" target="_blank">Información RIPS</h6>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Cra 32 # 12-81 Bogotá,Colombia</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Teléfono: (571) 3649090</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Código Postal:0571</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">contactenos@saludcapital.gov.co</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Teléfono. 3649090 Extensiones: 9707 - 9017 - 9725</a></li>                        
                     </ul>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col l6 s12">
                     <h5 class="white-text">Construido Por:</h5>
-                    <!--<iv class="chip">
+                        <!--<iv class="chip">
                         <img src="@Url.Content("~/Img/avatarsusers/yop.jpg")" alt="desarrollador">
                         Alex Cifuentes Sánchez &copy; - @DateTime.Now.Year
-                    </div>-->
+                        </div>-->
                     <div class="chip">
                         <img src="@Url.Content("~/Img/team.jpg")" alt="EGI">
-                        Equipo de Gestión de la Información &copy; - @DateTime.Now.Year
+                        Equipo de Gestión de la Información.
                     </div>
-
-                    <!--<div class="chip">
-                        <img src="@Url.Content("~/Img/alcaldia_logo.png")" alt="sds">
-                        SECRETARÍA DISTRITAL DE SALUD &copy; Bogotá D.C.
-                    </div>-->
                 </div>
+
+
             </div>
-        </div>
+            
+        </div><!--</container>-->
+        <!--<footer-copyright 1>-->
         <div class="footer-copyright">
 
             <div class="container">
                 <div class="row">
                     <div class="col l12 s12 center-align">
-                        <img src="@Url.Content("~/Img/alcaldia_logo.png")" alt="Bogotá">             
+                        <img src="@Url.Content("~/Img/alcaldia_logo.png")" alt="Bogotá">
                     </div>
                 </div>
                 <div class="row">
 
-                    <div class="col l12 s12 center-align">                       
-                            SECRETARÍA DISTRITAL DE SALUD | Subsecretaria de Gestión y Planeación Sectorial | Dirección de Planeación Sectorial
+                    <div class="col l12 s12 center-align">
+                        SECRETARÍA DISTRITAL DE SALUD | Subsecretaría de Gestión y Planeación Sectorial | Dirección de Planeación Sectorial
                     </div>
                 </div>
             </div>
         </div>
-        </footer>
+        <!--</footer-copyright 1>-->
+        <!--</footer-copyright 2>-->
+        <div class="footer-copyright">
 
-        @Scripts.Render("~/bundles/jquery")
+            <div class="container">
+                <div class="row">
+                    <div class="col l12 s12 center-align">
+                        &copy; - @DateTime.Now.Year | Versión 1.0.15
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--</footer-copyright 2>-->
+    </footer>
+
         @Scripts.Render("~/bundles/jsmaterial")
         @Scripts.Render("~/bundles/jqueryval")
         @Scripts.Render("~/bundles/layoutjs")
