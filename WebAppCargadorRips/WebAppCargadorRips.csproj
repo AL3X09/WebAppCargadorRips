@@ -246,9 +246,6 @@
     <Compile Include="EF_Models\Año_Permitido.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\BDUA.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\BD_Rips_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -289,39 +286,6 @@
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\DIVIPOLA.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Consulta.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Consulta_MSYPS.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Factura.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Hospitalizacion.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Medicamento.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Otro_Servicio.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Procedimiento.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Recien_Nacido.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Urgencia.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Usuario.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Errores_Usuario_MSYPS.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Estado_RIPS.cs">
@@ -564,6 +528,7 @@
     <Compile Include="Models\CuentaViewModel.cs" />
     <Compile Include="Models\EnviarCorreoModel.cs" />
     <Compile Include="Models\MsgClass.cs" />
+    <Compile Include="Models\NetworkConnection.cs" />
     <Compile Include="Models\SysDataTablePager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -759,6 +724,7 @@
     <Content Include="Content\MDB\style.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\stylerror.css" />
+    <Content Include="Content\SweetAlert2\sweetalert2.css" />
     <Content Include="Content\Tinglejs\tingle.css" />
     <Content Include="EF_Models\BD_Rips_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -836,6 +802,7 @@
     <Content Include="Img\status\loader.gif" />
     <Content Include="Img\team.jpg" />
     <Content Include="Img\term_uso.png" />
+    <Content Include="Logs\T.txt" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1263,9 +1230,7 @@
     <Content Include="Views\Terminos\ViewPrivacidad.cshtml" />
     <Content Include="Views\Terminos\ViewTerminosuso.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

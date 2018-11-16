@@ -36,7 +36,7 @@ function getAllME() {
           } else {
               apellido = v.apellidos;
           }
-          $("#imguser").attr("src", v.imagen);
+          $("#imguser").attr("src", baseURL + v.imagen);
           $("#nombreuserspan").html(v.nombres + " " + apellido);
           $("#nombreUser").html('<strong>' + v.nombres + " " + apellido + '</strong>');
         $('#emailspan').html(v.correo);
@@ -54,7 +54,7 @@ function getAllME() {
   }).fail(function (jqXHR, textStatus, errorThrown) {
     //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
     //console.error(textStatus, errorThrown); // Algo fallo
-      window.location.href = baseURL + "/Cuenta";
+      window.location.href = baseURL + "Cuenta";
     //envio a la api errores para que almacene el error
   })
 
@@ -79,7 +79,7 @@ function cancelado() {
       'error',
       setTimeout(function () {
         //location.reload("/Home/Index");
-        window.location.href = "/Home";
+          window.location.href = baseURL +"Home";
       }, 2000)
     )
   })
@@ -112,7 +112,7 @@ function updateContrasenia() {
               if (response.codigo == 201) {
                   $('#acerrarsesion').click();
               } else {
-                  window.location.href = "/Home";
+                  window.location.href = baseURL +"Home";
               }
           });
 

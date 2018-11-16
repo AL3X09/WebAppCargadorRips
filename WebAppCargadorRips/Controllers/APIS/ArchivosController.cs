@@ -183,7 +183,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                                         //Guardo en tabla pre radicado
                                     }
                                     /*
-                                    * Fin Por seguridad consulto que los archivos existane en el path del servidor de archivos
+                                    * Fin Por seguridad consulto que los archivos existan en el path del servidor de archivos
                                     */
 
 
@@ -209,6 +209,8 @@ namespace WebAppCargadorRips.Controllers.APIS
                                 //TODO envio error a la base de datos
                                 //Envio mensaje de error a la vista
                                 MSG.Add(new { type = "error", value = "No se caragaron los archivos correctamente en el servidor." });
+                                //MSG.Add(new { type = "error", value = path+"-------"+e.ToString() });
+
                             }
 
                         }

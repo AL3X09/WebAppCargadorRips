@@ -34,7 +34,7 @@ function getAllME() {
           } else {
               apellido = v.apellidos;
           }
-          $("#imguser").attr("src", v.imagen);
+          $("#imguser").attr("src", baseURL + v.imagen);
           $("#nombreuserspan").html(v.nombres + " " + apellido);
           $("#nombreUser").html('<strong>' + v.nombres + " " + apellido + '</strong>');
         $('#emailspan').html(v.correo);
@@ -52,7 +52,7 @@ function getAllME() {
   }).fail(function (jqXHR, textStatus, errorThrown) {
     //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
     //console.error(textStatus, errorThrown); // Algo fallo
-     window.location.href = baseURL + "/Cuenta";
+     window.location.href = baseURL + "Cuenta";
     //envio a la api errores para que almacene el error
   })
   tablaDatosUsuario();
@@ -91,7 +91,7 @@ function tablaDatosUsuario() {
       },
       updateItem: function (item) {
         return $.ajax({
-          type: "PUT",
+          type: "POST",
           url: baseURL+"api/Usuarios/PutUpdateDatosUser",
           data: item,
         }).done(function (response) {
@@ -117,13 +117,13 @@ function tablaDatosUsuario() {
       { name: "codigo", title: "Código", type: "text", validate: "required", css: "hide"},
       { name: "nombres", title: "Nombres", type: "text",validate: "required" },
       { name: "apellidos", title: "Apellidos", type: "text" },
-      { name: "telefono", title: "Telefono", type: "text" },
-      { name: "razon_social", title: "Razon social", type: "text", validate: "required"  },
+      { name: "telefono", title: "Teléfono", type: "text" },
+      { name: "razon_social", title: "Razón social", type: "text", validate: "required"  },
       { name: "correo", title: "Correo", type: "text", width: 250,validate: "required" },
       {
         name: "imagen", title: "Avatar",
         itemTemplate: function (val, item) {
-          return $("<img>").attr("src", val).css({ height: 100, width: 100 }).on("click", function () {
+            return $("<img>").attr("src", baseURL + val).css({ height: 100, width: 100 }).on("click", function () {
             openModalImagen(val);
           });
         },
@@ -186,7 +186,7 @@ function openModalImagen(src) {
     //$("#imagePreview").append('<input type="file" id="bla" class="dropify" data-default-file="'+v.ImagenUsuario+'">'); //esta linea la puse xq la libreria no reconoce el primer nodo no eliminar
     //$("#avatar").attr('data-default-file', v.ImagenUsuario);
     $("#avatar").dropify({
-      "defaultFile": src,
+      "defaultFile": baseURL +src,
       "messages": {
         default: 'Arrastre un archivo o haga clic aquí',
         replace: 'Arrastre un archivo o haga clic en reemplazar',

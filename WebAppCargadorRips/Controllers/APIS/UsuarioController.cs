@@ -21,7 +21,7 @@ namespace WebAppCargadorRips.Controllers.APIS
     {
         private RipsEntitieConnection bd = new RipsEntitieConnection();
         private string path = HttpContext.Current.Server.MapPath("~/Img/avatarsusers/"); //crea la carpeta apropiada
-        private string pathimagen = "/Img/avatarsusers/"; // esta liena debe ser igual a la linea anterior ya que es la que tiene el nombre del donde se alamcenara la imagen
+        private string pathimagen = "Img/avatarsusers/"; // esta liena debe ser igual a la linea anterior ya que es la que tiene el nombre del donde se alamcenara la imagen
         
         //Constructor
         UsuariosController()
@@ -208,7 +208,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         /// <summary>
         /// Actualiza los datos de un usuario especifico
         /// </summary>
-        [HttpPut]
+        [HttpPost]
         [Route("PutUpdateDatosUser")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> UpdateDatosUsuario(ActualizarDatosViewModel datos)

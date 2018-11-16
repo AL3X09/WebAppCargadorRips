@@ -26,7 +26,7 @@ function getAllME() {
                 } else {
                     apellido = v.apellidos;
                 }
-            $("#imguser").attr("src", v.imagen);
+            $("#imguser").attr("src", baseURL + v.imagen);
             $("#nombreuserspan").html(v.nombres + " " + apellido);
             $('#emailspan').html(v.correo);
             if (v.nombre_rol === "Administrador") {
@@ -48,7 +48,7 @@ function getAllME() {
       }).fail(function (jqXHR, textStatus, errorThrown) {
         //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
         //console.error(textStatus, errorThrown); // Algo fallo
-          window.location.href = baseURL + "/Cuenta";
+          window.location.href = baseURL + "Cuenta";
         //envio a la api errores para que almacene el error
       })
   //
@@ -191,7 +191,7 @@ function getContactos() {
                     '<div class="col s12 m4" >'+
                     '<div class="card">' +
                     '<div class="card-image">' +
-                    '<img class="responsive-img" src="'+v.imagen+'">'+
+                    '<img class="responsive-img" src="'+baseURL+v.imagen+'">'+
                     '<span class="card-title">' + v.nombre+' '+v.apellido +'</span>'+
                     '</div>' +
                     '<div class="card-content">' +

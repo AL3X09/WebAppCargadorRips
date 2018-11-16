@@ -54,7 +54,6 @@ namespace WebAppCargadorRips.EF_Models
         public virtual DbSet<Via_Ingreso> Via_Ingreso { get; set; }
         public virtual DbSet<Zona_Residencia> Zona_Residencia { get; set; }
         public virtual DbSet<Administradora> Administradora { get; set; }
-        public virtual DbSet<BDUA> BDUA { get; set; }
         public virtual DbSet<CIE10> CIE10 { get; set; }
         public virtual DbSet<CUPS> CUPS { get; set; }
         public virtual DbSet<DIVIPOLA> DIVIPOLA { get; set; }
@@ -80,17 +79,6 @@ namespace WebAppCargadorRips.EF_Models
         public virtual DbSet<SDS_Recien_Nacido> SDS_Recien_Nacido { get; set; }
         public virtual DbSet<SDS_Urgencia> SDS_Urgencia { get; set; }
         public virtual DbSet<SDS_Usuario> SDS_Usuario { get; set; }
-        public virtual DbSet<Errores_Consulta> Errores_Consulta { get; set; }
-        public virtual DbSet<Errores_Consulta_MSYPS> Errores_Consulta_MSYPS { get; set; }
-        public virtual DbSet<Errores_Factura> Errores_Factura { get; set; }
-        public virtual DbSet<Errores_Hospitalizacion> Errores_Hospitalizacion { get; set; }
-        public virtual DbSet<Errores_Medicamento> Errores_Medicamento { get; set; }
-        public virtual DbSet<Errores_Otro_Servicio> Errores_Otro_Servicio { get; set; }
-        public virtual DbSet<Errores_Procedimiento> Errores_Procedimiento { get; set; }
-        public virtual DbSet<Errores_Recien_Nacido> Errores_Recien_Nacido { get; set; }
-        public virtual DbSet<Errores_Urgencia> Errores_Urgencia { get; set; }
-        public virtual DbSet<Errores_Usuario> Errores_Usuario { get; set; }
-        public virtual DbSet<Errores_Usuario_MSYPS> Errores_Usuario_MSYPS { get; set; }
         public virtual DbSet<Correo> Correo { get; set; }
         public virtual DbSet<Web_Mensaje> Web_Mensaje { get; set; }
         public virtual DbSet<Web_Permiso> Web_Permiso { get; set; }

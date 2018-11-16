@@ -232,7 +232,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                 
                 //var mappedPath = HttpContext.Current.Request.Url.AbsoluteUri; //mapeo la ruta completa del servidor
                 //var mappedPath = "https://"+HttpContext.Current.Request.Url.Authority+"/"; //mapeo la url del servidor
-                var mappedPath = "http://" + HttpContext.Current.Request.Url.Authority; //mapeo la url del servidor
+                var mappedPath = "http://" + HttpContext.Current.Request.Url.Authority + "/CargadorRIPS" ; //mapeo la url del servidor
                 
 
                 //invoco metodo que permite obtener los datos del smtp del correo

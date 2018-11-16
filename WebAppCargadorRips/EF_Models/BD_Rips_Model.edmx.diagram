@@ -32,7 +32,6 @@
         <EntityTypeShape EntityType="Rips_Model.Via_Ingreso" Width="1.5" PointX="3" PointY="140" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.Zona_Residencia" Width="1.5" PointX="3" PointY="149.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.Administradora" Width="1.5" PointX="5.25" PointY="125.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.BDUA" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.CIE10" Width="1.5" PointX="5.25" PointY="105.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.CUPS" Width="1.5" PointX="5.25" PointY="116.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.DIVIPOLA" Width="1.5" PointX="5.25" PointY="131.25" IsExpanded="true" />
@@ -58,17 +57,6 @@
         <EntityTypeShape EntityType="Rips_Model.SDS_Recien_Nacido" Width="1.5" PointX="19.5" PointY="113" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.SDS_Urgencia" Width="1.5" PointX="19.5" PointY="102.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Rips_Model.SDS_Usuario" Width="1.5" PointX="8.25" PointY="122.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Consulta" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Consulta_MSYPS" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Factura" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Hospitalizacion" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Medicamento" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Otro_Servicio" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Procedimiento" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Recien_Nacido" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Urgencia" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Usuario" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Rips_Model.Errores_Usuario_MSYPS" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="Rips_Model.FK__Radicacio__carga__336AA144" ManuallyRouted="false" />
         <AssociationConnector Association="Rips_Model.FK__Radicacio__radic__345EC57D" ManuallyRouted="false" />
         <AssociationConnector Association="Rips_Model.FK__Radicacio__servi__3552E9B6" ManuallyRouted="false" />

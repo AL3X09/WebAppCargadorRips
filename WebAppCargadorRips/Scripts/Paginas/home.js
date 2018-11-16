@@ -12,17 +12,20 @@ var currentDate2 = new Date()
 var minday = new Date();
 var maxday = new Date();
 //obtengo la fecha minima para enviarla al calendario
+//(Anio-3),(mes),(dia)
 minday = new Date(currentDate1.getFullYear() - 3, 0, 1);
-maxday = new Date(currentDate2.getFullYear(), currentDate2.getMonth()+7, 0);
+//(anio),(mes+7),(dia)
+//maxday = new Date(currentDate2.getFullYear() - 1, currentDate2.getMonth() + 7, 0);
+maxday = new Date(currentDate2.getFullYear(), currentDate2.getMonth()-0, 0);
 
 //creo un vector que me permite almacenar la configuracion para el calendario
 const daysOfYear = [];
 const EnddaysOfYear = [];
 
-var reco;
+var reco;//defino una variable de recorrido
 //RECORRO las fechas obtengo los meses transcurridos dentro de estas
 //ojo esta es la que arma los array con fechas permitidas
-for (var d = minday; d <= maxday; d.setMonth(d.getMonth() + 1)) {
+for (var d = minday; d <= (new Date(currentDate2.getFullYear(), currentDate2.getMonth()+1, 0)); d.setMonth(d.getMonth() + 1)) {
   //console.log(d);
   daysOfYear.push(d.toLocaleDateString('zh-Hans-CN').split("/"));
   reco = (d.getFullYear() + "-" + (d.getMonth()) + "-" + "0").split("-");
@@ -175,7 +178,7 @@ function getAllME() {
     //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
       console.log(baseURL);
     //console.error(textStatus, errorThrown); // Algo fallo
-      window.location.href = baseURL+"/Cuenta";
+      window.location.href = baseURL+"Cuenta";
     //envio a la api errores para que almacene el error
   })
 
@@ -344,7 +347,7 @@ function cancelado() {
       'error',
       setTimeout(function () {
         //location.reload("/Home/Index");
-        window.location.href = "/Home";
+          window.location.href = baseURL +"Home";
       }, 2000)
     )
   })
@@ -716,7 +719,7 @@ function enviarCorreo(tipoCorreo,consec) {
          //valido el codigo retornado por la api aqui pongo de codigo 1009 ya que es el envio de correo
          if(v.codigo==1009){
           setTimeout(function () {
-          window.location.href = "/Home";
+              window.location.href = baseURL +"Home";
           }, 9000)
         }
         //cambio el tititulo si es diferente de error
@@ -783,7 +786,7 @@ function UploadValidacionConErrores(reserrores) {
           ).then((result) => {
             //console.log('cerrado modal')
             //location.reload();
-            window.location.href = "/Home";
+              window.location.href = baseURL +"Home";
           })
         }else{
           //Envio correo de errores
@@ -843,7 +846,7 @@ function enviarCorreoErrores(errores) {
           v.type
         ).then((result) => {
           //console.log('cerrado modal')
-          window.location.href = "/Home";
+            window.location.href = baseURL +"Home";
         })
           
       });
