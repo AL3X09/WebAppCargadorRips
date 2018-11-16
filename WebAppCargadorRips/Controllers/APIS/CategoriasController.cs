@@ -50,7 +50,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         {
             //se elimino el procedimeinto almmacenado y se deja la consulta con lambada
 
-            var result = bd.Categoria.SqlQuery("SELECT * FROM Parametros.Categoria WHERE " + id + " = 1 AND estado_rips_id = 1 ORDER BY Parametros.nombre ASC").Select("new (categoria_id, nombre)");
+            var result = bd.Categoria.SqlQuery("SELECT * FROM Parametros.Categoria WHERE " + id + " = 1 AND estado_rips_id = 1 ORDER BY nombre").Select("new (categoria_id, nombre)");
             return result;
 
         }
