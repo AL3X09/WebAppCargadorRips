@@ -271,9 +271,6 @@
         <AssociationConnector Association="Rips_Model.FK__Web_Usuar__FK_us__39AD8A7F" />
         <EntityTypeShape EntityType="Rips_Model.Web_Correo_Sin_Restriccion" Width="1.5" PointX="3" PointY="49" />
         <AssociationConnector Association="Rips_Model.FK_correo_sin_restriccion_estado_rips" />
-        <EntityTypeShape EntityType="Rips_Model.Web_Administrador" Width="1.5" PointX="5.25" PointY="77.625" />
-        <AssociationConnector Association="Rips_Model.FK__Web_Admin__FK_we__48BAC3E5" />
-        <AssociationConnector Association="Rips_Model.FK__Web_Admin__FK_we__49AEE81E" />
         <EntityTypeShape EntityType="Rips_Model.Web_Documento" Width="1.5" PointX="3" PointY="62.25" />
         <AssociationConnector Association="Rips_Model.FK__Web_Docum__FK_we__4F67C174" />
         <EntityTypeShape EntityType="Rips_Model.Web_Validacion" Width="1.5" PointX="15.75" PointY="107" />
@@ -285,6 +282,8 @@
         <AssociationConnector Association="Rips_Model.FK_web_preradicacion_estado_rips" />
         <AssociationConnector Association="Rips_Model.FK_web_preradicacion_web_validacion" />
         <EntityTypeShape EntityType="Rips_Model.VW_Listado_Estado_Rips" Width="1.5" PointX="13.375" PointY="14.75" />
+        <EntityTypeShape EntityType="Rips_Model.Web_Administrador" Width="1.5" PointX="5.25" PointY="56.125" />
+        <AssociationConnector Association="Rips_Model.FK_web_administrador_rol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

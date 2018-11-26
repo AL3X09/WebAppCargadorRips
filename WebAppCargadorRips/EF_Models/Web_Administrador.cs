@@ -21,13 +21,12 @@ namespace WebAppCargadorRips.EF_Models
         public string apellidos { get; set; }
         public string descripcion { get; set; }
         public string correo { get; set; }
-        public int extencion { get; set; }
+        public int extension { get; set; }
         public string imagen { get; set; }
         public long FK_web_administrador_rol { get; set; }
         public long FK_web_administrador_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
         public virtual Web_Rol Web_Rol { get; set; }
-        public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

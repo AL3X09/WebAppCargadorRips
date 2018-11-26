@@ -253,7 +253,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         /// <summary>
         /// Actualiza la contraseña de un usuario especifico
         /// </summary>
-        [HttpPut]
+        [HttpPost]
         [Route("PutUpdateContrasenia")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<Object> UpdateContrasenia(CambiarContraseniaViewModel datos)
@@ -313,7 +313,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                              apellido = e.apellidos,
                              descripcion = e.descripcion,
                              correo = e.correo,
-                             extencion = e.extencion,
+                             extencion = e.extension,
                              imagen = e.imagen
                          };
             return result;

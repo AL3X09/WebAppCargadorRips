@@ -88,11 +88,11 @@ namespace WebAppCargadorRips.EF_Models
         public virtual DbSet<Web_Pregunta_Frecuente> Web_Pregunta_Frecuente { get; set; }
         public virtual DbSet<Web_Usuario> Web_Usuario { get; set; }
         public virtual DbSet<Web_Correo_Sin_Restriccion> Web_Correo_Sin_Restriccion { get; set; }
-        public virtual DbSet<Web_Administrador> Web_Administrador { get; set; }
         public virtual DbSet<Web_Documento> Web_Documento { get; set; }
         public virtual DbSet<Web_Validacion> Web_Validacion { get; set; }
         public virtual DbSet<Web_Preradicacion> Web_Preradicacion { get; set; }
         public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
+        public virtual DbSet<Web_Administrador> Web_Administrador { get; set; }
     
         public virtual ObjectResult<SP_Ingreso_Usuario_Result> SP_Ingreso_Usuario(string codprestador, string contrasenia)
         {
@@ -449,6 +449,51 @@ namespace WebAppCargadorRips.EF_Models
                 new ObjectParameter("IdWebvalidacion", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Update_Estado_Error_Carga_WebValidacion_Result>("SP_Web_Update_Estado_Error_Carga_WebValidacion", idWebvalidacionParameter);
+        }
+    
+        public virtual ObjectResult<SP_Registro_Usuario_Administrador1_Result> SP_Registro_Usuario_Administrador1(string usuario, string contrasenia, string correo, string nombres, string apellidos, string descripcion, string extension, string imagen, Nullable<int> rol, Nullable<int> estado)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var contraseniaParameter = contrasenia != null ?
+                new ObjectParameter("Contrasenia", contrasenia) :
+                new ObjectParameter("Contrasenia", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var nombresParameter = nombres != null ?
+                new ObjectParameter("Nombres", nombres) :
+                new ObjectParameter("Nombres", typeof(string));
+    
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("Apellidos", apellidos) :
+                new ObjectParameter("Apellidos", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var extensionParameter = extension != null ?
+                new ObjectParameter("Extension", extension) :
+                new ObjectParameter("Extension", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(string));
+    
+            var rolParameter = rol.HasValue ?
+                new ObjectParameter("Rol", rol) :
+                new ObjectParameter("Rol", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Registro_Usuario_Administrador1_Result>("SP_Registro_Usuario_Administrador1", usuarioParameter, contraseniaParameter, correoParameter, nombresParameter, apellidosParameter, descripcionParameter, extensionParameter, imagenParameter, rolParameter, estadoParameter);
         }
     }
 }

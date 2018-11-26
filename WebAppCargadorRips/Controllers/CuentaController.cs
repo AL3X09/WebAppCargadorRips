@@ -21,6 +21,23 @@ namespace WebAppCargadorRips.Controllers
         // GET: Cuenta
         public ActionResult Index()
         {
+            //valido si en alguna vista envia msj despues de un redirect
+            if (TempData["mensaje"] != null)
+            {
+                ViewBag.SomeData = TempData["mensaje"].ToString();
+            }
+            /***
+             *valido si realizo el cambio de contraseña y de esta forma cerrar las sesiones
+             *Por el momento solo para el cambio de contraseña external
+             */
+            if (TempData["cambiocontraseniasucces"] != null)
+            {
+                ViewBag.SomeData = TempData["cambiocontraseniasucces"].ToString();
+                //cierro sesiones
+                FormsAuthentication.SignOut();
+                Session.Abandon();
+            }
+
             return View();
         }
 
@@ -206,8 +223,11 @@ namespace WebAppCargadorRips.Controllers
         [Authorize]
         public ActionResult Logout()
         {
+            //Cierro sesiones
             FormsAuthentication.SignOut();
             Session.Abandon();
+            //Limpio campos
+            ModelState.Clear();
             return RedirectToAction("Index");
         }
 
@@ -271,13 +291,16 @@ namespace WebAppCargadorRips.Controllers
                                 // valido la respuesta del metodo
                                 if (postdatos.GetType().Name != null && postdatos.GetType().Name != "BadRequestResult")
                                 {
-
+                                    //Limpio campos
+                                    ModelState.Clear();
                                     //creo un array a partir del json devuelto por la api para tratarlo desde aca y poder enviar los diferentes errores
                                     var json = JsonConvert.SerializeObject(response, Formatting.Indented);
                                     //creo un json dinamico para enviarlo a la vista
                                     dynamic dynJson = JsonConvert.DeserializeObject(json);
-                                    ViewBag.SomeData = dynJson;
-                                    return View("Index");
+                                    //envio mensaje
+                                    TempData["mensaje"] = dynJson;
+                                    //return View("Index");
+                                    return RedirectToAction("Index", "Cuenta");
                                 }
                                 else
                                 {
@@ -337,7 +360,7 @@ namespace WebAppCargadorRips.Controllers
                     //valido que el procedimiento se ejecute de manera correcta
                     if (response.codigo != 200)
                     {
-                        //Returno la vista principal no hay aviso alguno ya que peude que la pagina pueda estar bajo ataque
+                        //Retorno la vista principal no hay aviso alguno ya que peude que la pagina pueda estar bajo ataque
                         //cierro session
                         FormsAuthentication.SignOut();
                         Session.Abandon();
@@ -357,8 +380,7 @@ namespace WebAppCargadorRips.Controllers
                     }
                     else
                     {
-                        //envio error a la api logs errores
-                        //TODO
+                        // envio error a la api logs errores                        
                         //envio un mensaje al usuario
                         ModelState.AddModelError(string.Empty, "La plataforma no esta respondiendo a su solicitud, por favor intente mas tarde");
                         FormsAuthentication.SignOut();
@@ -367,20 +389,19 @@ namespace WebAppCargadorRips.Controllers
 
                 }
                 catch (Exception e)
-                {
-                    //cierro session
-                    FormsAuthentication.SignOut();
-                    Session.Abandon();
+                {                   
                     // envio error a la api logs errores
-                    //TODO
                     //envio a la carpeta logs
                     APIS.LogsController log = new APIS.LogsController(e.ToString());
                     log.createFolder();
                     //envio error mensaje al usuario
                     ModelState.AddModelError(string.Empty, "Estamos presentando dificultades en el momento por favor intente mas tarde");
+                    //cierro session
+                    FormsAuthentication.SignOut();
+                    Session.Abandon();
                 }
             }
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         //Este metodo es usado cuando el usuario va a ingresar la nueva contraseña
@@ -423,14 +444,18 @@ namespace WebAppCargadorRips.Controllers
                         // el procedimiento envia un codigo de 201 como respuesta
                         if (response.codigo == 201)
                         {
+                            //Limpio campos
+                            //ModelState.Clear();
                             //creo un array a partir del json devuelto por la api para tratarlo desde aca y poder enviar los diferentes errores
                             var json = JsonConvert.SerializeObject(response, Formatting.Indented);
                             //creo un json dinamico para enviarlo a la vista
-                            dynamic dynJson = JsonConvert.DeserializeObject(json);
-                            ViewBag.SomeData = dynJson;
+                            dynamic dynJson = JsonConvert.DeserializeObject(json);                                                       
+                            //envio mensaje
+                            TempData["mensaje"] = dynJson;
+                            //cierro sesiones
                             FormsAuthentication.SignOut();
-                            Session.Abandon();
-                            return View("Index");
+                            //Cargo la vista                            
+                            return RedirectToAction("Index");
 
                         }// fin if valida response
                         else
@@ -439,14 +464,12 @@ namespace WebAppCargadorRips.Controllers
                             return RedirectToAction("Index");
                         }
 
-                   
                     }//fin else captcha
 
                 }//fin try
                 catch (Exception e)
                 {
                     // envio error a la api logs errores
-                    //TODO
                     //envio a la carpeta logs
                     APIS.LogsController log = new APIS.LogsController(e.ToString());
                     log.createFolder();

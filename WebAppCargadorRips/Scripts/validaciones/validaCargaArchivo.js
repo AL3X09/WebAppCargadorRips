@@ -68,7 +68,7 @@ $(document).ready(function () {
 })
 
 function readFile() {
-  console.log("leiendoXD");
+  //console.log("leiendoXD");
   let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
   var fileInput = document.getElementById('rips');
   var fileDisplayArea = document.getElementById('fileDisplayArea');

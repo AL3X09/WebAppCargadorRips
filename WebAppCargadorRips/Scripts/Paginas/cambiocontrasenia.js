@@ -6,10 +6,60 @@
 
 $(document).ready(function () {
 
+    $.validator.addMethod(
+        "regex",
+        function (value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        },
+        "Please check your input."
+    );
+
   $( "#formusercontrasenia" ).submit(function( event ) {
     
-    event.preventDefault();
-    updateContrasenia();
+      event.preventDefault();
+  }).validate({
+      //debug: true,
+      errorClass: "invalid form-error",
+      validClass: "valid",
+      rules: {
+          contrasenia: {
+              required: true,
+              regex: /(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W){8}.*$/,
+              minlength: 8,
+          },
+          contraseniaconfirm: {
+              required: true,
+              equalTo: "#contrasenia"
+          },
+
+      },
+      errorElement: 'div',
+     
+      errorPlacement: function (error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+              $(placement).append(error)
+          } else {
+              error.insertAfter(element);
+          }
+      },
+      //For custom messages
+      messages: {
+          contrasenia: {
+              required: "El campo es obligatorio",
+              minlength: "Ingrese por lo mínimo 8 caracteres",
+              regex: "Ingrese mayúsculas, minúsculas y caracteres especiales"
+          },
+          contraseniaconfirm: {
+              required: "El campo es obligatorio",
+              equalTo: "La Contraseña y su comfirmación no coinciden"
+          },
+      },
+      submitHandler: function (e) {
+          updateContrasenia();
+      }
+   
   });
 
   /**
@@ -99,7 +149,7 @@ function check(input) {
 function updateContrasenia() {
 
   $.ajax({
-    type: "PUT",
+    type: "POST",
     url: baseURL + "api/Usuarios/PutUpdateContrasenia",
     data: $('#formusercontrasenia').serialize(),
     success: function (response) {

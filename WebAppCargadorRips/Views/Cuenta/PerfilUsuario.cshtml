@@ -30,7 +30,7 @@
         <form id="formuserimage" enctype="multipart/form-data" method="post">
             @Html.AntiForgeryToken()
             <label for="avatar">adjunta una imagen ".JPEG"</label>
-            <input type="file" id="avatar" name="avatar" class="dropify">
+            <input type="file" id="avatar" name="avatar" class="dropify" data-allowed-file-extensions="jpg jpeg">
             <div id="divclaims">
             </div>
         </form>

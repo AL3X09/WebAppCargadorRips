@@ -64,7 +64,6 @@ namespace WebAppCargadorRips.EF_Models
             this.Web_Usuario1 = new HashSet<Web_Usuario>();
             this.Web_Usuario2 = new HashSet<Web_Usuario>();
             this.Web_Correo_Sin_Restriccion = new HashSet<Web_Correo_Sin_Restriccion>();
-            this.Web_Administrador = new HashSet<Web_Administrador>();
             this.Web_Documento = new HashSet<Web_Documento>();
             this.Web_Validacion = new HashSet<Web_Validacion>();
             this.Web_Preradicacion = new HashSet<Web_Preradicacion>();
@@ -172,8 +171,6 @@ namespace WebAppCargadorRips.EF_Models
         public virtual ICollection<Web_Usuario> Web_Usuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Correo_Sin_Restriccion> Web_Correo_Sin_Restriccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Web_Administrador> Web_Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Documento> Web_Documento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

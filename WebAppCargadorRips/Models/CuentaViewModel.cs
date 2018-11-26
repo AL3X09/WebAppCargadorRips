@@ -134,7 +134,7 @@ namespace WebAppCargadorRips.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("contrasenia", ErrorMessage = "La contraseña y su de confirmación no coinciden.")]
+        [Compare("contrasenia", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
         [Display(Name = "Confirmación de Contraseña (*)")]
         public string contraseniaconfirm { get; set; }
 

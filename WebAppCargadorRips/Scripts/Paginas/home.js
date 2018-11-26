@@ -500,7 +500,7 @@ function callCategoria(objeto, idtipousuario) {
     console.error(textStatus, errorThrown); // Algo fallo
     swal(
       textStatus,
-      'Hay un problema al traer los datos de las caegorias comunícate con el administrador ',
+      'Hay un problema al traer los datos de las Categorías comunícate con el administrador ',
       'error',
       setTimeout(function () {
       }, 2000)

@@ -195,7 +195,7 @@ function getContactos() {
                     '<span class="card-title">' + v.nombre+' '+v.apellido +'</span>'+
                     '</div>' +
                     '<div class="card-content">' +
-                    '<p>Descripcón:</p>'+
+                    '<p>Descripción:</p>'+
                     '<p>' + v.descripcion + '</p>' +
                     '<div class="card-action">' +
                     '<p>Correo:</p>' +

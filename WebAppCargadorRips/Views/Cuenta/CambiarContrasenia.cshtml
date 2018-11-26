@@ -1,5 +1,5 @@
 ﻿@{
-    //vista usada en el perfil de usaurio
+    //vista usada en el perfil de usuario
     ViewBag.Title = "Cambiar Contraseña";
 }
 
@@ -10,7 +10,7 @@
 <div class="row">
 
     <div class="col s12">
-        <h2 class="center-align">CAMBIAR CONTRASEÑA</h2>
+        <h4 class="center-align">CAMBIAR CONTRASEÑA</h4>
     </div>
     <div class="col s12">
         <blockquote>Hola <span id="nombreUser"></span>!! desde aquí puedes cambiar tu contraseña.</blockquote>
@@ -19,7 +19,7 @@
 </div>
 
 <!-- Formulario de cambio de contraseña -->
-<div class="row ">
+<div class="row">
     <form id="formusercontrasenia" method="post">
    
             @Html.AntiForgeryToken()
@@ -27,27 +27,36 @@
             @Html.ValidationSummary(true, "", new { @class = "validate" })
             <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input id="contrasenia" name="contrasenia" type="password" class="validate" minlength=8 pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
-                <label for="contrasenia">Contraseña Nueva</label>
+                <input id="contrasenia" name="contrasenia" type="password" class="validate" minlength=8 
+                       pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                       title="Ingrese caracteres que contengan mayúsculas, minúsculas y caracteres especiales"
+                       required
+                       data-error=".errorTxt1">
+                <label for="contrasenia">Contraseña Nueva</label>                
+                <div class="errorTxt1"></div>
             </div>
             <div class="row">
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">lock_outline</i>
-                <input id="contraseniaconfirm" name="contraseniaconfirm" type="password" class="validate" required oninput="check(this)">
+                <!--<input id="contraseniaconfirm" name="contraseniaconfirm" type="password" class="validate"
+                required
+                oninput="check(this)">-->
+                <input id="contraseniaconfirm" name="contraseniaconfirm" type="password" class="validate" required data-error=".errorTxt2">
                 <label for="confirm">Comfirmar Contraseña</label>
+                <div class="errorTxt2"></div>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <button class="btn waves-effect waves-light green z-depth-2 tooltipped" type="submit" name="action" data-position="bottom" data-delay="50" data-tooltip="Oprime para cambiar la contraseña">Cambiar<i class="material-icons right">file_upload</i></button>
-                    <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="cancelado()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la operación"><i class="material-icons right">close</i>CANCELAR</a>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button class="btn waves-effect waves-light green z-depth-2 tooltipped" type="submit" name="action" data-position="bottom" data-delay="50" data-tooltip="Oprime para cambiar la contraseña">Cambiar<i class="material-icons right">file_upload</i></button>
+                        <a class="waves-effect waves-light btn red z-depth-2 tooltipped" onclick="cancelado()" data-position="bottom" data-delay="50" data-tooltip="Oprime para cancelar la operación"><i class="material-icons right">close</i>CANCELAR</a>
+                    </div>
                 </div>
-            </div>
-            <div id="divclaims">
-            </div>      
-    </form>
-</div>
+                <div id="divclaims">
+                </div>
+        </form>
+    </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/cambiocontraseniajs")
-    }
+        @section Scripts {
+            @Scripts.Render("~/bundles/cambiocontraseniajs")
+        }

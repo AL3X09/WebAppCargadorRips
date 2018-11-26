@@ -103,16 +103,6 @@
           <Property Name="FK_correo_estado_rips" Type="bigint" Nullable="false" />
           <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'Rips.Configuracion.Directorios' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Directorios">
-          <Property Name="directorio_entrada" Type="nvarchar" MaxLength="150" />
-          <Property Name="directorio_salida" Type="nvarchar" MaxLength="150" />
-          <Property Name="directorio_error" Type="nvarchar" MaxLength="150" />
-          <Property Name="directorio_rechazo" Type="nvarchar" MaxLength="150" />
-          <Property Name="usuario_directorios" Type="nvarchar" MaxLength="50" />
-          <Property Name="contraseña_directorios" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Acto_Quirurgico">
           <Key>
             <PropertyRef Name="acto_quirurgico_id" />
@@ -711,7 +701,7 @@ advertencia 6013: La tabla o vista 'Rips.Configuracion.Directorios' no tiene def
           <Property Name="apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="descripcion" Type="text" Nullable="false" />
           <Property Name="correo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="extencion" Type="int" Nullable="false" />
+          <Property Name="extension" Type="int" Nullable="false" />
           <Property Name="imagen" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="FK_web_administrador_rol" Type="bigint" Nullable="false" />
           <Property Name="FK_web_administrador_estado_rips" Type="bigint" Nullable="false" />
@@ -1602,7 +1592,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Parameter Name="Nombres" Type="nvarchar" Mode="In" />
           <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
           <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
-          <Parameter Name="Extencion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Extension" Type="nvarchar" Mode="In" />
           <Parameter Name="Imagen" Type="nvarchar" Mode="In" />
           <Parameter Name="Rol" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="int" Mode="In" />
@@ -2478,7 +2468,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <NavigationProperty Name="Web_Usuario1" Relationship="Rips_Model.FK__Web_Usuar__FK_us__278EDA44" FromRole="Estado_RIPS" ToRole="Web_Usuario" />
           <NavigationProperty Name="Web_Usuario2" Relationship="Rips_Model.FK__Web_Usuar__FK_us__3AA1AEB8" FromRole="Estado_RIPS" ToRole="Web_Usuario" />
           <NavigationProperty Name="Web_Correo_Sin_Restriccion" Relationship="Rips_Model.FK_correo_sin_restriccion_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Correo_Sin_Restriccion" />
-          <NavigationProperty Name="Web_Administrador" Relationship="Rips_Model.FK__Web_Admin__FK_we__49AEE81E" FromRole="Estado_RIPS" ToRole="Web_Administrador" />
           <NavigationProperty Name="Web_Documento" Relationship="Rips_Model.FK__Web_Docum__FK_we__4F67C174" FromRole="Estado_RIPS" ToRole="Web_Documento" />
           <NavigationProperty Name="Web_Validacion" Relationship="Rips_Model.FK_web_validacion_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Validacion" />
           <NavigationProperty Name="Web_Preradicacion" Relationship="Rips_Model.FK_web_preradicacion_estado_rips" FromRole="Estado_RIPS" ToRole="Web_Preradicacion" />
@@ -6100,15 +6089,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Parameter Name="Prestador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetAllPreguntasFrecuentes" ReturnType="Collection(Rips_Model.SP_GetAllPreguntasFrecuentes_Result)" />
-          <EntitySet Name="Web_Administrador" EntityType="Rips_Model.Web_Administrador" />
-          <AssociationSet Name="FK__Web_Admin__FK_we__48BAC3E5" Association="Rips_Model.FK__Web_Admin__FK_we__48BAC3E5">
-            <End Role="Web_Rol" EntitySet="Web_Rol" />
-            <End Role="Web_Administrador" EntitySet="Web_Administrador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Web_Admin__FK_we__49AEE81E" Association="Rips_Model.FK__Web_Admin__FK_we__49AEE81E">
-            <End Role="Estado_RIPS" EntitySet="Estado_RIPS" />
-            <End Role="Web_Administrador" EntitySet="Web_Administrador" />
-          </AssociationSet>
           <FunctionImport Name="SP_GetAllManuales" ReturnType="Collection(Rips_Model.SP_GetAllManuales_Result)" />
           <FunctionImport Name="SP_GetAllNormatividad" ReturnType="Collection(Rips_Model.SP_GetAllNormatividad_Result)" />
           <FunctionImport Name="SP_GetAllPresentacionesAyuda" ReturnType="Collection(Rips_Model.SP_GetAllPresentacionesAyuda_Result)" />
@@ -6179,6 +6159,23 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <FunctionImport Name="SP_Web_Update_Estado_Error_Carga_WebValidacion" ReturnType="Collection(Rips_Model.SP_Web_Update_Estado_Error_Carga_WebValidacion_Result)">
           <Parameter Name="IdWebvalidacion" Mode="In" Type="Int64" />
           </FunctionImport>
+          <EntitySet Name="Web_Administrador" EntityType="Rips_Model.Web_Administrador" />
+          <AssociationSet Name="FK_web_administrador_rol" Association="Rips_Model.FK_web_administrador_rol">
+            <End Role="Web_Rol" EntitySet="Web_Rol" />
+            <End Role="Web_Administrador" EntitySet="Web_Administrador" />
+          </AssociationSet>
+          <FunctionImport Name="SP_Registro_Usuario_Administrador1" ReturnType="Collection(Rips_Model.SP_Registro_Usuario_Administrador1_Result)">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasenia" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Nombres" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Extension" Mode="In" Type="String" />
+            <Parameter Name="Imagen" Mode="In" Type="String" />
+            <Parameter Name="Rol" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Correo">
           <Key>
@@ -6242,7 +6239,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <NavigationProperty Name="Web_Usuario" Relationship="Rips_Model.FK__Web_Usuar__FK_us__16644E42" FromRole="Web_Rol" ToRole="Web_Usuario" />
           <NavigationProperty Name="Web_Usuario1" Relationship="Rips_Model.FK__Web_Usuar__FK_us__2882FE7D" FromRole="Web_Rol" ToRole="Web_Usuario" />
           <NavigationProperty Name="Web_Usuario2" Relationship="Rips_Model.FK__Web_Usuar__FK_us__3B95D2F1" FromRole="Web_Rol" ToRole="Web_Usuario" />
-          <NavigationProperty Name="Web_Administrador" Relationship="Rips_Model.FK__Web_Admin__FK_we__48BAC3E5" FromRole="Web_Rol" ToRole="Web_Administrador" />
+          <NavigationProperty Name="Web_Administrador" Relationship="Rips_Model.FK_web_administrador_rol" FromRole="Web_Rol" ToRole="Web_Administrador" />
         </EntityType>
         <EntityType Name="Web_RolHasPermiso">
           <Key>
@@ -6874,49 +6871,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="100" />
           <Property Type="Int64" Name="FK_estado" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Web_Administrador">
-          <Key>
-            <PropertyRef Name="administrador_id" />
-          </Key>
-          <Property Name="administrador_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="usuario" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="contrasenia" Type="Binary" Nullable="false" MaxLength="8000" FixedLength="false" />
-          <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="extencion" Type="Int32" Nullable="false" />
-          <Property Name="imagen" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FK_web_administrador_rol" Type="Int64" Nullable="false" />
-          <Property Name="FK_web_administrador_estado_rips" Type="Int64" Nullable="false" />
-          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Web_Rol" Relationship="Rips_Model.FK__Web_Admin__FK_we__48BAC3E5" FromRole="Web_Administrador" ToRole="Web_Rol" />
-          <NavigationProperty Name="Estado_RIPS" Relationship="Rips_Model.FK__Web_Admin__FK_we__49AEE81E" FromRole="Web_Administrador" ToRole="Estado_RIPS" />
-        </EntityType>
-        <Association Name="FK__Web_Admin__FK_we__48BAC3E5">
-          <End Type="Rips_Model.Web_Rol" Role="Web_Rol" Multiplicity="1" />
-          <End Type="Rips_Model.Web_Administrador" Role="Web_Administrador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Web_Rol">
-              <PropertyRef Name="rol_id" />
-            </Principal>
-            <Dependent Role="Web_Administrador">
-              <PropertyRef Name="FK_web_administrador_rol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Web_Admin__FK_we__49AEE81E">
-          <End Type="Rips_Model.Estado_RIPS" Role="Estado_RIPS" Multiplicity="1" />
-          <End Type="Rips_Model.Web_Administrador" Role="Web_Administrador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado_RIPS">
-              <PropertyRef Name="estado_rips_id" />
-            </Principal>
-            <Dependent Role="Web_Administrador">
-              <PropertyRef Name="FK_web_administrador_estado_rips" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="SP_GetAllManuales_Result">
           <Property Type="Int64" Name="documento_id" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="Max" />
@@ -7128,6 +7082,41 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="mensaje" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SP_Web_Update_Estado_Error_Carga_WebValidacion_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="mensaje" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Web_Administrador">
+          <Key>
+            <PropertyRef Name="administrador_id" />
+          </Key>
+          <Property Name="administrador_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="contrasenia" Type="Binary" Nullable="false" MaxLength="8000" FixedLength="false" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="extension" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FK_web_administrador_rol" Type="Int64" Nullable="false" />
+          <Property Name="FK_web_administrador_estado_rips" Type="Int64" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Web_Rol" Relationship="Rips_Model.FK_web_administrador_rol" FromRole="Web_Administrador" ToRole="Web_Rol" />
+        </EntityType>
+        <Association Name="FK_web_administrador_rol">
+          <End Type="Rips_Model.Web_Rol" Role="Web_Rol" Multiplicity="1" />
+          <End Type="Rips_Model.Web_Administrador" Role="Web_Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Rol">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="Web_Administrador">
+              <PropertyRef Name="FK_web_administrador_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_Registro_Usuario_Administrador1_Result">
           <Property Type="Int32" Name="codigo" Nullable="false" />
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="mensaje" Nullable="false" />
@@ -8366,24 +8355,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="Web_Administrador">
-            <EntityTypeMapping TypeName="Rips_Model.Web_Administrador">
-              <MappingFragment StoreEntitySet="Web_Administrador">
-                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
-                <ScalarProperty Name="FK_web_administrador_estado_rips" ColumnName="FK_web_administrador_estado_rips" />
-                <ScalarProperty Name="FK_web_administrador_rol" ColumnName="FK_web_administrador_rol" />
-                <ScalarProperty Name="imagen" ColumnName="imagen" />
-                <ScalarProperty Name="extencion" ColumnName="extencion" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_GetAllManuales" FunctionName="Rips_Model.Store.SP_GetAllManuales">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Rips_Model.SP_GetAllManuales_Result">
@@ -8492,15 +8463,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_Registro_Usuario_Administrador" FunctionName="Rips_Model.Store.SP_Registro_Usuario_Administrador">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Rips_Model.SP_Registro_Usuario_Administrador_Result">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Web_Insert_Datos_Rips_a_Validar" FunctionName="Rips_Model.Store.SP_Web_Insert_Datos_Rips_a_Validar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Rips_Model.SP_Web_Insert_Datos_Rips_a_Validar_Result">
@@ -8533,6 +8495,33 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <FunctionImportMapping FunctionImportName="SP_Web_Update_Estado_Error_Carga_WebValidacion" FunctionName="Rips_Model.Store.SP_Web_Update_Estado_Error_Carga_WebValidacion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Rips_Model.SP_Web_Update_Estado_Error_Carga_WebValidacion_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Web_Administrador">
+            <EntityTypeMapping TypeName="Rips_Model.Web_Administrador">
+              <MappingFragment StoreEntitySet="Web_Administrador">
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="FK_web_administrador_estado_rips" ColumnName="FK_web_administrador_estado_rips" />
+                <ScalarProperty Name="FK_web_administrador_rol" ColumnName="FK_web_administrador_rol" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Registro_Usuario_Administrador1" FunctionName="Rips_Model.Store.SP_Registro_Usuario_Administrador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Rips_Model.SP_Registro_Usuario_Administrador1_Result">
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />

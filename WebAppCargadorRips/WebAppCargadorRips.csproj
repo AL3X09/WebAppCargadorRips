@@ -432,6 +432,9 @@
     <Compile Include="EF_Models\SP_ListarTipoUsuario_Result.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\SP_Registro_Usuario_Administrador1_Result.cs">
+      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\SP_Registro_Usuario_Administrador_Result.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
@@ -1177,6 +1180,7 @@
     <Content Include="Scripts\validaciones\validaCargaArchivo.js" />
     <Content Include="Scripts\validaciones\validarFormRegistro.js" />
     <Content Include="Scripts\validaciones\validator.js" />
+    <Content Include="version.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
