@@ -285,6 +285,9 @@
     <Compile Include="EF_Models\Destino_Salida.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF_Models\Directorios.cs">
+      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF_Models\DIVIPOLA.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>

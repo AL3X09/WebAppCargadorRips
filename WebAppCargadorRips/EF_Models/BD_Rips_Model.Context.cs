@@ -93,6 +93,7 @@ namespace WebAppCargadorRips.EF_Models
         public virtual DbSet<Web_Preradicacion> Web_Preradicacion { get; set; }
         public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
         public virtual DbSet<Web_Administrador> Web_Administrador { get; set; }
+        public virtual DbSet<Directorios> Directorios { get; set; }
     
         public virtual ObjectResult<SP_Ingreso_Usuario_Result> SP_Ingreso_Usuario(string codprestador, string contrasenia)
         {

@@ -284,6 +284,7 @@
         <EntityTypeShape EntityType="Rips_Model.VW_Listado_Estado_Rips" Width="1.5" PointX="13.375" PointY="14.75" />
         <EntityTypeShape EntityType="Rips_Model.Web_Administrador" Width="1.5" PointX="5.25" PointY="56.125" />
         <AssociationConnector Association="Rips_Model.FK_web_administrador_rol" />
+        <EntityTypeShape EntityType="Rips_Model.Directorios" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

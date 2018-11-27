@@ -103,6 +103,18 @@
           <Property Name="FK_correo_estado_rips" Type="bigint" Nullable="false" />
           <Property Name="fecha_modificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Directorios">
+          <Key>
+            <PropertyRef Name="directorios_id" />
+          </Key>
+          <Property Name="directorios_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="directorio_entrada" Type="nvarchar" MaxLength="150" />
+          <Property Name="directorio_salida" Type="nvarchar" MaxLength="150" />
+          <Property Name="directorio_error" Type="nvarchar" MaxLength="150" />
+          <Property Name="directorio_rechazo" Type="nvarchar" MaxLength="150" />
+          <Property Name="usuario_directorios" Type="nvarchar" MaxLength="50" />
+          <Property Name="contraseña_directorios" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Acto_Quirurgico">
           <Key>
             <PropertyRef Name="acto_quirurgico_id" />
@@ -1624,6 +1636,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <EntitySet Name="Web_Validacion" EntityType="Self.Web_Validacion" Schema="Auditoria" store:Type="Tables" />
           <EntitySet Name="Cargador_Rips" EntityType="Self.Cargador_Rips" Schema="Configuracion" store:Type="Tables" />
           <EntitySet Name="Correo" EntityType="Self.Correo" Schema="Configuracion" store:Type="Tables" />
+          <EntitySet Name="Directorios" EntityType="Self.Directorios" Schema="Configuracion" store:Type="Tables" />
           <EntitySet Name="Acto_Quirurgico" EntityType="Self.Acto_Quirurgico" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Ambito_Procedimiento" EntityType="Self.Ambito_Procedimiento" Schema="Parametros" store:Type="Tables" />
           <EntitySet Name="Año_Permitido" EntityType="Self.Año_Permitido" Schema="Parametros" store:Type="Tables" />
@@ -6176,6 +6189,7 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
             <Parameter Name="Rol" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Directorios" EntityType="Rips_Model.Directorios" />
         </EntityContainer>
         <EntityType Name="Correo">
           <Key>
@@ -7121,6 +7135,18 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="mensaje" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Directorios">
+          <Key>
+            <PropertyRef Name="directorios_id" />
+          </Key>
+          <Property Name="directorios_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="directorio_entrada" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_salida" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_error" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="directorio_rechazo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="usuario_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contraseña_directorios" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8528,6 +8554,19 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Directorios">
+            <EntityTypeMapping TypeName="Rips_Model.Directorios">
+              <MappingFragment StoreEntitySet="Directorios">
+                <ScalarProperty Name="contraseña_directorios" ColumnName="contraseña_directorios" />
+                <ScalarProperty Name="usuario_directorios" ColumnName="usuario_directorios" />
+                <ScalarProperty Name="directorio_rechazo" ColumnName="directorio_rechazo" />
+                <ScalarProperty Name="directorio_error" ColumnName="directorio_error" />
+                <ScalarProperty Name="directorio_salida" ColumnName="directorio_salida" />
+                <ScalarProperty Name="directorio_entrada" ColumnName="directorio_entrada" />
+                <ScalarProperty Name="directorios_id" ColumnName="directorios_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

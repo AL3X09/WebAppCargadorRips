@@ -483,7 +483,8 @@
         </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.ArchivosController.UploadSingleFile">
             <summary>
-             Metodo asincrono carga un archivo con datos del respectivo formulario y genera el consecutivo de preradicación
+             Metodo asincrono carga un archivo con datos del respectivo formulario y genera el consecutivo 
+             de preradicación
             </summary>
         </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.ArchivosController.SaveValidacionConErrores">

@@ -8,6 +8,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Security.Principal;
 using System.Web;
+using WebAppCargadorRips.Controllers.APIS;
 
 namespace WebAppCargadorRips.Models
 {
@@ -87,10 +88,12 @@ namespace WebAppCargadorRips.Models
             catch (Exception ex)
             {
                 Console.WriteLine("Error en conexión. Err: " + ex.Message);
+                LogsController log = new LogsController(ex.ToString());
+                log.createFolder();
                 //Facade.Instance.Trace("Oh no! Impersonate method failed.");
                 //ex.HandleException();
                 //On purpose: we want to notify a caller about the issue /Pavel Kovalev 9/16/2016 2:15:23 PM)/
-                throw;
+                //throw;
             }
         }
     

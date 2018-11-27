@@ -30,9 +30,13 @@ namespace WebAppCargadorRips.Controllers.APIS
 
         //private IRadicadosRips radicadoripsRepository;
         private static DateTime fechaActual = DateTime.Today;
-        private RipsEntitieConnection bd = new RipsEntitieConnection();
+        private static RipsEntitieConnection bd = new RipsEntitieConnection();
         private string path = HttpContext.Current.Server.MapPath("~/RIPSCargados/");
-        //private string path = @"\\Desktop-002g4er\e2\pruebared";
+        private string usuarioZIP = bd.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        private string contraseñaZIP = bd.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        //private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        private string directorioZIP = (@"\\520ANAPROGRA020\ArchivosRIPS\entrada").ToString();
+
 
         //Constructor        
         public ArchivosController()
@@ -42,7 +46,8 @@ namespace WebAppCargadorRips.Controllers.APIS
 
 
         ///<summary>
-        /// Metodo asincrono carga un archivo con datos del respectivo formulario y genera el consecutivo de preradicación
+        /// Metodo asincrono carga un archivo con datos del respectivo formulario y genera el consecutivo 
+        /// de preradicación
         ///</summary>
         [Route("Upload")]
         [HttpPost]
@@ -169,6 +174,38 @@ namespace WebAppCargadorRips.Controllers.APIS
                                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                                     zip.AddDirectory(pathresult);
                                     zip.Save(pathresult + ".zip");
+                                    var nombreZIP = pathresult + ".zip";
+                                    /**
+                                     * Envio la carpeta zip al reosritotio local
+                                     **/
+                                    Console.WriteLine(@directorioZIP);
+                                    Console.WriteLine(@nombreZIP);
+                                    Console.WriteLine(@directorioZIP);
+
+                                    NetworkConnection.Impersonate(@"SDS", @usuarioZIP, @contraseñaZIP, delegate
+                                    {
+                                        if (!Directory.Exists(directorioZIP + @"\"))
+                                        {
+                                            Directory.CreateDirectory(directorioZIP + @"\");
+                                        }
+
+                                        if (File.Exists(directorioZIP + nombreZIP))
+                                        {
+                                            File.Delete(directorioZIP + nombreZIP);
+                                        }
+
+                                        File.Copy(path + nombreZIP, directorioZIP + nombreZIP);
+                                        File.Delete(path + nombreZIP); 
+
+                                    /*MessageBox.Show(string.Format("Archivo ZIP para radicado {0} generado correctamente", Variables.radicado.ToString()),
+                                        "Archivos ZIP generado", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+                                    });
+
+                                    /**
+                                    * FIN Envio la carpeta zip al reosritotio local
+                                    **/
+
+
                                     /**
                                      * libero de archivos temporales 
                                      * OJO CON ESTA LINEA: ESTA ELIMINA ARCHIVOS TEMPORALES PODRIA ELIMINAR DE OTROS USUARIOS SEGUN RECURRENCIA DE USUARIOS
@@ -191,6 +228,7 @@ namespace WebAppCargadorRips.Controllers.APIS
 
                                 }
                                 var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();
+                                
 
                                 MSG.Add(new { type = linq1.tipo, value = linq1.cuerpo, codigo = preradicadoResult.codigo, consec = preradicadoResult.ultimoIdInsertPreradicado });
 
@@ -288,7 +326,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
                 //Armo mensaje y envio al cliente
-                MSG.Add(new { type = "error", value = "Formato de envio no permitido" });
+                MSG.Add(new { type = "error", value = "Formato de envió no permitido" });
 
                 throw new HttpResponseException(
                     Request.CreateResponse(HttpStatusCode.UnsupportedMediaType)
