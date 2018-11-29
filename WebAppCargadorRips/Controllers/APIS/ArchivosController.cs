@@ -34,8 +34,8 @@ namespace WebAppCargadorRips.Controllers.APIS
         private string path = HttpContext.Current.Server.MapPath("~/RIPSCargados/");
         private string usuarioZIP = bd.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
         private string contraseñaZIP = bd.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
-        //private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
-        private string directorioZIP = (@"\\520ANAPROGRA020\ArchivosRIPS\entrada").ToString();
+        private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        //private string directorioZIP = (@"\\520ANAPROGRA020\ArchivosRIPS\entrada").ToString();
 
 
         //Constructor        
@@ -130,11 +130,6 @@ namespace WebAppCargadorRips.Controllers.APIS
                                     var permisos = new FileIOPermission(FileIOPermissionAccess.AllAccess, pathresult);
                                     var permisosSET = new PermissionSet(PermissionState.None);
                                     permisosSET.AddPermission(permisos);
-                                    if (permisosSET.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet))
-                                    {
-                                    }
-
-                                }
 
                                 //variables que almacenan temporalmente los archivos para no perderlos
                                 var streamProvider = new MultipartFormDataStreamProvider(path);
@@ -162,77 +157,75 @@ namespace WebAppCargadorRips.Controllers.APIS
                                         {
                                             fileName = fileName.Substring(0, 2) + ".txt";
                                             File.Move(archivo.LocalFileName, Path.Combine(pathresult, fileName));
-                                            //zip.AddFile(archivo.LocalFileName).FileName = fileName;
-                                            //zip.AddFile(File.Delete(archivo.LocalFileName));
-
 
                                         }
 
                                     }
+
                                     //comprimo los archivos
                                     //https://stackoverflow.com/questions/24391794/c-sharp-move-files-to-zip-folder
                                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                                     zip.AddDirectory(pathresult);
                                     zip.Save(pathresult + ".zip");
                                     var nombreZIP = pathresult + ".zip";
-                                    /**
-                                     * Envio la carpeta zip al reosritotio local
-                                     **/
-                                    Console.WriteLine(@directorioZIP);
-                                    Console.WriteLine(@nombreZIP);
-                                    Console.WriteLine(@directorioZIP);
 
-                                    NetworkConnection.Impersonate(@"SDS", @usuarioZIP, @contraseñaZIP, delegate
-                                    {
-                                        if (!Directory.Exists(directorioZIP + @"\"))
-                                        {
-                                            Directory.CreateDirectory(directorioZIP + @"\");
+                                        /**
+                                        * Envio la carpeta zip al reosritotio local del servicio
+                                        **/
+                                        try {
+
+                                            NetworkConnection.Impersonate(@"SDS", @usuarioZIP, @contraseñaZIP, delegate
+                                            {
+                                                
+                                                var permisos2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, directorioZIP);
+                                                var permisosSET2 = new PermissionSet(PermissionState.None);
+                                                permisosSET2.AddPermission(permisos2);
+
+                                                if (!Directory.Exists(directorioZIP + @"\"))
+                                                {
+
+                                                    Directory.CreateDirectory(directorioZIP + @"\");
+                                                }
+
+                                                if (File.Exists(string.Format(@"{0}\{1}.zip", directorioZIP, preradicadoResult.ultimoIdInsertPreradicado)))
+                                                {
+                                                    File.Delete(string.Format(@"{0}\{1}.zip", directorioZIP, preradicadoResult.ultimoIdInsertPreradicado));
+                                                }
+                                               
+                                                File.Copy(@nombreZIP, string.Format(@"{0}\{1}.zip", directorioZIP, preradicadoResult.ultimoIdInsertPreradicado));
+
+                                            });
+                                            
                                         }
-
-                                        if (File.Exists(directorioZIP + nombreZIP))
+                                        catch (Exception e)
                                         {
-                                            File.Delete(directorioZIP + nombreZIP);
+                                            MSG.Add(new { type = "error", value = e.Message.ToString() });
                                         }
+                                        /**
+                                         * FIN Envio la carpeta zip al reosritotio local del servicio
+                                        **/
 
-                                        File.Copy(path + nombreZIP, directorioZIP + nombreZIP);
-                                        File.Delete(path + nombreZIP); 
+                                        /**
+                                            * libero de archivos temporales 
+                                            * OJO CON ESTA LINEA: ESTA ELIMINA ARCHIVOS TEMPORALES PODRIA ELIMINAR
+                                            * DE OTROS USUARIOS SEGUN RECURRENCIA DE USUARIOS
+                                            * No esta funcionando
+                                            * File.SetAttributes(pathresult, FileAttributes.Normal);
+                                            * File.Delete(pathresult);
+                                         **/
 
-                                    /*MessageBox.Show(string.Format("Archivo ZIP para radicado {0} generado correctamente", Variables.radicado.ToString()),
-                                        "Archivos ZIP generado", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-                                    });
+                                        File.SetAttributes(nombreZIP, FileAttributes.Normal);
+                                        File.Delete(nombreZIP);
+                                       
 
-                                    /**
-                                    * FIN Envio la carpeta zip al reosritotio local
-                                    **/
+                                    }// FIN using zip library
 
-
-                                    /**
-                                     * libero de archivos temporales 
-                                     * OJO CON ESTA LINEA: ESTA ELIMINA ARCHIVOS TEMPORALES PODRIA ELIMINAR DE OTROS USUARIOS SEGUN RECURRENCIA DE USUARIOS
-                                     **/
-
-                                    /*
-                                     * TODO
-                                     *Por seguridad consulto que los archivos existan en el path del servidor de archivos
-                                     */
-                                    if (!Directory.Exists(pathresult + ".zip"))
-                                    {
-                                        //Guardo en tabla pre radicado
-                                    }
-                                    /*
-                                    * Fin Por seguridad consulto que los archivos existan en el path del servidor de archivos
-                                    */
-
-
-                                    //File.Delete(pathresult);
-
-                                }
-                                var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();
-                                
+                                }// FIN if !Directory.Exists(pathresult)
+                                var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();                                
 
                                 MSG.Add(new { type = linq1.tipo, value = linq1.cuerpo, codigo = preradicadoResult.codigo, consec = preradicadoResult.ultimoIdInsertPreradicado });
 
-                            }
+                            }// FIN try
                             //error al cargar en el servidor del servicio integrado de WIN
                             catch (Exception e) // si hay un error al crear y guardar el fichero cambio el estado del registro en la tabla Auditoria.Web_Validacion
                             {
@@ -246,7 +239,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                                 log.createFolder();
                                 //TODO envio error a la base de datos
                                 //Envio mensaje de error a la vista
-                                MSG.Add(new { type = "error", value = "No se caragaron los archivos correctamente en el servidor." });
+                                MSG.Add(new { type = "error", value = "No se cargaron los archivos correctamente en el servidor, " + e.Message.ToString() });
                                 //MSG.Add(new { type = "error", value = path+"-------"+e.ToString() });
 
                             }
@@ -262,7 +255,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                         LogsController log = new LogsController(e.ToString());
                         log.createFolder();
                         //Envio mensaje de error a la vista
-                        MSG.Add(new { type = "error", value = "NO se caragaron los archivos correctamente en el servidor." });
+                        MSG.Add(new { type = "error", value = "No se cargaron los archivos correctamente en el servidor, " + e.Message.ToString() });
                     }
                     
                 }//fin if respuesta satisfactoria
@@ -278,7 +271,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                 LogsController log = new LogsController(e.ToString());
                 log.createFolder();
                 //TODO enviar a la base de datos 
-                MSG.Add(new { type = "error", value = e.ToString() });
+                MSG.Add(new { type = "error", value = e.Message.ToString() });
                 //todo enviar error a la  base de datos
             }
 

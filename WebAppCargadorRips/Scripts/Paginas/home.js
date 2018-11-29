@@ -178,7 +178,7 @@ function getAllME() {
     //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
       console.log(baseURL);
     //console.error(textStatus, errorThrown); // Algo fallo
-      //window.location.href = baseURL+"Cuenta";
+    window.location.href = baseURL+"Cuenta";
     //envio a la api errores para que almacene el error
   })
 
