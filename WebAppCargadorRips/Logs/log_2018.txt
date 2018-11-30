@@ -6,3 +6,23 @@ System.ComponentModel.Win32Exception (0x80004005): El nombre de usuario o la con
 -------------------------------------- 29/11/2018 07:47:13 a. m. --------------------------
 System.ComponentModel.Win32Exception (0x80004005): El nombre de usuario o la contraseña no son correctos
    en WebAppCargadorRips.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en D:\NetApps\WebAppCargadorRips\WebAppCargadorRips\Models\NetworkConnection.cs:línea 63
+
+-------------------------------------- 30/11/2018 04:26:46 p. m. --------------------------
+System.ComponentModel.Win32Exception (0x80004005): El nombre de usuario o la contraseña no son correctos
+   en WebAppCargadorRips.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en D:\NetApps\WebAppCargadorRips\WebAppCargadorRips\Models\NetworkConnection.cs:línea 63
+
+-------------------------------------- 30/11/2018 04:44:15 p. m. --------------------------
+System.ComponentModel.Win32Exception (0x80004005): El nombre de usuario o la contraseña no son correctos
+   en WebAppCargadorRips.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute) en D:\NetApps\WebAppCargadorRips\WebAppCargadorRips\Models\NetworkConnection.cs:línea 63
+
+-------------------------------------- 30/11/2018 04:44:15 p. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__7.MoveNext() en D:\NetApps\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 204
+
+-------------------------------------- 30/11/2018 04:58:43 p. m. --------------------------
+System.ComponentModel.Win32Exception (0x80004005): El nombre de usuario o la contraseña no son correctos
+   en WebAppCargadorRips.Models.NetworkConnection.Impersonate(String domainName, String userName, String userPassword, Action actionToExecute)
+
+-------------------------------------- 30/11/2018 04:58:43 p. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__7.MoveNext()

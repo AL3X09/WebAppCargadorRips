@@ -177,9 +177,9 @@ namespace WebAppCargadorRips.Controllers.APIS
                                             NetworkConnection.Impersonate(@"SDS", @usuarioZIP, @contraseñaZIP, delegate
                                             {
                                                 
-                                                var permisos2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, directorioZIP);
-                                                var permisosSET2 = new PermissionSet(PermissionState.None);
-                                                permisosSET2.AddPermission(permisos2);
+                                                //var permisos2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, directorioZIP);
+                                                //var permisosSET2 = new PermissionSet(PermissionState.None);
+                                                //permisosSET2.AddPermission(permisos2);
 
                                                 if (!Directory.Exists(directorioZIP + @"\"))
                                                 {
@@ -199,7 +199,11 @@ namespace WebAppCargadorRips.Controllers.APIS
                                         }
                                         catch (Exception e)
                                         {
+                                            Console.WriteLine(e.Message.ToString());
                                             MSG.Add(new { type = "error", value = e.Message.ToString() });
+                                            throw new HttpResponseException(
+                                                Request.CreateResponse(HttpStatusCode.BadRequest)
+                                                );
                                         }
                                         /**
                                          * FIN Envio la carpeta zip al reosritotio local del servicio

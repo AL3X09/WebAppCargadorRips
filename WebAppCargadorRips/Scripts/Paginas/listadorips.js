@@ -76,7 +76,8 @@ function cargaratabla(token) {
           },
           "searching": true,
           "ordering": true,
-          "paging": true
+        "paging": true,
+        "scrollX": true,
     });
     //
     $("select").val('10');

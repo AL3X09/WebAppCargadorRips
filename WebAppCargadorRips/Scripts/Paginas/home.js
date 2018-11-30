@@ -469,7 +469,7 @@ function callTipoUsuario() {
     console.error(textStatus, errorThrown); // Algo fallo
     swal(
       textStatus,
-      'Hay un problema al traer los datos de tipo de usuario comunícate con el administrador ',
+      'Hay un problema al traer los datos de tipo de usuario comuníquese con el administrador ',
       'error',
       setTimeout(function () {
       }, 2000)
@@ -500,7 +500,7 @@ function callCategoria(objeto, idtipousuario) {
     console.error(textStatus, errorThrown); // Algo fallo
     swal(
       textStatus,
-      'Hay un problema al traer los datos de las Categorías comunícate con el administrador ',
+      'Hay un problema al traer los datos de las Categorías comuníquese con el administrador ',
       'error',
       setTimeout(function () {
       }, 2000)
@@ -558,7 +558,7 @@ function loadRIPS() {
     console.error(textStatus, errorThrown); // Algo fallo
     swal(
       textStatus,
-      'Hay un problema al cargar los datos y archivos comunícate con el administrador ',
+      'Hay un problema al cargar los datos y archivos comuníquese con el administrador ',
       'error',
       setTimeout(function () {
       }, 2000)
@@ -786,12 +786,15 @@ function UploadValidacionConErrores(reserrores) {
           ).then((result) => {
             //console.log('cerrado modal')
             //location.reload();
-              window.location.href = baseURL +"Home";
+              enviarCorreoErrores(reserrores);
+              //window.location.href = baseURL +"Home";
           })
-        }else{
+        }
+        /*modificado 30-11-2018
+         * else {
           //Envio correo de errores
           enviarCorreoErrores(reserrores)
-        }
+        }*/
 
       });
       
@@ -858,7 +861,7 @@ function enviarCorreoErrores(errores) {
     //notifico al usuario del error al enviar correo y recargo la pagina
     swal({
       title: 'Error',
-      text: "Lo sentimos la plataforma no pudo enviar el correo por favor notificalo al administrador",
+        text: "Lo sentimos la plataforma no pudo enviar el correo por favor comuníquese con el administrador",
       type: 'error',
       showCancelButton: false,
       confirmButtonColor: '#3085d6',

@@ -50,7 +50,7 @@ namespace WebAppCargadorRips.Models
                 const int LOGON32_LOGON_INTERACTIVE = 2;
 
                 // Call LogonUser to obtain a handle to an access token.
-                bool returnValue = LogonUser(userName, domainName, userPassword,
+                         bool returnValue = LogonUser(userName, domainName, userPassword,
                     LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT,
                     out safeTokenHandle);
                 //Facade.Instance.Trace("LogonUser called.");
@@ -60,7 +60,7 @@ namespace WebAppCargadorRips.Models
                     int ret = Marshal.GetLastWin32Error();
                     //Facade.Instance.Trace($"LogonUser failed with error code : {ret}");
 
-                    throw new System.ComponentModel.Win32Exception(ret);
+                    //throw new System.ComponentModel.Win32Exception(ret);
                 }
 
                 using (safeTokenHandle)
@@ -93,7 +93,7 @@ namespace WebAppCargadorRips.Models
                 //Facade.Instance.Trace("Oh no! Impersonate method failed.");
                 //ex.HandleException();
                 //On purpose: we want to notify a caller about the issue /Pavel Kovalev 9/16/2016 2:15:23 PM)/
-                //throw;
+                throw;
             }
         }
     

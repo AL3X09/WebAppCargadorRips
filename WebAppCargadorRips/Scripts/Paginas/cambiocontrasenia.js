@@ -48,7 +48,7 @@ $(document).ready(function () {
       messages: {
           contrasenia: {
               required: "El campo es obligatorio",
-              minlength: "Ingrese por lo mínimo 8 caracteres",
+              minlength: "Ingrese mínimo 8 caracteres",
               regex: "Ingrese mayúsculas, minúsculas y caracteres especiales"
           },
           contraseniaconfirm: {

@@ -93,6 +93,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             //variables que se estan reciviendo del front
             // obtengo las variables enviadas por el formulario
             var nombreimagen = HttpContext.Current.Request.Files["avatar"];
+
             var idUser = HttpContext.Current.Request.Params["idUsuario"];
             var codigousuario = HttpContext.Current.Request.Params["codigousuario"];
             //almaceno el path donde se guarda la imagen
@@ -102,12 +103,12 @@ namespace WebAppCargadorRips.Controllers.APIS
             var MSG = new List<object>();
 
             //valido la información recivida del formulario
-            if (String.IsNullOrEmpty(nombreimagen.FileName))
+            if (String.IsNullOrEmpty(nombreimagen.FileName) && nombreimagen.ContentLength==0)
             {
                 MSG.Add(new { type = "error", value = "Debe cargar una imagen.", codigo = 0 });
             }
             //Valido que el formulario sea enviado con el formato permitido.
-            if (!Request.Content.IsMimeMultipartContent("form-data"))
+            else if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
                 //Armo mensaje y envio al cliente
                 MSG.Add(new { type = "error", value = "Formato de envio no permitido", codigo = 0 });

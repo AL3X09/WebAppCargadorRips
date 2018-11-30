@@ -121,7 +121,7 @@ function readFile() {
       } else {
         swal(
           'Precaución',
-          'parece que intenta cargar archivos no ilegibles, por favor elimine eh intente nuevamente',
+          'Parece que intenta cargar archivos no ilegibles, por favor elimine e intente nuevamente',
           'info'
         )
         //fileDisplayArea.innerText = "Archivos No Soportados!"
@@ -136,7 +136,7 @@ function readFile() {
     //le indico al usuario que por favor revice la info a cargar
     swal(
       'Precaución',
-      'parece que intenta cargar el mismo tipo de archivo, por favor elimine eh intente nuevamente',
+      'Parece que intenta cargar el mismo tipo de archivo, por favor elimine e intente nuevamente',
       'info'
     )
     nombre.length = 0;
@@ -155,7 +155,7 @@ function readlines(lineas, namefile, cantidad) {
         poslec = 0;
         swal(
             'Error!',
-            'Estas intentando cargar archivos con un nombre no permitido, por favor corrijalos!',
+            'Esta intentando cargar archivos con un nombre no permitido, por favor corrijalos!',
             'error'
         )
     } else {
@@ -234,7 +234,7 @@ function terminaLectura() {
     //envio notificación del error
     swal({
       title: 'Error',
-      text: 'Tus archivos presentan Errores de estructura!! se enviara un correo con los diferentes ' +
+      text: 'Sus archivos presentan Errores de estructura!! se enviara un correo con los diferentes ' +
       'errores encontrados, por favor corrijalos eh intente nuevamente.',
       type: 'warning',
       showCancelButton: false,
