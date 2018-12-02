@@ -51,6 +51,7 @@ function cargaratabla(token) {
                 //}
         ],
         "language": {
+            'processing': 'Cargando...',
             "sLengthMenu":     "Mostrar _MENU_ registros",
             "sZeroRecords":    "No se encontraron resultados",
             "sEmptyTable":     "Ningún dato disponible en esta tabla",
@@ -78,6 +79,8 @@ function cargaratabla(token) {
           "ordering": true,
         "paging": true,
         "scrollX": true,
+        "autoWidth": false,
+        "lengthMenu": [[10, 25, 50, 100, 500, 1000], [10, 25, 50, 100, 500, 1000]],
     });
     //
     $("select").val('10');

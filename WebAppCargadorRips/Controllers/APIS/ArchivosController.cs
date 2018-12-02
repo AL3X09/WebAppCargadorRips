@@ -177,9 +177,9 @@ namespace WebAppCargadorRips.Controllers.APIS
                                             NetworkConnection.Impersonate(@"SDS", @usuarioZIP, @contraseñaZIP, delegate
                                             {
                                                 
-                                                //var permisos2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, directorioZIP);
-                                                //var permisosSET2 = new PermissionSet(PermissionState.None);
-                                                //permisosSET2.AddPermission(permisos2);
+                                                var permisos2 = new FileIOPermission(FileIOPermissionAccess.AllAccess, directorioZIP);
+                                                var permisosSET2 = new PermissionSet(PermissionState.None);
+                                                permisosSET2.AddPermission(permisos2);
 
                                                 if (!Directory.Exists(directorioZIP + @"\"))
                                                 {
@@ -441,14 +441,8 @@ namespace WebAppCargadorRips.Controllers.APIS
             //get total value count
             var Cantidad = bd.VW_Listado_Estado_Rips.Where(v=>v.FK_usuario == fktoken).Count();
         
-             /*result = from VLR in bd.VW_Listado_Estado_Rips
-                         where VLR.FK_usuario == fktoken
-                         orderby VLR.fecha_cargo descending
-                         select VLR;*/
-            
-
             //se Creo un modelo para datatable paging and sending data & enter all the required values
-            var VWListadoPaged = new SysDataTablePager<VW_Listado_Estado_Rips>(result, Cantidad, result.Count(), sEcho);
+            var VWListadoPaged = new SysDataTablePager<VW_Listado_Estado_Rips>(result, Cantidad, Cantidad, sEcho);
 
             return VWListadoPaged;
         }

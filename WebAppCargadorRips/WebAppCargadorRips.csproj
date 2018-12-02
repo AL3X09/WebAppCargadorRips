@@ -1205,7 +1205,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Home\listadorips.cshtml" />
     <Content Include="Views\Shared\_LayoutSesion.cshtml" />
     <Content Include="Content\SweetAlert2\variables.scss" />
     <Content Include="Content\SweetAlert2\toasts.scss" />
