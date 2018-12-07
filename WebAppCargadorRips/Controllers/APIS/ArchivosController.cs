@@ -32,9 +32,12 @@ namespace WebAppCargadorRips.Controllers.APIS
         private static DateTime fechaActual = DateTime.Today;
         private static RipsEntitieConnection bd = new RipsEntitieConnection();
         private string path = HttpContext.Current.Server.MapPath("~/RIPSCargados/");
-        private string usuarioZIP = bd.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
-        private string contraseñaZIP = bd.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
-        private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        //private string usuarioZIP = bd.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        //private string contraseñaZIP = bd.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        //private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        private string pathresult = null; //Nombre de la carpeta que almacena los archivos txt tempo por usaurio
+        private string nombreZIP = null; //nombre del zip resultante
+
         //private string directorioZIP = (@"\\520ANAPROGRA020\ArchivosRIPS\entrada").ToString();
 
 
@@ -122,7 +125,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                             {
 
                                 //creo el nombre del path
-                                string pathresult = path + "/" + preradicadoResult.ultimoIdInsertPreradicado;
+                                pathresult = path + @"\" + preradicadoResult.ultimoIdInsertPreradicado;
                                 //consulto que exista el folder raiz
                                 if (!Directory.Exists(pathresult))
                                 {
@@ -167,12 +170,15 @@ namespace WebAppCargadorRips.Controllers.APIS
                                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                                     zip.AddDirectory(pathresult);
                                     zip.Save(pathresult + ".zip");
-                                    var nombreZIP = pathresult + ".zip";
+                                     nombreZIP = pathresult + ".zip";
+                                    }// FIN using zip library
 
-                                        /**
-                                        * Envio la carpeta zip al reosritotio local del servicio
-                                        **/
-                                        try {
+
+                                    /**
+                                    * Envio la carpeta zip al reosritotio local del servicio
+                                    ** NO FUNCIONAL
+                                    try
+                                    {
 
                                             NetworkConnection.Impersonate(@"SDS", @usuarioZIP, @contraseñaZIP, delegate
                                             {
@@ -200,29 +206,22 @@ namespace WebAppCargadorRips.Controllers.APIS
                                         catch (Exception e)
                                         {
                                             Console.WriteLine(e.Message.ToString());
-                                            MSG.Add(new { type = "error", value = e.Message.ToString() });
-                                            throw new HttpResponseException(
-                                                Request.CreateResponse(HttpStatusCode.BadRequest)
-                                                );
+                                            //MSG.Add(new { type = "error", value = e.Message.ToString() });
+                                            throw;
                                         }
-                                        /**
-                                         * FIN Envio la carpeta zip al reosritotio local del servicio
-                                        **/
+                                    /**
+                                     * FIN Envio la carpeta zip al reosritotio local del servicio
+                                    **/
 
-                                        /**
-                                            * libero de archivos temporales 
-                                            * OJO CON ESTA LINEA: ESTA ELIMINA ARCHIVOS TEMPORALES PODRIA ELIMINAR
-                                            * DE OTROS USUARIOS SEGUN RECURRENCIA DE USUARIOS
-                                            * No esta funcionando
-                                            * File.SetAttributes(pathresult, FileAttributes.Normal);
-                                            * File.Delete(pathresult);
-                                         **/
-
-                                        File.SetAttributes(nombreZIP, FileAttributes.Normal);
-                                        File.Delete(nombreZIP);
-                                       
-
-                                    }// FIN using zip library
+                                    /**
+                                        * libero de archivos temporales 
+                                        * OJO CON ESTA LINEA: ESTA ELIMINA ARCHIVOS TEMPORALES PODRIA ELIMINAR
+                                        * DE OTROS USUARIOS SEGUN RECURRENCIA DE USUARIOS
+                                        * //File.SetAttributes(nombreZIP, FileAttributes.Normal);
+                                        * //File.Delete(nombreZIP);
+                                     **/
+                                    Directory.Delete(pathresult,true);
+                                    
 
                                 }// FIN if !Directory.Exists(pathresult)
                                 var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();                                
@@ -241,17 +240,26 @@ namespace WebAppCargadorRips.Controllers.APIS
                                 //envio log a archivo de logs 
                                 LogsController log = new LogsController(e.ToString());
                                 log.createFolder();
-                                //TODO envio error a la base de datos
+                                /**
+                                 * libero de archivos temporales 
+                                 * OJO CON ESTA LINEA: ESTA ELIMINA ARCHIVOS TEMPORALES PODRIA ELIMINAR
+                                 * DE OTROS USUARIOS SEGUN RECURRENCIA DE USUARIOS
+                                 **/
+                                Directory.Delete(pathresult, true);
+                                File.SetAttributes(nombreZIP, FileAttributes.Normal);
+                                File.Delete(nombreZIP);
                                 //Envio mensaje de error a la vista
                                 MSG.Add(new { type = "error", value = "No se cargaron los archivos correctamente en el servidor, " + e.Message.ToString() });
-                                //MSG.Add(new { type = "error", value = path+"-------"+e.ToString() });
 
                             }
 
                         }
                         else
                         {
-
+                            MSG.Add(new { type = "error", value = "No se almaceno la informacón correctamente en la base de datos "});
+                            throw new HttpResponseException(
+                            Request.CreateResponse(HttpStatusCode.UnsupportedMediaType)
+                            );
                         }
                     }
                     catch (Exception e) // si hay un error al crear y guardar el fichero cambio el estado del registro en la tabla Auditoria.Web_Validacion
@@ -267,6 +275,9 @@ namespace WebAppCargadorRips.Controllers.APIS
                 {
                     //envio mensaje al usuario final
                     MSG.Add(new { type = result.tipo, value = result.mensaje });
+                    throw new HttpResponseException(
+                            Request.CreateResponse(HttpStatusCode.UnsupportedMediaType)
+                            );
                 }
 
             }
@@ -505,190 +516,6 @@ namespace WebAppCargadorRips.Controllers.APIS
             return result;
         }
 
-
-        /*
-        [Route("PostListadoRips")]
-        [HttpPost]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        //public List<Rips_Recibidos> GetProducts()
-        public DataTableResponse postd(DataTableRequest request)
-        {
-            // Query products
-            int v = 6;
-            //var listadorips = radicadoripsRepository.GetRadicadosRips(v);
-            //var products = result.Where(p => p. == v);
-
-            var listadorips = bd.SP_GetEstadoRipsRecibidos(v).ToList();
-
-            // Searching Data
-            IEnumerable<Object> filteredProducts;
-            if (request.Search.Value != ""  && request.Search.Value != null)
-            {
-                var searchText = request.Search.Value.Trim();
-                filteredProducts = null;
-                //NO SIRVIO
-                /*filteredProducts =from p in bd.Rips_Recibidos
-                     join ev in bd.Param_Estado_Validacion on p.FK_Estado_Validacion_Rips_Recibidos equals ev.IdEstado_Validacion
-                     where(p =>
-                        p.consecutivoRips_Recibidos.ToString().Contains(searchText) ||
-                        p.PeriodoFechaFinRips_Recibidos.ToString().Contains(searchText) ||
-                        p.PeriodoFechaInicioRips_Recibidos.ToString().Contains(searchText))
-                                  select new
-                                  {
-                                      id = p.IdRips_Recibidos,
-                                      Consec = p.ConsecutivoRips_Recibidos,
-                                      FK_Usuario = p.FK_Usuario_Rips_Recibidos,
-                                      Students = ev.NombreEstado_Validacion
-
-                                  };
-            }
-            else
-            {
-                filteredProducts = listadorips; //result.ToString();//bd.SP_GetEstadoRipsRecibidos(v);
-            }
-
-
-            return new DataTableResponse
-            {
-                draw = request.Draw,
-                recordsTotal = listadorips.Count(),
-                recordsFiltered = filteredProducts.Count(),
-                data = filteredProducts.ToArray(),
-                error = ""
-            };
-
-        }*/
-
-        /*
-         *  [Route("PostListadoRips")]
-        [HttpPost]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        //public List<Rips_Recibidos> GetProducts()
-        public DataTableResponse postd(DataTableRequest request)
-        {
-            int v = 6;
-            var result = bd.SP_GetEstadoRipsRecibidos(v).ToList();
-
-           
-            
-            return new DataTableResponse
-            {
-                recordsTotal = result.Count(),
-                recordsFiltered = 10,
-                data = result.Take(10).ToArray(),
-                error = ""
-             };
-
-        }
-         */
-
-        /*[Route("PostListadoRips")]
-        [HttpPost]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public List<Rips_Recibidos> GetProducts()
-        {
-            //var response = JsonConvert.SerializeObject(radicadoripsRepository.GetRadicadosRips().ToList());
-            return radicadoripsRepository.GetRadicadosRips().ToList();
-        }*/
-
-
-        /*
-         *  //OJO
-
-        public class CustomerData
-        {
-            public IList<CustomerSearchDetail> Data { get; set; }
-        }
-         *private const string CustomerDatas = @"
-    {
-    ""Data"": [
-     {
-       ""CompanyName"": ""Microsoft"",
-       ""Address"": ""1 Microsoft Way, London"",
-       ""Postcode"": ""N1 1NN"",
-       ""Telephone"": ""020 7100 1000""  
-     },
-     {
-       ""CompanyName"": ""Nokia"",
-       ""Address"": ""2 Nokia Way, London"",
-       ""Postcode"": ""N2 2NN"",
-       ""Telephone"": ""020 7200 2000""
-     },
-     {
-       ""CompanyName"": ""Apple"",
-       ""Address"": ""3 Apple Way, London"",
-       ""Postcode"": ""N3 3NN"",
-       ""Telephone"": ""020 7300 3000""
-     },
-     {
-       ""CompanyName"": ""Google"",
-       ""Address"": ""4 Google Way, London"",
-       ""Postcode"": ""N4 4NN"",
-       ""Telephone"": ""020 7400 4000""
-     },
-     {
-       ""CompanyName"": ""Samsung"",
-       ""Address"": ""5 Samsung Way, London"",
-       ""Postcode"": ""N5 5NN"",
-       ""Telephone"": ""020 7500 5000""
-     }
-    ] 
-    }";
-
-         /*
-         //api lista Todos los RIPS cargados de un prestador
-         [Route("PostListadoRips")]
-         [HttpPost]
-         [EnableCors(origins: "*", headers: "*", methods: "*")]
-         //public IHttpActionResult Get([FromUri] SearchRequest request)
-         public IHttpActionResult Post(SearchRequest request)
-         {
-             var allCustomers = JsonConvert.DeserializeObject<CustomerData>(CustomerDatas);
-             var response = WrapSearch(allCustomers.Data, request);
-             return Ok(response);
-         }
-
-         private static CustomerSearchResponse WrapSearch(ICollection<CustomerSearchDetail> details, SearchRequest request)
-         {
-             var results = ApiHelperSearch.FilterCustomers(details, request.Search.Value).ToList();
-             var response = new CustomerSearchResponse
-             {
-                 Data = PageResults(results, request),
-                 draw = request.Draw,
-                 recordsFiltered = results.Count,
-                 recordsTotal = details.Count
-             };
-             return response;
-         }
-
-         public class CustomerSearch : SearchController
-         {
-             //api lista Todos los RIPS cargados de un prestador
-             [Route("PostListadoRips")]
-             [HttpPost]
-             [EnableCors(origins: "*", headers: "*", methods: "*")]
-             //public IHttpActionResult Get([FromUri] SearchRequest request)
-             public IHttpActionResult Post(DataTableRequest request)
-             {
-                 var allCustomers = JsonConvert.DeserializeObject<CustomerData>(CustomerDatas);
-                 var response = WrapSearch(allCustomers.Data, request);
-                 return Ok(response);
-             }
-
-             private static CustomerSearchResponse WrapSearch(ICollection<CustomerSearchDetail> details, DataTableRequest request)
-             {
-                 var results = ApiHelperSearch.FilterCustomers(details, request.Search.Value).ToList();
-                 var response = new CustomerSearchResponse
-                 {
-                     Data = PageResults(results, request),
-                     draw = request.Draw,
-                     recordsFiltered = results.Count,
-                     recordsTotal = details.Count
-                 };
-                 return response;
-             }
-
-         }// fin clase CustomerSearch*/
 
     }
 

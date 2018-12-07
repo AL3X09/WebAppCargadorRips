@@ -80,7 +80,7 @@ function cargaratabla(token) {
         "paging": true,
         "scrollX": true,
         "autoWidth": false,
-        "lengthMenu": [[10, 25, 50, 100, 500, 1000], [10, 25, 50, 100, 500, 1000]],
+        "lengthMenu": [[10, 25, 50, 100, 500], [10, 25, 50, 100, 500]],
     });
     //
     $("select").val('10');
