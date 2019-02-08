@@ -32,9 +32,9 @@ namespace WebAppCargadorRips.Controllers.APIS
         private static DateTime fechaActual = DateTime.Today;
         private static RipsEntitieConnection bd = new RipsEntitieConnection();
         private string path = HttpContext.Current.Server.MapPath("~/RIPSCargados/");
-        //private string usuarioZIP = bd.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
-        //private string contraseñaZIP = bd.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
-        //private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        private string usuarioZIP = bd.Directorios.Select(s => s.usuario_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        private string contraseñaZIP = bd.Directorios.Select(s => s.contraseña_directorios).First(); //objeto que tiene los valores de los directorios del servidor del servicio
+        private string directorioZIP = bd.Directorios.Select(s => s.directorio_entrada).First(); //objeto que tiene los valores de los directorios del servidor del servicio
         private string pathresult = null; //Nombre de la carpeta que almacena los archivos txt tempo por usaurio
         private string nombreZIP = null; //nombre del zip resultante
 
@@ -176,7 +176,8 @@ namespace WebAppCargadorRips.Controllers.APIS
 
                                     /**
                                     * Envio la carpeta zip al reosritotio local del servicio
-                                    ** NO FUNCIONAL
+                                    **/
+
                                     try
                                     {
 

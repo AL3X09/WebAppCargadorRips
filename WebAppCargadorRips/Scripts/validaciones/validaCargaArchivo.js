@@ -185,7 +185,7 @@ function readlines(lineas, namefile, cantidad) {
                 //valido la cantidad de campos permitidos para cada estructura
                 if (numeroColumas > 1) {
                     if (nombrecorto !== 'CT' && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
-                        errores.push("ERROR; El archivo " + namefile + " en la linea " + (i + 1) + " tiene una longitud de " + numeroColumas + ", la lingitud permitida es de " + TipoEstructuraArray[nombrecorto]);
+                        errores.push("ERROR; El archivo " + namefile + " en la linea " + (i + 1) + " tiene una longitud de " + numeroColumas + ", la longitud permitida es de " + TipoEstructuraArray[nombrecorto]);
                     }
                 }
             //fin valido la cantidad de campos permitidos para cada estructura

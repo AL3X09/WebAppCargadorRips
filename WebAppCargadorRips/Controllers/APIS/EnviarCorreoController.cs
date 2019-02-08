@@ -28,10 +28,9 @@ namespace WebAppCargadorRips.Controllers.APIS
         private string PassCorreo { get; set; }//= "Colombia2018_*";
         private string FromCorreo { get; set; }//= "a1cifuentes@saludcapital.gov.co";
         private string Host { get; set; }//"smtp.office365.com";
-        private int Puerto { get; set; }//"";
-        //private int IdPlantillacorreo; no se usa
-
+        private int Puerto { get; set; }//""; 
         
+
 
         //Sobrecargo el constructor para acerlo publico a ciertas clases, tener cuidado esta sobrecarga es para casos especiales
         public EnviarCorreoController()
@@ -231,9 +230,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             if(datos != null) {
                 
                 //var mappedPath = HttpContext.Current.Request.Url.AbsoluteUri; //mapeo la ruta completa del servidor
-                //var mappedPath = "https://"+HttpContext.Current.Request.Url.Authority+"/"; //mapeo la url del servidor
-                var mappedPath = "http://" + HttpContext.Current.Request.Url.Authority + "/CargadorRIPS" ; //mapeo la url del servidor
-                
+                var mappedPath = HttpContext.Current.Request.Url.Scheme + "//" + HttpContext.Current.Request.Url.Authority + "/cargadorrips"; //mapeo la url del servidor
 
                 //invoco metodo que permite obtener los datos del smtp del correo
                 SmtpCorreos();
