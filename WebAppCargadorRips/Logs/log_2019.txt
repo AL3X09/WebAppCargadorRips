@@ -1,0 +1,49 @@
+
+-------------------------------------- 15/02/2019 11:59:45 a. m. --------------------------
+System.Data.Entity.Core.EntityCommandExecutionException: El lector de datos es incompatible con el 'Rips_Model.SP_Web_Insert_Datos_Rips_a_Validar_Result' especificado. Un miembro del tipo, 'codigo', no tiene una columna correspondiente en el lector de datos con el mismo nombre.
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.GetMemberOrdinalFromReader(DbDataReader storeDataReader, EdmMember member, EdmType currentType, Dictionary`2 renameList)
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.GetColumnMapsForType(DbDataReader storeDataReader, EdmType edmType, Dictionary`2 renameList)
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.CreateColumnMapFromReaderAndType(DbDataReader storeDataReader, EdmType edmType, EntitySet entitySet, Dictionary`2 renameList)
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.CreateFunctionImportStructuralTypeColumnMap(DbDataReader storeDataReader, FunctionImportMappingNonComposable mapping, Int32 resultSetIndex, EntitySet entitySet, StructuralType baseStructuralType)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.FunctionColumnMapGenerator.System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.IColumnMapGenerator.CreateColumnMap(DbDataReader reader)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.CreateColumnMap(DbDataReader storeDataReader, Int32 resultSetIndex)
+   en System.Data.Entity.Core.Objects.ObjectContext.MaterializedDataRecord[TElement](EntityCommand entityCommand, DbDataReader storeReader, Int32 resultSetIndex, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ShaperFactory`1 shaperFactory, MergeOption mergeOption, Boolean streaming)
+   en System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   en System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   en WebAppCargadorRips.EF_Models.RipsEntitieConnection.SP_Web_Insert_Datos_Rips_a_Validar(String tipoUsuario, String categoria, String periodoFechaInicio, String periodoFechaFin, String idUser, String fkEstado) en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\EF_Models\BD_Rips_Model.Context.cs:línea 417
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 111
+
+-------------------------------------- 15/02/2019 12:28:03 p. m. --------------------------
+System.Data.Entity.Core.EntityCommandExecutionException: El lector de datos es incompatible con el 'Rips_Model.SP_Web_Insert_Datos_Rips_a_Validar_Result' especificado. Un miembro del tipo, 'codigo', no tiene una columna correspondiente en el lector de datos con el mismo nombre.
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.GetMemberOrdinalFromReader(DbDataReader storeDataReader, EdmMember member, EdmType currentType, Dictionary`2 renameList)
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.GetColumnMapsForType(DbDataReader storeDataReader, EdmType edmType, Dictionary`2 renameList)
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.CreateColumnMapFromReaderAndType(DbDataReader storeDataReader, EdmType edmType, EntitySet entitySet, Dictionary`2 renameList)
+   en System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.CreateFunctionImportStructuralTypeColumnMap(DbDataReader storeDataReader, FunctionImportMappingNonComposable mapping, Int32 resultSetIndex, EntitySet entitySet, StructuralType baseStructuralType)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.FunctionColumnMapGenerator.System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.IColumnMapGenerator.CreateColumnMap(DbDataReader reader)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.CreateColumnMap(DbDataReader storeDataReader, Int32 resultSetIndex)
+   en System.Data.Entity.Core.Objects.ObjectContext.MaterializedDataRecord[TElement](EntityCommand entityCommand, DbDataReader storeReader, Int32 resultSetIndex, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ShaperFactory`1 shaperFactory, MergeOption mergeOption, Boolean streaming)
+   en System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   en System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   en WebAppCargadorRips.EF_Models.RipsEntitieConnection.SP_Web_Insert_Datos_Rips_a_Validar(String tipoUsuario, String categoria, String periodoFechaInicio, String periodoFechaFin, String idUser, String fkEstado) en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\EF_Models\BD_Rips_Model.Context.cs:línea 417
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 111
+
+-------------------------------------- 15/02/2019 03:23:07 p. m. --------------------------
+System.InvalidOperationException: No se puede establecer la propiedad 'ultimoIdInsert' de 'SP_Web_Insert_Datos_Rips_a_Validar_Result' en un valor 'System.String'. Debe establecer esta propiedad en un valor que no sea NULL de tipo 'System.Int32'. 
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   en lambda_method(Closure , Shaper )
+   en System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<SaveValidacionConErrores>d__10.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 352

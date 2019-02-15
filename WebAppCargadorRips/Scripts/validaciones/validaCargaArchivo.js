@@ -15,6 +15,8 @@ var modalButtonOnly = new tingle.modal({
 var errores = []; //new Array(100);
 //variable mantiene la posicion de lectura
 var poslec = 0;
+//Variable para buscar caracteres especiales en los archivos
+var buscar;
 
 $(document).ready(function () {
   var container = document.getElementById('divcontainer');//$('div.container');
@@ -159,8 +161,19 @@ function readlines(lineas, namefile, cantidad) {
             'error'
         )
     } else {
-        var buscar = new RegExp(/[~`!#$%;\^&*+=\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales
+
         
+        /*
+         # valido si hay caracteres especiales
+         # y el archivo es diferente a la estrutura AM envio errores
+         */
+        if (nombrecorto !== 'CT' && nombrecorto !== 'AM')
+        {
+            buscar = new RegExp(/[~`!#$%;\^&*+=\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales
+        } else if (nombrecorto == 'AM')
+        {
+            buscar = new RegExp(/[~`!#$;\^&\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
+        }
         //var pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"; //buscar fecha
         //var pattern2 =/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; //para validar el formato de la fecha
 
@@ -169,8 +182,11 @@ function readlines(lineas, namefile, cantidad) {
             //console.log(v.replace("\r",""));
 
             var res = buscar.test(v);
-            //si hay caracteres especiales envio errores
-            if (res == true) {
+            /*
+                # valido si hay caracteres especiales
+                # y el archivo es diferente a la estrutura AM envio errores
+            */
+            if (res == true && nombrecorto !== 'CT') {
                 errores.push("error" + (i + 1) + " El Archivo " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
             }
             textoAreaDividido = v.split(",");
