@@ -167,12 +167,18 @@ function readlines(lineas, namefile, cantidad) {
          # valido si hay caracteres especiales
          # y el archivo es diferente a la estrutura AM envio errores
          */
-        if (nombrecorto !== 'CT' && nombrecorto !== 'AM')
+        if (nombrecorto !== 'CT' && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP')
         {
             buscar = new RegExp(/[~`!#$%;\^&*+=\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales
-        } else if (nombrecorto == 'AM')
+        } else if (nombrecorto == 'AM') //validación para Medicamentos
         {
             buscar = new RegExp(/[~`!#$;\^&\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
+        } else if (nombrecorto == 'AT') //validación para Otros Servicios
+        {
+            buscar = new RegExp(/[~`!$;\^&\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
+        } else if (nombrecorto == 'AP') //validación para Procedimientos
+        {
+            buscar = new RegExp(/[~`!#$%;\^&*\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
         }
         //var pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"; //buscar fecha
         //var pattern2 =/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; //para validar el formato de la fecha
