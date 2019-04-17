@@ -1771,7 +1771,7 @@ if (Vel) {
             hideDropdown();
             $(document).off('click.' + activates.attr('id'));
           });
-        }, 0);
+        }, 100);
       }
 
       function hideDropdown() {
@@ -6520,7 +6520,7 @@ if (Vel) {
           // Add the “opened” class to the picker root.
           P.$root.addClass(CLASSES.opened);
           aria(P.$root[0], 'hidden', false);
-        }, 0);
+        }, 100);
 
         // If we have to give focus, bind the element and doc events.
         if (dontGiveFocus !== false) {
@@ -6538,23 +6538,26 @@ if (Vel) {
           P.$root.eq(0).focus();
 
           // Bind the document events.
-          $document.on('click.' + STATE.id + ' focusin.' + STATE.id, function (event) {
+            $document.on('click.' + STATE.id + ' focusin.' + STATE.id, function (event) {
+                setTimeout(function (event) {
+                    var target = event.target;
 
-            var target = event.target;
+                    // If the target of the event is not the element, close the picker picker.
+                    // * Don’t worry about clicks or focusins on the root because those don’t bubble up.
+                    //   Also, for Firefox, a click on an `option` element bubbles up directly
+                    //   to the doc. So make sure the target wasn't the doc.
+                    // * In Firefox stopPropagation() doesn’t prevent right-click events from bubbling,
+                    //   which causes the picker to unexpectedly close when right-clicking it. So make
+                    //   sure the event wasn’t a right-click.
+                    //if (target != ELEMENT && target != document && event.which != 3) {
 
-            // If the target of the event is not the element, close the picker picker.
-            // * Don’t worry about clicks or focusins on the root because those don’t bubble up.
-            //   Also, for Firefox, a click on an `option` element bubbles up directly
-            //   to the doc. So make sure the target wasn't the doc.
-            // * In Firefox stopPropagation() doesn’t prevent right-click events from bubbling,
-            //   which causes the picker to unexpectedly close when right-clicking it. So make
-            //   sure the event wasn’t a right-click.
-            if (target != ELEMENT && target != document && event.which != 3) {
+                        // If the target was the holder that covers the screen,
+                        // keep the element focused to maintain tabindex.
+                      //  P.close(target === P.$root.children()[0]);
+                    //}
 
-              // If the target was the holder that covers the screen,
-              // keep the element focused to maintain tabindex.
-              P.close(target === P.$root.children()[0]);
-            }
+                }, 200, event);
+
           }).on('keydown.' + STATE.id, function (event) {
 
             var

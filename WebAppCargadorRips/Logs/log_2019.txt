@@ -92,3 +92,23 @@ System.InvalidOperationException: No se puede establecer la propiedad 'ultimoIdI
    en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
    en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext()
+
+-------------------------------------- 11/04/2019 11:40:08 a. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 279
+
+-------------------------------------- 11/04/2019 11:40:08 a. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 279
+
+-------------------------------------- 11/04/2019 11:40:08 a. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 279
+
+-------------------------------------- 11/04/2019 11:40:08 a. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 279
+
+-------------------------------------- 11/04/2019 03:13:11 p. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 279

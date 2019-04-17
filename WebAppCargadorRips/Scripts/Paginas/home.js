@@ -116,7 +116,10 @@ $(document).ready(function () {
     } else {
       //habilito los selects
       habilitarDatosGer2();
-      $('#tipoUsuario2').val('');
+        $('#tipoUsuario2').val('');
+        $('#categoria').append(new Option("Seleccione...", ''));
+        $('#categoria').val('');
+        $("select").material_select();
     }
   });
 
@@ -176,7 +179,7 @@ function getAllME() {
     }
   }).fail(function (jqXHR, textStatus, errorThrown) {
     //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
-      console.log(baseURL);
+    //console.log(baseURL);
     //console.error(textStatus, errorThrown); // Algo fallo
     window.location.href = baseURL+"Cuenta";
     //envio a la api errores para que almacene el error
@@ -542,6 +545,7 @@ function loadRIPS() {
             enviarCorreo(1,v.consec);
           }
           //cambio el tititulo si es diferente de error
+          console.log(v.type);
           if(v.type!=="error"){
             //titulo="Mensaje";
           }else{

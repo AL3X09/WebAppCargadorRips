@@ -275,10 +275,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                 else
                 {
                     //envio mensaje al usuario final
-                    MSG.Add(new { type = result.tipo, value = result.mensaje });
-                    throw new HttpResponseException(
-                            Request.CreateResponse(HttpStatusCode.UnsupportedMediaType)
-                            );
+                    MSG.Add(new { type = result.tipo, value = result.mensaje });                   
                 }
 
             }

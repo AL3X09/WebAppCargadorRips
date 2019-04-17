@@ -81,69 +81,87 @@ function readFile() {
 
   for (let i = 0; i < cantidad; i++) {
     nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0));
-  }
-  //Valido que el usuario no seleccione archivos iguales
-  //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
-  for (let i = 0; i < cantidad - 1; i++) {
-    for (let j = i + 1; j < cantidad; j++) {
-
-      if (nombre[i] == nombre[j]) {
-        //Cambio el balor de la variable de validación
-        bandera = false;
-      }
     }
-  }
 
-  //valido que la variable de validacion no cambio
-  if (bandera === true) {
-    modalprogres();
-    // si la variable bandera no cambio envio lectura de archivos
-    for (let i = 0; i < cantidad; i++) {
+    //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
+    //ya que son obligatorios
+    if (nombre.includes('US') == true && nombre.includes('AF') == true) {
 
-      var file = fileInput.childNodes[0].files[i];
-      var textType = /text.*/;
-      //var buscarpuntos=null;
-      var namefile = null;
-      if (file.type.match(textType)) { //si los archivos no son de formato txt no los permite leer
-        var reader = new FileReader();
+        //Valido que el usuario no seleccione archivos iguales
+        //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
+        for (let i = 0; i < cantidad - 1; i++) {
+            for (let j = i + 1; j < cantidad; j++) {
 
-        reader.onload = function (e) {
-
-          namefile = fileInput.childNodes[0].files[i]['name'];
-
-          // Por lineas
-          var lines = this.result.split('\n');
-
-          //envio a una función las lienas del archivo a subir
-          readlines(lines, namefile, cantidad);
-
+                if (nombre[i] == nombre[j]) {
+                    //Cambio el balor de la variable de validación
+                    bandera = false;
+                }
+            }
         }
-        reader.readAsText(file);
-        //delete reader;
-      } else {
+
+        //valido que la variable de validacion no cambio
+        if (bandera === true) {
+            modalprogres();
+            // si la variable bandera no cambio envio lectura de archivos
+            for (let i = 0; i < cantidad; i++) {
+
+                var file = fileInput.childNodes[0].files[i];
+                var textType = /text.*/;
+                //var buscarpuntos=null;
+                var namefile = null;
+                if (file.type.match(textType)) { //si los archivos no son de formato txt no los permite leer
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+
+                        namefile = fileInput.childNodes[0].files[i]['name'];
+
+                        // Por lineas
+                        var lines = this.result.split('\n');
+
+                        //envio a una función las lienas del archivo a subir
+                        readlines(lines, namefile, cantidad);
+
+                    }
+                    reader.readAsText(file);
+                    //delete reader;
+                } else {
+                    swal(
+                        'Precaución',
+                        'Parece que intenta cargar archivos no ilegibles, por favor elimine e intente nuevamente',
+                        'info'
+                    )
+                    //fileDisplayArea.innerText = "Archivos No Soportados!"
+                    nombre.length = 0; //Limpio el vector de nombres
+                }
+            }//fin for
+            //cuando termina de leer todos los archivos llamo funcion para que realice las operaciones siguentes
+            //terminaLectura();
+        } else {
+            //si cambio la variable bandera
+            //evito la carga innesaria de los archivos
+            //le indico al usuario que por favor revice la info a cargar
+            swal(
+                'Precaución',
+                'Parece que intenta cargar el mismo tipo de archivo, por favor elimine e intente nuevamente',
+                'info'
+            )
+            nombre.length = 0;
+            //limpiarCampos();
+        }
+
+
+    } else { //de lo contrario envio alerta para obligar cargar los archivos
         swal(
-          'Precaución',
-          'Parece que intenta cargar archivos no ilegibles, por favor elimine e intente nuevamente',
-          'info'
+            'Precaución',
+            'No se encuentran los archivos de USUARIOS (US) y FACTURACIÓN(AF), por favor elimine los archivos e intente cargar nuevamente.',
+            'info'
         )
-        //fileDisplayArea.innerText = "Archivos No Soportados!"
-        nombre.length = 0;
-      }
-    }//fin for
-    //cuando termina de leer todos los archivos llamo funcion para que realice las operaciones siguentes
-    //terminaLectura();
-  } else {
-    //si cambio la variable bandera
-    //evito la carga innesaria de los archivos
-    //le indico al usuario que por favor revice la info a cargar
-    swal(
-      'Precaución',
-      'Parece que intenta cargar el mismo tipo de archivo, por favor elimine e intente nuevamente',
-      'info'
-    )
-    nombre.length = 0;
-    //limpiarCampos();
-  }
+        nombre.length = 0; //Limpio el vector de nombres
+
+    } //fin else archivos obligatorios 
+
+  
 
 }
 
@@ -160,23 +178,24 @@ function readlines(lineas, namefile, cantidad) {
             'Esta intentando cargar archivos con un nombre no permitido, por favor corrijalos!',
             'error'
         )
-    } else {
-
+    }else {
         
         /*
          # valido si hay caracteres especiales
          # y el archivo es diferente a la estrutura AM envio errores
          */
-        if (nombrecorto !== 'CT' && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP')
+        if (nombrecorto !== 'CT' && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP' && nombrecorto !== 'AU')
         {
             buscar = new RegExp(/[~`!#$%;\^&*+=\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales
         } else if (nombrecorto == 'AM') //validación para Medicamentos
         {
             buscar = new RegExp(/[~`!#$;\^&\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
-        } else if (nombrecorto == 'AT') //validación para Otros Servicios
+        }
+        /*else if (nombrecorto == 'AT') //validación para Otros Servicios
         {
             buscar = new RegExp(/[~`!$;\^&\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
-        } else if (nombrecorto == 'AP') //validación para Procedimientos
+        } */
+        else if (nombrecorto == 'AP') //validación para Procedimientos
         {
             buscar = new RegExp(/[~`!#$%;\^&*\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
         }
@@ -192,7 +211,7 @@ function readlines(lineas, namefile, cantidad) {
                 # valido si hay caracteres especiales
                 # y el archivo es diferente a la estrutura AM envio errores
             */
-            if (res == true && nombrecorto !== 'CT') {
+            if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT') {
                 errores.push("error" + (i + 1) + " El Archivo " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
             }
             textoAreaDividido = v.split(",");
