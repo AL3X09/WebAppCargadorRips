@@ -12,7 +12,8 @@ var modalButtonOnly = new tingle.modal({
 });
 
 //variable mantiene los errores
-var errores = []; //new Array(100);
+var erroresEstructura = []; //new Array(100);
+var erroresCaracteres = []; //new Array(100);
 //variable mantiene la posicion de lectura
 var poslec = 0;
 //Variable para buscar caracteres especiales en los archivos
@@ -175,7 +176,7 @@ function readlines(lineas, namefile, cantidad) {
         poslec = 0;
         swal(
             'Error!',
-            'Esta intentando cargar archivos con un nombre no permitido, por favor corrijalos!',
+            'Esta intentando cargar archivos con un nombre no permitido, por favor corrijalos e intente nuevamente!',
             'error'
         )
     }else {
@@ -204,16 +205,10 @@ function readlines(lineas, namefile, cantidad) {
 
         //valido liena por linea que no tenga caracteres especiales
         $.each(lineas, function (i, v) {
-            //console.log(v.replace("\r",""));
+            //console.log(v.replace("\r",""));           
 
             var res = buscar.test(v);
-            /*
-                # valido si hay caracteres especiales
-                # y el archivo es diferente a la estrutura AM envio errores
-            */
-            if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT') {
-                errores.push("error" + (i + 1) + " El Archivo " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
-            }
+           
             textoAreaDividido = v.split(",");
             numeroColumas = textoAreaDividido.length;
 
@@ -226,10 +221,19 @@ function readlines(lineas, namefile, cantidad) {
                 //valido la cantidad de campos permitidos para cada estructura
                 if (numeroColumas > 1) {
                     if (nombrecorto !== 'CT' && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
-                        errores.push("ERROR; El archivo " + namefile + " en la linea " + (i + 1) + " tiene una longitud de " + numeroColumas + ", la longitud permitida es de " + TipoEstructuraArray[nombrecorto]);
+                        erroresEstructura.push("ERROR: El archivo " + namefile + " en la linea " + (i + 1) + " tiene una longitud de " + numeroColumas + ", la longitud permitida es de " + TipoEstructuraArray[nombrecorto]);
                     }
                 }
             //fin valido la cantidad de campos permitidos para cada estructura
+
+            /*
+               # valido si hay caracteres especiales
+               # y el archivo es diferente a la estrutura AM envio errores
+           */
+            if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT') {
+                erroresCaracteres.push("error" + (i + 1) + ": El Archivo " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
+            }
+
         });
 
         /**
@@ -271,28 +275,56 @@ function modalprogres() {
 function terminaLectura() {
   //valido que si se presentan errores en la validacion
   //console.log(errores);
-  if (errores.length > 0) {
-    //envio notificación del error
-    swal({
-      title: 'Error',
-      text: 'Sus archivos presentan Errores de estructura!! se enviara un correo con los diferentes ' +
-      'errores encontrados, por favor corrijalos eh intente nuevamente.',
-      type: 'warning',
-      showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'OK!',
-      allowOutsideClick: false
-    }).then((result) => {
-      //if (result.value) {
-        //envio a la api de errores
-        UploadValidacionConErrores(errores.slice(0,100));
-        //con slice envio del primer error al 100 para no saturar el servidor de correo
-        //enviarCorreoErrores(errores.slice(0,100));
-      //}
-    })
-    //llamo funcion para enviar correo
-    //enviarCorreoErrores(errores);
-  } else {
+    if (erroresEstructura.length > 0) {
+        //envio notificación del error
+        swal({
+            title: 'Error',
+            text: 'Sus archivos presentan Errores de estructura!! se enviara un correo con los diferentes ' +
+                'errores encontrados, por favor corrijalos e intente nuevamente.',
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK!',
+            allowOutsideClick: false
+        }).then((result) => {
+            //if (result.value) {
+            //envio a la api de errores
+            UploadValidacionConErrores(erroresEstructura.slice(0, 100));
+            //con slice envio del primer error al 100 para no saturar el servidor de correo
+            //enviarCorreoErrores(errores.slice(0,100));
+            //}
+        })
+
+    }else if (erroresCaracteres.length > 0) { //
+        //envio notificación de posible error
+        swal({
+            title: 'Error',
+            text: 'Sus archivos presentan caracteres especiales no permitidos, desea continuar con el cargue, o desea recibir un correo con los diferentes ' +
+                'caracteres encontrados.',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Enviar correo',
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Continuar',
+            allowOutsideClick: false
+        }).then(function (result) {
+            //console.log(result);
+            if (result) {
+                //llamo funcio de carga de los archivos RIPS
+                loadRIPS();
+            }
+        }, function (dismiss) {
+            //console.log(dismiss);
+            if (dismiss === 'cancel') { // you might also handle 'close' or 'timer' if you used those
+                //envio a la api de errores
+                enviarCorreoErrores(erroresCaracteres.slice(0, 100));
+            } else {
+                throw dismiss;
+            }
+        })
+     
+    }else {
     //llamo funcio de carga de los 
     loadRIPS();
   }
