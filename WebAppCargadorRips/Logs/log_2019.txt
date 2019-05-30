@@ -112,3 +112,15 @@ System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP gen
 -------------------------------------- 11/04/2019 03:13:11 p. m. --------------------------
 System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
    en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 279
+
+-------------------------------------- 29/05/2019 09:10:17 a. m. --------------------------
+System.FormatException: No se puede reconocer la cadena como un tipo booleano válido.
+   en System.Boolean.Parse(String value)
+   en System.Convert.ToBoolean(String value)
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 112
+
+-------------------------------------- 29/05/2019 09:16:02 a. m. --------------------------
+System.FormatException: No se puede reconocer la cadena como un tipo booleano válido.
+   en System.Boolean.Parse(String value)
+   en System.Convert.ToBoolean(String value)
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 121

@@ -14,12 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Personal_Atiende
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Personal_Atiende()
-        {
-            this.SDS_Procedimiento = new HashSet<SDS_Procedimiento>();
-        }
-    
         public long personal_atiende_id { get; set; }
         public byte numero { get; set; }
         public string nombre { get; set; }
@@ -27,7 +21,5 @@ namespace WebAppCargadorRips.EF_Models
         public long estado_rips_id { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Procedimiento> SDS_Procedimiento { get; set; }
     }
 }

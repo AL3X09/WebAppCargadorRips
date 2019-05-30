@@ -19,6 +19,7 @@ namespace WebAppCargadorRips.EF_Models
         public long FK_rolhaspermiso_permiso { get; set; }
         public long FK_rolhaspermiso_estado_rips { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
+        public long FK_rolhaspermiso_modulo { get; set; }
     
         public virtual Web_Permiso Web_Permiso { get; set; }
         public virtual Web_Permiso Web_Permiso1 { get; set; }

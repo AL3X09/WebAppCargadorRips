@@ -27,13 +27,9 @@ namespace WebAppCargadorRips.EF_Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Radicacion> Radicacion { get; set; }
-        public virtual DbSet<Servicio_Validacion> Servicio_Validacion { get; set; }
         public virtual DbSet<Servicio_Validacion_Error> Servicio_Validacion_Error { get; set; }
-        public virtual DbSet<Cargador_Rips> Cargador_Rips { get; set; }
         public virtual DbSet<Acto_Quirurgico> Acto_Quirurgico { get; set; }
         public virtual DbSet<Ambito_Procedimiento> Ambito_Procedimiento { get; set; }
-        public virtual DbSet<Año_Permitido> Año_Permitido { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Causa_Externa> Causa_Externa { get; set; }
         public virtual DbSet<Control_Prenatal> Control_Prenatal { get; set; }
@@ -58,27 +54,14 @@ namespace WebAppCargadorRips.EF_Models
         public virtual DbSet<CUPS> CUPS { get; set; }
         public virtual DbSet<DIVIPOLA> DIVIPOLA { get; set; }
         public virtual DbSet<Estado_RIPS> Estado_RIPS { get; set; }
-        public virtual DbSet<Fallecidos> Fallecidos { get; set; }
         public virtual DbSet<Localidad> Localidad { get; set; }
         public virtual DbSet<Medicamento_ATC_Completo> Medicamento_ATC_Completo { get; set; }
         public virtual DbSet<Medicamento_ATC_POS> Medicamento_ATC_POS { get; set; }
         public virtual DbSet<Medicamento_CUM> Medicamento_CUM { get; set; }
         public virtual DbSet<Pais> Pais { get; set; }
-        public virtual DbSet<Poblacion_Especial> Poblacion_Especial { get; set; }
         public virtual DbSet<Prestador> Prestador { get; set; }
-        public virtual DbSet<SISBEN> SISBEN { get; set; }
         public virtual DbSet<Tipo_Error> Tipo_Error { get; set; }
         public virtual DbSet<UPZ> UPZ { get; set; }
-        public virtual DbSet<MSYPS_Consulta> MSYPS_Consulta { get; set; }
-        public virtual DbSet<SDS_Consulta> SDS_Consulta { get; set; }
-        public virtual DbSet<SDS_Factura> SDS_Factura { get; set; }
-        public virtual DbSet<SDS_Hospitalizacion> SDS_Hospitalizacion { get; set; }
-        public virtual DbSet<SDS_Medicamento> SDS_Medicamento { get; set; }
-        public virtual DbSet<SDS_Otro_Servicio> SDS_Otro_Servicio { get; set; }
-        public virtual DbSet<SDS_Procedimiento> SDS_Procedimiento { get; set; }
-        public virtual DbSet<SDS_Recien_Nacido> SDS_Recien_Nacido { get; set; }
-        public virtual DbSet<SDS_Urgencia> SDS_Urgencia { get; set; }
-        public virtual DbSet<SDS_Usuario> SDS_Usuario { get; set; }
         public virtual DbSet<Correo> Correo { get; set; }
         public virtual DbSet<Web_Mensaje> Web_Mensaje { get; set; }
         public virtual DbSet<Web_Permiso> Web_Permiso { get; set; }
@@ -89,11 +72,13 @@ namespace WebAppCargadorRips.EF_Models
         public virtual DbSet<Web_Usuario> Web_Usuario { get; set; }
         public virtual DbSet<Web_Correo_Sin_Restriccion> Web_Correo_Sin_Restriccion { get; set; }
         public virtual DbSet<Web_Documento> Web_Documento { get; set; }
-        public virtual DbSet<Web_Validacion> Web_Validacion { get; set; }
         public virtual DbSet<Web_Preradicacion> Web_Preradicacion { get; set; }
         public virtual DbSet<VW_Listado_Estado_Rips> VW_Listado_Estado_Rips { get; set; }
         public virtual DbSet<Web_Administrador> Web_Administrador { get; set; }
         public virtual DbSet<Directorios> Directorios { get; set; }
+        public virtual DbSet<Web_Validacion> Web_Validacion { get; set; }
+        public virtual DbSet<Servicio_Radicacion> Servicio_Radicacion { get; set; }
+        public virtual DbSet<Servicio_Validacion> Servicio_Validacion { get; set; }
     
         public virtual ObjectResult<SP_Ingreso_Usuario_Result> SP_Ingreso_Usuario(string codprestador, string contrasenia)
         {
@@ -388,35 +373,6 @@ namespace WebAppCargadorRips.EF_Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Registro_Usuario_Administrador_Result>("SP_Registro_Usuario_Administrador", usuarioParameter, contraseniaParameter, correoParameter, nombresParameter, apellidosParameter, descripcionParameter, extencionParameter, imagenParameter, rolParameter, estadoParameter);
         }
     
-        public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
-        {
-            var tipoUsuarioParameter = tipoUsuario != null ?
-                new ObjectParameter("TipoUsuario", tipoUsuario) :
-                new ObjectParameter("TipoUsuario", typeof(string));
-    
-            var categoriaParameter = categoria != null ?
-                new ObjectParameter("Categoria", categoria) :
-                new ObjectParameter("Categoria", typeof(string));
-    
-            var periodoFechaInicioParameter = periodoFechaInicio != null ?
-                new ObjectParameter("PeriodoFechaInicio", periodoFechaInicio) :
-                new ObjectParameter("PeriodoFechaInicio", typeof(string));
-    
-            var periodoFechaFinParameter = periodoFechaFin != null ?
-                new ObjectParameter("PeriodoFechaFin", periodoFechaFin) :
-                new ObjectParameter("PeriodoFechaFin", typeof(string));
-    
-            var idUserParameter = idUser != null ?
-                new ObjectParameter("IdUser", idUser) :
-                new ObjectParameter("IdUser", typeof(string));
-    
-            var fkEstadoParameter = fkEstado != null ?
-                new ObjectParameter("FkEstado", fkEstado) :
-                new ObjectParameter("FkEstado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
-        }
-    
         public virtual ObjectResult<SP_Web_Insert_Rips_a_Preradicar_Result> SP_Web_Insert_Rips_a_Preradicar(Nullable<long> idUser, Nullable<long> webvalidacion_id)
         {
             var idUserParameter = idUser.HasValue ?
@@ -495,6 +451,39 @@ namespace WebAppCargadorRips.EF_Models
                 new ObjectParameter("Estado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Registro_Usuario_Administrador1_Result>("SP_Registro_Usuario_Administrador1", usuarioParameter, contraseniaParameter, correoParameter, nombresParameter, apellidosParameter, descripcionParameter, extensionParameter, imagenParameter, rolParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<SP_Web_Insert_Datos_Rips_a_Validar_Result> SP_Web_Insert_Datos_Rips_a_Validar(string tipoUsuario, string categoria, Nullable<bool> extranjero, string periodoFechaInicio, string periodoFechaFin, string idUser, string fkEstado)
+        {
+            var tipoUsuarioParameter = tipoUsuario != null ?
+                new ObjectParameter("TipoUsuario", tipoUsuario) :
+                new ObjectParameter("TipoUsuario", typeof(string));
+    
+            var categoriaParameter = categoria != null ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(string));
+    
+            var extranjeroParameter = extranjero.HasValue ?
+                new ObjectParameter("Extranjero", extranjero) :
+                new ObjectParameter("Extranjero", typeof(bool));
+    
+            var periodoFechaInicioParameter = periodoFechaInicio != null ?
+                new ObjectParameter("PeriodoFechaInicio", periodoFechaInicio) :
+                new ObjectParameter("PeriodoFechaInicio", typeof(string));
+    
+            var periodoFechaFinParameter = periodoFechaFin != null ?
+                new ObjectParameter("PeriodoFechaFin", periodoFechaFin) :
+                new ObjectParameter("PeriodoFechaFin", typeof(string));
+    
+            var idUserParameter = idUser != null ?
+                new ObjectParameter("IdUser", idUser) :
+                new ObjectParameter("IdUser", typeof(string));
+    
+            var fkEstadoParameter = fkEstado != null ?
+                new ObjectParameter("FkEstado", fkEstado) :
+                new ObjectParameter("FkEstado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Web_Insert_Datos_Rips_a_Validar_Result>("SP_Web_Insert_Datos_Rips_a_Validar", tipoUsuarioParameter, categoriaParameter, extranjeroParameter, periodoFechaInicioParameter, periodoFechaFinParameter, idUserParameter, fkEstadoParameter);
         }
     }
 }

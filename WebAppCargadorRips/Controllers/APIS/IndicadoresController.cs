@@ -55,7 +55,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> GetCantidadServicioWeb(int iduser)
         {
-            var result = from R in bd.Radicacion
+            var result = from R in bd.Servicio_Radicacion
                          join SV in bd.Servicio_Validacion on R.servicio_validacion_id equals SV.servicio_validacion_id
                          join P in bd.Prestador on SV.prestador equals P.codigo_habilitacion
                          join WU in bd.Web_Usuario on P.prestador_id equals WU.FK_usuario_prestador
@@ -168,7 +168,7 @@ namespace WebAppCargadorRips.Controllers.APIS
         public IEnumerable<Object> GetEstadosXAniosRadicacion(int iduser)
         {
             var result = (from ER in bd.Estado_RIPS
-                          join R in bd.Radicacion on ER.estado_rips_id equals R.radicacion_estado_id
+                          join R in bd.Servicio_Radicacion on ER.estado_rips_id equals R.radicacion_estado_id
                           join SV in bd.Servicio_Validacion on R.servicio_validacion_id equals SV.servicio_validacion_id
                           join P in bd.Prestador on SV.prestador equals P.codigo_habilitacion
                           join WU in bd.Web_Usuario on P.prestador_id equals WU.FK_usuario_prestador
@@ -208,7 +208,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                           from WPR in WPR1.DefaultIfEmpty()
                           join SV in bd.Servicio_Validacion on P.codigo equals SV.prestador into SVR
                           from SV in SVR.DefaultIfEmpty()
-                          join R in bd.Radicacion on SV.servicio_validacion_id equals R.servicio_validacion_id into R1
+                          join R in bd.Servicio_Radicacion on SV.servicio_validacion_id equals R.servicio_validacion_id into R1
                           from R in R1.DefaultIfEmpty()
                           where WV.FK_web_validacion_web_usuario == iduser
                           && ER.estado_rips_id == WV.FK_web_validacion_estado_rips

@@ -14,14 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class CUPS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CUPS()
-        {
-            this.MSYPS_Consulta = new HashSet<MSYPS_Consulta>();
-            this.SDS_Consulta = new HashSet<SDS_Consulta>();
-            this.SDS_Procedimiento = new HashSet<SDS_Procedimiento>();
-        }
-    
         public long cups_id { get; set; }
         public string codigo { get; set; }
         public string nombre { get; set; }
@@ -53,13 +45,9 @@ namespace WebAppCargadorRips.EF_Models
         public bool cups2017_1132 { get; set; }
         public bool pos2017_6408_1687 { get; set; }
         public bool cups2018_5171_483 { get; set; }
+        public string resolucionesCUPS { get; set; }
+        public string resolucionesPOS { get; set; }
     
         public virtual Sexo Sexo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MSYPS_Consulta> MSYPS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Consulta> SDS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Procedimiento> SDS_Procedimiento { get; set; }
     }
 }

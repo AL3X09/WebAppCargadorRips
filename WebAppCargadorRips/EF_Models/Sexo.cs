@@ -19,8 +19,6 @@ namespace WebAppCargadorRips.EF_Models
         {
             this.CIE10 = new HashSet<CIE10>();
             this.CUPS = new HashSet<CUPS>();
-            this.SDS_Recien_Nacido = new HashSet<SDS_Recien_Nacido>();
-            this.SDS_Usuario = new HashSet<SDS_Usuario>();
         }
     
         public long sexo_id { get; set; }
@@ -34,10 +32,6 @@ namespace WebAppCargadorRips.EF_Models
         public virtual ICollection<CIE10> CIE10 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CUPS> CUPS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Recien_Nacido> SDS_Recien_Nacido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Usuario> SDS_Usuario { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

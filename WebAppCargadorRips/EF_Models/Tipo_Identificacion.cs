@@ -14,12 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Tipo_Identificacion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tipo_Identificacion()
-        {
-            this.SDS_Usuario = new HashSet<SDS_Usuario>();
-        }
-    
         public long tipo_identificacion_id { get; set; }
         public byte numero { get; set; }
         public string acronimo { get; set; }
@@ -36,8 +30,6 @@ namespace WebAppCargadorRips.EF_Models
         public System.DateTime fecha_modificacion { get; set; }
         public long estado_rips_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Usuario> SDS_Usuario { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

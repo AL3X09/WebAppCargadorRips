@@ -64,6 +64,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             // obtengo las variables enviadas por el formulario
             var tipoUsuario = HttpContext.Current.Request.Params["tipoUsuario"];
             var categoria = HttpContext.Current.Request.Params["categoria"];
+            var extranjero = HttpContext.Current.Request.Params["extranjero"];
             var IVE = HttpContext.Current.Request.Params["IVE"];
             var NOPOS = HttpContext.Current.Request.Params["NOPOS"];
             var fechaInicio = HttpContext.Current.Request.Params["fechaInicio"];
@@ -89,6 +90,15 @@ namespace WebAppCargadorRips.Controllers.APIS
                 tipoUsuario = "2";
                 categoria = "1";
             }
+            //valido si selecciona la opción de extranjero
+            if (!String.IsNullOrEmpty(extranjero))
+            {
+                extranjero = "true";
+            }
+            else
+            {
+                extranjero = "false";
+            }
 
             //Valido que el formulario sea enviado con el formato permitido.
             if (!Request.Content.IsMimeMultipartContent("form-data"))
@@ -108,7 +118,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             {
                 //inserto en la tabla web_validacion
                 //3 es estado aprobado sin errores
-                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario,"3").First();
+                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, Convert.ToBoolean(extranjero), fechaInicio, fechaFin, idUsuario,"3").First();
 
                 //si la respuesta del porcedimeinto de insercion a la tabla validacion, es satisfactoria realizo el almacenamiento de los archivos
                 if (result.codigo == 201)
@@ -307,6 +317,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             // obtengo las variables enviadas por el formulario
             var tipoUsuario = HttpContext.Current.Request.Params["tipoUsuario"];
             var categoria = HttpContext.Current.Request.Params["categoria"];
+            var extranjero = HttpContext.Current.Request.Params["extranjero"];
             var IVE = HttpContext.Current.Request.Params["IVE"];
             var NOPOS = HttpContext.Current.Request.Params["NOPOS"];
             var fechaInicio = HttpContext.Current.Request.Params["fechaInicio"];
@@ -346,7 +357,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             {
                 //inserto en la tabla web_validacion
                 //3 es estado aprobado con errores de estructura
-                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, fechaInicio, fechaFin, idUsuario,"4").First();
+                var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, Convert.ToBoolean(extranjero), fechaInicio, fechaFin, idUsuario,"4").First();
                 
                 //si la respuesta del porcedimeinto de insercion a la tabla validacion, es satisfactoria realizo el almacenamiento de los archivos
                 if (result.codigo == 201)

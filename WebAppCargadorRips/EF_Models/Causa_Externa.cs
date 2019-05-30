@@ -14,15 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Causa_Externa
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Causa_Externa()
-        {
-            this.MSYPS_Consulta = new HashSet<MSYPS_Consulta>();
-            this.SDS_Consulta = new HashSet<SDS_Consulta>();
-            this.SDS_Hospitalizacion = new HashSet<SDS_Hospitalizacion>();
-            this.SDS_Urgencia = new HashSet<SDS_Urgencia>();
-        }
-    
         public long causa_externa_id { get; set; }
         public byte numero { get; set; }
         public string nombre { get; set; }
@@ -30,13 +21,5 @@ namespace WebAppCargadorRips.EF_Models
         public long estado_rips_id { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MSYPS_Consulta> MSYPS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Consulta> SDS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Hospitalizacion> SDS_Hospitalizacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Urgencia> SDS_Urgencia { get; set; }
     }
 }

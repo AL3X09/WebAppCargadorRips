@@ -170,7 +170,7 @@ function readlines(lineas, namefile, cantidad) {
     var nombrecorto = namefile.substring(2, 0).toUpperCase();
 
     //valido que el nombre del archivo sea el permitido de las estructuras definidas en la norma
-    if (TipoEstructuraArray[nombrecorto] === undefined && nombrecorto !== 'CT') {
+    if (TipoEstructuraArray[nombrecorto] === undefined && nombrecorto !== 'CT' && nombrecorto !== 'AD') {
         modalButtonOnly.close();
         //limpio variable de posicion de lectura
         poslec = 0;

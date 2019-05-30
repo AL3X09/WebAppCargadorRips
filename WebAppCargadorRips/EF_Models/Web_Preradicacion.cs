@@ -20,6 +20,5 @@ namespace WebAppCargadorRips.EF_Models
         public System.DateTime fecha_modificacion { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
-        public virtual Web_Validacion Web_Validacion { get; set; }
     }
 }

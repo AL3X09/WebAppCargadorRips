@@ -17,12 +17,8 @@ namespace WebAppCargadorRips.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estado_RIPS()
         {
-            this.Radicacion = new HashSet<Radicacion>();
-            this.Radicacion1 = new HashSet<Radicacion>();
-            this.Servicio_Validacion = new HashSet<Servicio_Validacion>();
             this.Acto_Quirurgico = new HashSet<Acto_Quirurgico>();
             this.Ambito_Procedimiento = new HashSet<Ambito_Procedimiento>();
-            this.Año_Permitido = new HashSet<Año_Permitido>();
             this.Categoria = new HashSet<Categoria>();
             this.Causa_Externa = new HashSet<Causa_Externa>();
             this.Control_Prenatal = new HashSet<Control_Prenatal>();
@@ -65,8 +61,11 @@ namespace WebAppCargadorRips.EF_Models
             this.Web_Usuario2 = new HashSet<Web_Usuario>();
             this.Web_Correo_Sin_Restriccion = new HashSet<Web_Correo_Sin_Restriccion>();
             this.Web_Documento = new HashSet<Web_Documento>();
-            this.Web_Validacion = new HashSet<Web_Validacion>();
             this.Web_Preradicacion = new HashSet<Web_Preradicacion>();
+            this.Web_Validacion = new HashSet<Web_Validacion>();
+            this.Servicio_Radicacion = new HashSet<Servicio_Radicacion>();
+            this.Servicio_Radicacion1 = new HashSet<Servicio_Radicacion>();
+            this.Servicio_Validacion = new HashSet<Servicio_Validacion>();
         }
     
         public long estado_rips_id { get; set; }
@@ -78,17 +77,9 @@ namespace WebAppCargadorRips.EF_Models
         public System.DateTime fecha_modificacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Radicacion> Radicacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Radicacion> Radicacion1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Servicio_Validacion> Servicio_Validacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Acto_Quirurgico> Acto_Quirurgico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ambito_Procedimiento> Ambito_Procedimiento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Año_Permitido> Año_Permitido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Categoria> Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -174,8 +165,14 @@ namespace WebAppCargadorRips.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Documento> Web_Documento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Web_Preradicacion> Web_Preradicacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Web_Validacion> Web_Validacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Web_Preradicacion> Web_Preradicacion { get; set; }
+        public virtual ICollection<Servicio_Radicacion> Servicio_Radicacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Servicio_Radicacion> Servicio_Radicacion1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Servicio_Validacion> Servicio_Validacion { get; set; }
     }
 }

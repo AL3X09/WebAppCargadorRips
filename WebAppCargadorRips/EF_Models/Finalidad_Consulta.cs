@@ -14,13 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Finalidad_Consulta
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Finalidad_Consulta()
-        {
-            this.MSYPS_Consulta = new HashSet<MSYPS_Consulta>();
-            this.SDS_Consulta = new HashSet<SDS_Consulta>();
-        }
-    
         public long finalidad_consulta_id { get; set; }
         public byte numero { get; set; }
         public string nombre { get; set; }
@@ -28,9 +21,5 @@ namespace WebAppCargadorRips.EF_Models
         public long estado_rips_id { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MSYPS_Consulta> MSYPS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Consulta> SDS_Consulta { get; set; }
     }
 }

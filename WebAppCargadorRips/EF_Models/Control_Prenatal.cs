@@ -14,12 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Control_Prenatal
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Control_Prenatal()
-        {
-            this.SDS_Recien_Nacido = new HashSet<SDS_Recien_Nacido>();
-        }
-    
         public long control_prenatal_id { get; set; }
         public byte numero { get; set; }
         public string nombre { get; set; }
@@ -27,7 +21,5 @@ namespace WebAppCargadorRips.EF_Models
         public long estado_rips_id { get; set; }
     
         public virtual Estado_RIPS Estado_RIPS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Recien_Nacido> SDS_Recien_Nacido { get; set; }
     }
 }

@@ -18,15 +18,6 @@ namespace WebAppCargadorRips.EF_Models
         public Administradora()
         {
             this.Servicio_Validacion = new HashSet<Servicio_Validacion>();
-            this.MSYPS_Consulta = new HashSet<MSYPS_Consulta>();
-            this.SDS_Consulta = new HashSet<SDS_Consulta>();
-            this.SDS_Factura = new HashSet<SDS_Factura>();
-            this.SDS_Hospitalizacion = new HashSet<SDS_Hospitalizacion>();
-            this.SDS_Medicamento = new HashSet<SDS_Medicamento>();
-            this.SDS_Otro_Servicio = new HashSet<SDS_Otro_Servicio>();
-            this.SDS_Procedimiento = new HashSet<SDS_Procedimiento>();
-            this.SDS_Recien_Nacido = new HashSet<SDS_Recien_Nacido>();
-            this.SDS_Urgencia = new HashSet<SDS_Urgencia>();
         }
     
         public long administradora_id { get; set; }
@@ -42,23 +33,5 @@ namespace WebAppCargadorRips.EF_Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Servicio_Validacion> Servicio_Validacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MSYPS_Consulta> MSYPS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Consulta> SDS_Consulta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Factura> SDS_Factura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Hospitalizacion> SDS_Hospitalizacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Medicamento> SDS_Medicamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Otro_Servicio> SDS_Otro_Servicio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Procedimiento> SDS_Procedimiento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Recien_Nacido> SDS_Recien_Nacido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Urgencia> SDS_Urgencia { get; set; }
     }
 }

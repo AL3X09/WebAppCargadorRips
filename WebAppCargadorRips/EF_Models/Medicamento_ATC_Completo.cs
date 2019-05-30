@@ -19,7 +19,6 @@ namespace WebAppCargadorRips.EF_Models
         {
             this.Medicamento_ATC_POS = new HashSet<Medicamento_ATC_POS>();
             this.Medicamento_CUM = new HashSet<Medicamento_CUM>();
-            this.SDS_Medicamento = new HashSet<SDS_Medicamento>();
         }
     
         public long medicamento_atc_completo_id { get; set; }
@@ -39,7 +38,5 @@ namespace WebAppCargadorRips.EF_Models
         public virtual ICollection<Medicamento_ATC_POS> Medicamento_ATC_POS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Medicamento_CUM> Medicamento_CUM { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Medicamento> SDS_Medicamento { get; set; }
     }
 }

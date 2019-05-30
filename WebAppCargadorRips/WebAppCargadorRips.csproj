@@ -243,9 +243,6 @@
     <Compile Include="EF_Models\Ambito_Procedimiento.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\Año_Permitido.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\BD_Rips_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -260,9 +257,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BD_Rips_Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\Cargador_Rips.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Categoria.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
@@ -303,9 +297,6 @@
     <Compile Include="EF_Models\Estructura_Campo.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\Fallecidos.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\Finalidad_Consulta.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
@@ -327,9 +318,6 @@
     <Compile Include="EF_Models\Medida_Edad.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\MSYPS_Consulta.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\Pais.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
@@ -339,40 +327,10 @@
     <Compile Include="EF_Models\Plantilla_Correo.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\Poblacion_Especial.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="EF_Models\Prestador.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF_Models\Radicacion.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Consulta.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Factura.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Hospitalizacion.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Medicamento.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Otro_Servicio.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Procedimiento.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Recien_Nacido.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Urgencia.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SDS_Usuario.cs">
+    <Compile Include="EF_Models\Servicio_Radicacion.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Servicio_Validacion.cs">
@@ -382,9 +340,6 @@
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\Sexo.cs">
-      <DependentUpon>BD_Rips_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_Models\SISBEN.cs">
       <DependentUpon>BD_Rips_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_Models\SP_CantidadRipsRecibidos_Result.cs">

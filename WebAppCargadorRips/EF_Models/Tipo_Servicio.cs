@@ -14,20 +14,12 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Tipo_Servicio
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tipo_Servicio()
-        {
-            this.SDS_Otro_Servicio = new HashSet<SDS_Otro_Servicio>();
-        }
-    
         public long tipo_servicio_id { get; set; }
         public byte numero { get; set; }
         public string nombre { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
         public long estado_rips_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Otro_Servicio> SDS_Otro_Servicio { get; set; }
         public virtual Estado_RIPS Estado_RIPS { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace WebAppCargadorRips.EF_Models
     
     public partial class Medicamento_CUM
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medicamento_CUM()
-        {
-            this.SDS_Medicamento = new HashSet<SDS_Medicamento>();
-        }
-    
         public long medicamento_cum_id { get; set; }
         public Nullable<long> codigo { get; set; }
         public string nombre { get; set; }
@@ -38,7 +32,5 @@ namespace WebAppCargadorRips.EF_Models
         public Nullable<bool> cum_2018 { get; set; }
     
         public virtual Medicamento_ATC_Completo Medicamento_ATC_Completo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SDS_Medicamento> SDS_Medicamento { get; set; }
     }
 }
