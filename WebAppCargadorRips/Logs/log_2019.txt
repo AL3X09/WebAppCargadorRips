@@ -124,3 +124,11 @@ System.FormatException: No se puede reconocer la cadena como un tipo booleano v�
    en System.Boolean.Parse(String value)
    en System.Convert.ToBoolean(String value)
    en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 121
+
+-------------------------------------- 12/06/2019 01:41:15 p. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 271
+
+-------------------------------------- 12/06/2019 01:41:15 p. m. --------------------------
+System.Web.Http.HttpResponseException: El procesamiento de la solicitud HTTP generó una excepción. Para obtener información detallada, consulte la respuesta HTTP que devolvió la propiedad 'Response' de esta excepción.
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 271

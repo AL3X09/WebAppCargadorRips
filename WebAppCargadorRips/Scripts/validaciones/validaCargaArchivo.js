@@ -81,7 +81,7 @@ function readFile() {
 
 
   for (let i = 0; i < cantidad; i++) {
-    nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0));
+      nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0).toUpperCase());
     }
 
     //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
@@ -155,7 +155,7 @@ function readFile() {
     } else { //de lo contrario envio alerta para obligar cargar los archivos
         swal(
             'Precaución',
-            'No se encuentran los archivos de USUARIOS (US) y FACTURACIÓN(AF), por favor elimine los archivos e intente cargar nuevamente.',
+            'No se encuentran los archivos de USUARIOS (US) y/o FACTURACIÓN(AF), por favor elimine los archivos e intente cargar nuevamente.',
             'info'
         )
         nombre.length = 0; //Limpio el vector de nombres

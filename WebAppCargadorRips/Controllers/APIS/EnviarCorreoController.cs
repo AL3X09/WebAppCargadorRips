@@ -230,7 +230,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             if(datos != null) {
                 
                 //var mappedPath = HttpContext.Current.Request.Url.AbsoluteUri; //mapeo la ruta completa del servidor
-                var mappedPath = HttpContext.Current.Request.Url.Scheme + "//" + HttpContext.Current.Request.Url.Authority + "/cargadorrips"; //mapeo la url del servidor
+                var mappedPath = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + "/cargadorrips"; //mapeo la url del servidor
 
                 //invoco metodo que permite obtener los datos del smtp del correo
                 SmtpCorreos();

@@ -13,7 +13,7 @@ var minday = new Date();
 var maxday = new Date();
 //obtengo la fecha minima para enviarla al calendario
 //(Anio-3),(mes),(dia)
-minday = new Date(currentDate1.getFullYear() - 3, 0, 1);
+minday = new Date(currentDate1.getFullYear() - 4, 0, 1);
 //(anio),(mes+7),(dia)
 //maxday = new Date(currentDate2.getFullYear() - 1, currentDate2.getMonth() + 7, 0);
 maxday = new Date(currentDate2.getFullYear(), currentDate2.getMonth()-0, 0);
@@ -291,7 +291,7 @@ function inicilizoDatepicker() {
     selectYears: true,
     formatSubmit: 'yyyy/mm/dd',
     hiddenName: true,
-    min: new Date(currentDate1.getFullYear() - 2 ,0, 1),//new Date(currentDate1.getFullYear()-2,0, 1),
+    min: new Date(currentDate1.getFullYear() - 3 ,0, 1),//new Date(currentDate1.getFullYear()-2,0, 1),
     max: maxday,
     disable: daysOfYear
   });
@@ -301,7 +301,7 @@ function inicilizoDatepicker() {
     selectYears: true,
     formatSubmit: 'yyyy/mm/dd',
     hiddenName: true,
-    min: new Date(currentDate1.getFullYear() - 2, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),
+    min: new Date(currentDate1.getFullYear() - 3, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),
     max: maxday,
     disable: EnddaysOfYear
   });

@@ -67,7 +67,7 @@ namespace WebAppCargadorRips.Controllers
             //Valido el capcha
             if (!this.IsCaptchaValid("Captcha is not valid"))
             {
-                ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
+                ModelState.AddModelError(string.Empty, "Error: operación del captcha no es válido.");
             }
             //si el captcha es valido
             else
@@ -163,7 +163,7 @@ namespace WebAppCargadorRips.Controllers
                     //Valido el capcha
                     if (!this.IsCaptchaValid("Captcha is not valid"))
                     {
-                        ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
+                        ModelState.AddModelError(string.Empty, "Error: operación del captcha no es válido.");
                     }
                     //si el captcha es valido
                     else
@@ -260,7 +260,7 @@ namespace WebAppCargadorRips.Controllers
                     //Valido el capcha
                     if (!this.IsCaptchaValid("Captcha is not valid"))
                     {
-                        ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
+                        ModelState.AddModelError(string.Empty, "Error: operación del captcha no es válido.");
                     }
                     //si el captcha es valido
                     else
@@ -430,7 +430,7 @@ namespace WebAppCargadorRips.Controllers
                     //Valido el capcha
                     if (!this.IsCaptchaValid("Captcha is not valid"))
                     {
-                        ModelState.AddModelError(string.Empty, "Error: captcha no es válido.");
+                        ModelState.AddModelError(string.Empty, "Error: operación del captcha no es válido.");
                     }
                     //si el captcha es valido
                     else

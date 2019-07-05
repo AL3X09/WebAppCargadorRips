@@ -136,6 +136,11 @@ namespace WebAppCargadorRips.Controllers.APIS
 
                                 //creo el nombre del path
                                 pathresult = path + @"\" + preradicadoResult.ultimoIdInsertPreradicado;
+                                //
+                                if (File.Exists(pathresult + ".zip"))
+                                {
+                                    System.IO.File.Move(pathresult + ".zip", pathresult+ idUsuario + ".zip");
+                                }
                                 //consulto que exista el folder raiz
                                 if (!Directory.Exists(pathresult))
                                 {
@@ -231,7 +236,12 @@ namespace WebAppCargadorRips.Controllers.APIS
                                         * //File.SetAttributes(nombreZIP, FileAttributes.Normal);
                                         * //File.Delete(nombreZIP);
                                      **/
-                                    Directory.Delete(pathresult,true);
+                                     //borro el cache
+                                    Directory.Delete(pathresult, true);
+
+                                    
+
+                                    
                                     
 
                                 }// FIN if !Directory.Exists(pathresult)
