@@ -99,9 +99,15 @@
                 <!--captcha-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="md-form form-sm">                           
-                                @Html.MathCaptcha("", "Ingrese el resultado de la siguiente operación matemática:")
-                                @ViewBag.ErrorMessage                            
+                        <label class="text-primary h6">Realice la siguiente operación matemática</label>
+                    </div>
+                    <div class="col-sm-12">
+                        
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="md-form form-sm">
+                            @Html.MathCaptcha("", "Ingrese el resultado de la operación(*):")
+                            @ViewBag.ErrorMessage
                         </div>
                     </div>
                 </div>

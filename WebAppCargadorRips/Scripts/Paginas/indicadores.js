@@ -56,8 +56,44 @@ function getAllME() {
   //ripscargadosyestados();
 }
 
-// pinto el primer pie mostrando la cantida de cargados ultimos 5 años
+// pinto el primer cuadro mostrando la cantida de cargados
 function ripscargadostodosanios(token) {
+
+    $.ajax({
+        url: baseURL + 'api/Indicadores/ListarCantidadaniosCargadosaWebPreradicación',
+        method: 'GET',
+        data: { iduser: token },
+        beforeSend: function () {
+        },
+        success: function (data) {
+
+            var Anio = [];
+            var total = [];
+
+            $.each(data, function (k, v) {
+                if (v.Anio == (new Date()).getFullYear()) { //recorro el vector y valido que sea el anio actual
+                    //envio a la primera tarjeta el valor retornado por la api
+                    $('#total_rips_anio_actual').html('Tiene un total de ' + v.Cantidad + ' envíos cargados en el año ' + v.Anio + '.')
+                }
+                if (v.Cantidad == 0) {
+                    v.Anio = "Sin definir"
+                }
+               
+            });
+
+         
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+
+    ripscantenviostodosanios(token);
+}
+
+
+// pinto el pie de total de envios cuadro realizados al sistema
+function ripscantenviostodosanios(token) {
 
     $.ajax({
         url: baseURL + 'api/Indicadores/ListarCantidadaniosCargadosaWebValidacion',
@@ -71,10 +107,7 @@ function ripscargadostodosanios(token) {
             var total = [];
 
             $.each(data, function (k, v) {
-                if (v.Anio == (new Date()).getFullYear()) { //recorro el vector y valido que sea el anio actual
-                    //envio a la primera tarjeta el valor retornado por la api
-                    $('#total_rips_anio_actual').html('Tiene un total de '+v.Cantidad+' archivos cargados en el año '+v.Anio+'.')
-                }
+               
                 if (v.Cantidad == 0) {
                     v.Anio = "Sin definir"
                 }
@@ -194,7 +227,7 @@ function ripscargadostodosanios(token) {
                 title: {
                     display: true,
                     position: "top",
-                    text: "Cantidad RIPS Cargados por años",
+                    text: "Cantidad de envíos por años",
                     fontSize: 10,
                 },
                 legend: {
@@ -242,7 +275,7 @@ function ripsradicadoscincoanios(token) {
             $.each(data, function (k, v) {
                 if (v.Anio == (new Date()).getFullYear()) { //recorro el vector y valido que sea el anio actual
                     //envio a la primera tarjeta el valor retornado por la api
-                    $('#total_rips_anio_actual').html('Tiene un total de '+v.Cantidad+' archivos cargados en el año '+v.Anio+'.')
+                    $('#total_rips_anio_actual').html('Tiene un total de ' + v.Cantidad +' envíos cargados en el año '+v.Anio+'.')
                 }
                 if (v.Cantidad == 0) {
                     v.Anio = "Sin definir"
@@ -417,7 +450,7 @@ function ripsvalidadosxestadoswebvalidacion(token) {
                     
                     //envio a la primera tarjeta el valor retornado por la api
                     if(v.Fk_estado == 4){
-                        $('#total_rips_anio_actual_errores_estructura').html('Tiene un total de '+v.Cantidad+' registros de carga de archivos con errores de estructura para el año '+v.Anio+'.')
+                        $('#total_rips_anio_actual_errores_estructura').html('Tiene un total de ' + v.Cantidad +' envíos con errores de estructura para el año '+v.Anio+'.')
                     }
 
                     //Estados.push(v.Estado);
@@ -441,7 +474,7 @@ function ripsvalidadosxestadoswebvalidacion(token) {
                     
                     //envio a la primera tarjeta el valor retornado por la api
                     if(v.Fk_estado == 4){
-                        $('#total_rips_anio_actual_errores_estructura').html('Tuvo un total de '+v.Cantidad+' registros de carga de archivos con errores de estructura para el año '+v.Anio+'.')
+                        $('#total_rips_anio_actual_errores_estructura').html('Tuvo un total de ' + v.Cantidad +' envíos con errores de estructura para el año '+v.Anio+'.')
                     }
                     
 
@@ -492,7 +525,7 @@ function ripsvalidadosxestadoswebvalidacion(token) {
 					},
                     title: {
                         display: true,
-                        text: "Cantidad RIPS pre validados para el año " + (new Date()).getFullYear()+" por estado."
+                        text: "Envíos para el año " + (new Date()).getFullYear()+" por estado."
                     }, 
                     responsive: true,
                 }
@@ -587,7 +620,8 @@ function ripsvalidadosxestadoswebpreradicacion(token) {
                 datasets: datos
             }
 
-            var ctx = document.getElementById("canvascantidadestadoripsprecargados").getContext("2d");
+            //var ctx = document.getElementById("canvascantidadestadoripsprecargados").getContext("2d");
+            var ctx = document.getElementById("").getContext("2d");
             window.myBar = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,
@@ -642,10 +676,10 @@ function ripsvalidadosxestadosserviciovalida(token) {
 					//envio a la tercera tarjeta el valor retornado por la api
                     if(v.Fk_estado == 8 || v.Fk_estado == 9){
 						rescantidad=+v.Cantidad;
-						$('#total_rips_errores_validacion_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos con errores de validación para el año '+v.Anio+'.')
+                        $('#total_rips_errores_validacion_anio_actual').html('Tiene un total de ' + rescantidad +' envios cargados con errores de validación para el año '+v.Anio+'.')
                     }else{
-						console.log('hola');
-						$('#total_rips_errores_validacion_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos con errores de validación para el año '+((new Date()).getFullYear())+'.')
+						//console.log('hola');
+                        $('#total_rips_errores_validacion_anio_actual').html('Tiene un total de ' + rescantidad +' envios cargados con errores de validación para el año '+((new Date()).getFullYear())+'.')
 					}
 
                     if (k == 0) {
@@ -667,10 +701,10 @@ function ripsvalidadosxestadosserviciovalida(token) {
                     //envio a la tercera tarjeta el valor retornado por la api
                     if(v.Fk_estado == 8 || v.Fk_estado == 9){
 						rescantidad=+v.Cantidad;
-						$('#total_rips_errores_validacion_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos con errores de validación para el año '+v.Anio+'.')
+                        $('#total_rips_errores_validacion_anio_actual').html('Tuvo un total de ' + rescantidad +' envios cargados con errores de validación para el año '+v.Anio+'.')
                     }else{
 						
-						$('#total_rips_errores_validacion_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos con errores de validación para el año '+((new Date()).getFullYear()-1)+'.')
+                        $('#total_rips_errores_validacion_anio_actual').html('Tuvo un total de ' + rescantidad +' envios cargados con errores de validación para el año '+((new Date()).getFullYear()-1)+'.')
 					}
                     
 
@@ -757,10 +791,10 @@ function ripsvalidadosxestadosradicados(token) {
                     //envio a la cuarta tarjeta el valor retornado por la api
                     if(v.Fk_estado == 10 || v.Fk_estado == 11 ){
                         rescantidad=+v.Cantidad;
-						$('#total_rips_radicados_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos radicados para el año '+v.Anio+'.')
+                        $('#total_rips_radicados_anio_actual').html('Tiene un total de ' + rescantidad +' envios radicados para el año '+v.Anio+'.')
                     }else{
 						
-						$('#total_rips_radicados_anio_actual').html('Tiene un total de '+rescantidad+' registros de archivos radicados para el año '+((new Date()).getFullYear()-1)+'.')
+                        $('#total_rips_radicados_anio_actual').html('Tiene un total de ' + rescantidad +' envios radicados para el año '+((new Date()).getFullYear()-1)+'.')
 					}
 
                     //Estados.push(v.Estado);
@@ -785,10 +819,10 @@ function ripsvalidadosxestadosradicados(token) {
                     //envio a la cuarta tarjeta el valor retornado por la api
                     if(v.Fk_estado == 10 || v.Fk_estado == 11 ){
                         rescantidad=+v.Cantidad;
-						$('#total_rips_radicados_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos radicados para el año '+v.Anio+'.')
+                        $('#total_rips_radicados_anio_actual').html('Tuvo un total de ' + rescantidad +' envios radicados para el año '+v.Anio+'.')
                     }else{
 						
-						$('#total_rips_radicados_anio_actual').html('Tuvo un total de '+rescantidad+' registros de archivos radicados para el año '+((new Date()).getFullYear()-1)+'.')
+                        $('#total_rips_radicados_anio_actual').html('Tuvo un total de ' + rescantidad +' envios radicados para el año '+((new Date()).getFullYear()-1)+'.')
 					}
                     
 
@@ -820,7 +854,8 @@ function ripsvalidadosxestadosradicados(token) {
                 datasets: datos
             }
 
-            var ctx = document.getElementById("canvascantidadestadoripsradicados").getContext("2d");
+            //var ctx = document.getElementById("canvascantidadestadoripsradicados").getContext("2d");
+            var ctx = document.getElementById("").getContext("2d");
             window.myBar = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,

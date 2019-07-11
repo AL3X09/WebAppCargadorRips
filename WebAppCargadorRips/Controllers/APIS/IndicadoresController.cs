@@ -22,10 +22,34 @@ namespace WebAppCargadorRips.Controllers.APIS
         }
 
         ///<summary>
-        /// Lista cantidad de rips cargados en la plataforma WEB y sus estados, 5 años mas actuales en tabla web validacion
+        /// Lista cantidad de rips enviados en la plataforma WEB y sus estados, 5 años mas actuales en tabla web validacion
         ///</summary>
         [HttpGet]
         [Route("ListarCantidadaniosCargadosaWebValidacion")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IEnumerable<Object> GetCantidadValidadosCargadorWeb(int iduser)
+        {
+            var result = from WV in bd.Web_Validacion
+                         join ER in bd.Estado_RIPS on WV.FK_web_validacion_estado_rips equals ER.estado_rips_id
+                         where WV.FK_web_validacion_web_usuario == iduser
+                         && WV.FK_web_validacion_estado_rips != 2
+                         orderby WV.fecha_modificacion.Year descending
+                         group WV by WV.fecha_modificacion.Year into d
+                         select new
+                         {
+                             Anio = d.Key,
+                             Cantidad = d.Count()
+                         };
+
+            return result.Take(5);
+        }
+
+        ///<summary>
+        /// Lista cantidad de rips cargados en la plataforma WEB y sus estados, 5 años mas actuales en tabla web validacion
+        ///</summary>
+        [HttpGet]
+        [Route("ListarCantidadaniosCargadosaWebPreradicación")]
+        //[Route("ListarCantidadaniosCargadosaWebValidacion")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Object> GetCantidadCargadorWeb(int iduser)
         {
@@ -85,8 +109,8 @@ namespace WebAppCargadorRips.Controllers.APIS
             var result = (from ER in bd.Estado_RIPS
                           join WV in bd.Web_Validacion on ER.estado_rips_id equals WV.FK_web_validacion_estado_rips
                           join WU in bd.Web_Usuario on WV.FK_web_validacion_web_usuario equals WU.usuario_id
-                          where WV.FK_web_validacion_web_usuario == 1
-                          && WV.FK_web_validacion_estado_rips != 5
+                          where WV.FK_web_validacion_web_usuario == iduser
+                          //&& WV.FK_web_validacion_estado_rips != 5
                           && WV.FK_web_validacion_estado_rips != 2
                           group ER by new { WV.fecha_modificacion.Year, ER.estado_rips_id, ER } into d
                           orderby d.Key.Year descending

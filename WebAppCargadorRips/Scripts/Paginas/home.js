@@ -289,6 +289,7 @@ function inicilizoDatepicker() {
   var $input = $("#fechaInicio").pickadate({
     selectMonths: true,
     selectYears: true,
+    format: 'dd/mm/yyyy',
     formatSubmit: 'yyyy/mm/dd',
     hiddenName: true,
     min: new Date(currentDate1.getFullYear() - 3 ,0, 1),//new Date(currentDate1.getFullYear()-2,0, 1),
@@ -299,6 +300,7 @@ function inicilizoDatepicker() {
   var $input = $("#fechaFin").pickadate({
     selectMonths: true,
     selectYears: true,
+    format: 'dd/mm/yyyy',
     formatSubmit: 'yyyy/mm/dd',
     hiddenName: true,
     min: new Date(currentDate1.getFullYear() - 3, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),

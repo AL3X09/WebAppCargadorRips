@@ -225,6 +225,7 @@
     <Compile Include="Controllers\APIS\NormatividadController.cs" />
     <Compile Include="Controllers\APIS\PreguntasFrecuentesController.cs" />
     <Compile Include="Controllers\APIS\PresentacionesAyudaController.cs" />
+    <Compile Include="Controllers\APIS\AyudaRedAdscritaController.cs" />
     <Compile Include="Controllers\APIS\TipoUsuarioController.cs" />
     <Compile Include="Controllers\APIS\UsuarioController.cs" />
     <Compile Include="Controllers\AyudaController.cs" />

@@ -30,7 +30,6 @@ $(document).ready(function () {
 
   // Extension pour comptabilité avec materialize.css
 
-
   $("#formulariocargaarchivo").submit(function (e) {
     e.preventDefault();
   }).validate({
@@ -63,13 +62,15 @@ $(document).ready(function () {
       rips: "Seleccione sus archivos",
     },
     submitHandler: function (e) {
-      readFile();
+      //readFile();
+        terminaLectura();
     }
   });
 
 
 })
 
+//Función pre lee los archivos antes de cargarlos, con el fin de notificar al usuario
 function readFile() {
   //console.log("leiendoXD");
   let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
@@ -129,7 +130,7 @@ function readFile() {
                 } else {
                     swal(
                         'Precaución',
-                        'Parece que intenta cargar archivos no ilegibles, por favor elimine e intente nuevamente',
+                        'Parece que intenta cargar archivos ilegibles, por favor elimine e intente nuevamente',
                         'info'
                     )
                     //fileDisplayArea.innerText = "Archivos No Soportados!"
@@ -144,7 +145,7 @@ function readFile() {
             //le indico al usuario que por favor revice la info a cargar
             swal(
                 'Precaución',
-                'Parece que intenta cargar el mismo tipo de archivo, por favor elimine e intente nuevamente',
+                'Parece que intenta cargar el mismo tipo de estructura, por favor elimine e intente nuevamente',
                 'info'
             )
             nombre.length = 0;
@@ -155,7 +156,7 @@ function readFile() {
     } else { //de lo contrario envio alerta para obligar cargar los archivos
         swal(
             'Precaución',
-            'No se encuentran los archivos de USUARIOS (US) y/o FACTURACIÓN(AF), por favor elimine los archivos e intente cargar nuevamente.',
+            'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), por favor elimine los archivos e intente cargar nuevamente.',
             'info'
         )
         nombre.length = 0; //Limpio el vector de nombres
@@ -166,7 +167,9 @@ function readFile() {
 
 }
 
+//Función lee linea por linea los archivos antes de cargarlos
 function readlines(lineas, namefile, cantidad) {
+
     var nombrecorto = namefile.substring(2, 0).toUpperCase();
 
     //valido que el nombre del archivo sea el permitido de las estructuras definidas en la norma
@@ -176,7 +179,7 @@ function readlines(lineas, namefile, cantidad) {
         poslec = 0;
         swal(
             'Error!',
-            'Esta intentando cargar archivos con un nombre no permitido, por favor corrijalos e intente nuevamente!',
+            'Esta intentando cargar estructuras con un nombre no permitido, por favor corrijalos e intente nuevamente!',
             'error'
         )
     }else {
@@ -200,13 +203,14 @@ function readlines(lineas, namefile, cantidad) {
         {
             buscar = new RegExp(/[~`!#$%;\^&*\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
         }
+        
         //var pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"; //buscar fecha
         //var pattern2 =/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; //para validar el formato de la fecha
 
         //valido liena por linea que no tenga caracteres especiales
         $.each(lineas, function (i, v) {
             //console.log(v.replace("\r",""));           
-
+            
             var res = buscar.test(v);
            
             textoAreaDividido = v.split(",");
@@ -221,7 +225,7 @@ function readlines(lineas, namefile, cantidad) {
                 //valido la cantidad de campos permitidos para cada estructura
                 if (numeroColumas > 1) {
                     if (nombrecorto !== 'CT' && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
-                        erroresEstructura.push("ERROR: El archivo " + namefile + " en la linea " + (i + 1) + " tiene una longitud de " + numeroColumas + ", la longitud permitida es de " + TipoEstructuraArray[nombrecorto]);
+                        erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene " + numeroColumas + " campos, la cantidad correcta de campos es de " + TipoEstructuraArray[nombrecorto]);
                     }
                 }
             //fin valido la cantidad de campos permitidos para cada estructura
@@ -231,10 +235,77 @@ function readlines(lineas, namefile, cantidad) {
                # y el archivo es diferente a la estrutura AM envio errores
            */
             if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT') {
-                erroresCaracteres.push("error" + (i + 1) + ": El Archivo " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
+                erroresCaracteres.push("error" + (i + 1) + ": La estructura " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
+            }
+
+            //console.log("nom" + nombrecorto+ "-");
+
+        });
+
+
+        //valido liena por linea encontrar codigo de prestador diferente, y solo notifico
+        $.each(lineas, function (i, v) {
+
+            textoAreaDividido = v.split(",");
+            numeroColumas = textoAreaDividido.length;
+
+            if (nombrecorto == 'AF') {
+                var codprestador = $('#codigospan').text();
+                var fechainicio1 = document.getElementById('fechaInicio').value;//$('#fechaInicio') valor;
+                var fechafin1 = document.getElementById('fechaFin').value;//$('#fechaFin') valor;
+                
+                //Valido que la fechas de periodo de inicio seleccionado concuerden con el de los archivos de AF
+                if (v.indexOf(fechainicio1.toString(10), 7) == -1) {
+
+                    iziToast.warning({
+                        title: 'Alerta',
+                        message: 'Sus estructuras presentan una fecha de inicio de reporte diferente, al periodo indicado en el formulario, estructura AF',
+                        position: 'topCenter',
+                        timeout: 50000,
+                        resetOnHover: true,
+                        drag: true,
+                        close: true,
+                    });
+                    return false;
+                }
+
+                //Valido que la fechas de periodo de fin seleccionado concuerden con el de los archivos de AF
+                if (v.indexOf(fechafin1.toString(10), 8) == -1) {
+
+                    iziToast.warning({
+                        title: 'Alerta',
+                        message: 'Sus estructuras presentan una fecha de fin de reporte diferente, al periodo indicado en el formulario, estructura AF',
+                        position: 'topCenter',
+                        timeout: 50000,
+                        resetOnHover: true,
+                        drag: true,
+                        close: true,
+                    });
+                    return false;
+                }
+
+                
+                if (v.split(",", 1) != codprestador) {
+
+                    iziToast.warning({
+                        title: 'Alerta',
+                        message: 'Sus estructuras presentan un código de prestador diferente, al identificado en la plataforma.',
+                        position: 'topCenter',
+                        timeout: 50000,
+                        resetOnHover: true,
+                        drag: true,
+                        close: true,
+                    });
+                    return false;
+                }
+
+                //console.log("numc" + codprestador + "-");
+
             }
 
         });
+
+        //Fin valido liena por linea encontrar codigo de prestador diferente, y solo notifico
 
         /**
          * ESTA LINEA SE ELIMINA POR RENDIMIENTO DEL APLICATIVO
@@ -258,7 +329,7 @@ function readlines(lineas, namefile, cantidad) {
             //cierro el modal 
             modalButtonOnly.close();
             //Llamo funcion de terminacion de lectura
-            terminaLectura();
+            //terminaLectura();
             //limpio variable de posicion de lectura
             poslec = 0;
         }
@@ -274,12 +345,12 @@ function modalprogres() {
 
 function terminaLectura() {
   //valido que si se presentan errores en la validacion
-  //console.log(errores);
+    //console.log(erroresEstructura);
     if (erroresEstructura.length > 0) {
         //envio notificación del error
         swal({
             title: 'Error',
-            text: 'Sus archivos presentan Errores de estructura!! se enviara un correo con los diferentes ' +
+            text: 'Sus estructuras presentan Errores de estructura!! se enviara un correo con los diferentes ' +
                 'errores encontrados, por favor corrijalos e intente nuevamente.',
             type: 'warning',
             showCancelButton: false,
@@ -299,7 +370,7 @@ function terminaLectura() {
         //envio notificación de posible error
         swal({
             title: 'Error',
-            text: 'Sus archivos presentan caracteres especiales no permitidos, desea continuar con el cargue, o desea recibir un correo con los diferentes ' +
+            text: 'Sus estructuras presentan caracteres especiales no permitidos, desea continuar con el cargue, o desea recibir un correo con los diferentes ' +
                 'caracteres encontrados.',
             type: 'warning',
             showCancelButton: true,

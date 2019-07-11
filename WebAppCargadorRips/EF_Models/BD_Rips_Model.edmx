@@ -2275,7 +2275,6 @@ advertencia 6002: La tabla o vista 'Rips.Web.VW_Listado_Estado_Rips' no tiene de
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="imagen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Acto_Quirurgico" Relationship="Self.FK__Acto_Quir__estad__3CF40B7E" FromRole="Estado_RIPS" ToRole="Acto_Quirurgico" />
           <NavigationProperty Name="Ambito_Procedimiento" Relationship="Self.FK__Ambito_Pr__estad__3DE82FB7" FromRole="Estado_RIPS" ToRole="Ambito_Procedimiento" />
           <NavigationProperty Name="Categoria" Relationship="Self.FK__Categoria__estad__3FD07829" FromRole="Estado_RIPS" ToRole="Categoria" />
           <NavigationProperty Name="Causa_Externa" Relationship="Self.FK__Causa_Ext__estad__40C49C62" FromRole="Estado_RIPS" ToRole="Causa_Externa" />

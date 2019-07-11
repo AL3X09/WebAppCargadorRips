@@ -139,7 +139,8 @@ namespace WebAppCargadorRips.Controllers.APIS
                                 //
                                 if (File.Exists(pathresult + ".zip"))
                                 {
-                                    System.IO.File.Move(pathresult + ".zip", pathresult+ idUsuario + ".zip");
+                                    //System.IO.File.Move(pathresult + ".zip", pathresult+ idUsuario + ".zip");
+                                    System.IO.File.Delete(pathresult + ".zip");
                                 }
                                 //consulto que exista el folder raiz
                                 if (!Directory.Exists(pathresult))
@@ -238,10 +239,6 @@ namespace WebAppCargadorRips.Controllers.APIS
                                      **/
                                      //borro el cache
                                     Directory.Delete(pathresult, true);
-
-                                    
-
-                                    
                                     
 
                                 }// FIN if !Directory.Exists(pathresult)

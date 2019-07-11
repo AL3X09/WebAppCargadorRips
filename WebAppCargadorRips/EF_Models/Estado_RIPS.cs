@@ -17,7 +17,6 @@ namespace WebAppCargadorRips.EF_Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estado_RIPS()
         {
-            this.Acto_Quirurgico = new HashSet<Acto_Quirurgico>();
             this.Ambito_Procedimiento = new HashSet<Ambito_Procedimiento>();
             this.Categoria = new HashSet<Categoria>();
             this.Causa_Externa = new HashSet<Causa_Externa>();
@@ -76,8 +75,6 @@ namespace WebAppCargadorRips.EF_Models
         public string imagen { get; set; }
         public System.DateTime fecha_modificacion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Acto_Quirurgico> Acto_Quirurgico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ambito_Procedimiento> Ambito_Procedimiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

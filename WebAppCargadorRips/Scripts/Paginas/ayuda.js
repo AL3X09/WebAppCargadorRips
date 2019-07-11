@@ -175,6 +175,35 @@ function getNormatividad() {
 
         //envio a la api errores para que almacene el error
         })
+    getSubredes();
+}
+
+//llamo la api y alimento el ul de red adscrita
+function getSubredes() {
+
+    $.ajax({
+        type: "GET",
+        url: baseURL + "api/Redascrita/Listar",
+        success: function (response) {
+            //console.log(response);
+            $.each(response, function (i, v) {
+                $('#listresolucionesnormas').append(
+                    '<li class="collection-item"><div>' + v.descripcion + '<a href="' + v.ruta + '" class="secondary-content" target="_blank"><i class="material-icons">send</i></a></div></li>'
+                )
+            });
+
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //si retorna un error es por que el correo no existe imprimo en consola y recargo pagina de inicio de sesión    console.error(textStatus, errorThrown); 
+        //console.error(textStatus, errorThrown); // Algo fallo
+        swal(
+            '',
+            "Error al intertar traer las ayuda para las subredes",
+            'error'
+        );
+
+        //envio a la api errores para que almacene el error
+    })
     getContactos();
 }
 
@@ -202,7 +231,7 @@ function getContactos() {
                     '<spam>' + v.correo + '</spam>' +
                     '</div>' +
                     '<div class="card-action">' +
-                    '<p> EXT:' + v.extencion + '</p>' +
+                    '<p> Teléfono:' + v.extencion + '</p>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +

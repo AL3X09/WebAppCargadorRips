@@ -545,6 +545,11 @@
             Gets some very important data from the server.
             </summary>
         </member>
+        <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetCantidadValidadosCargadorWeb(System.Int32)">
+            <summary>
+             Lista cantidad de rips enviados en la plataforma WEB y sus estados, 5 años mas actuales en tabla web validacion
+            </summary>
+        </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.IndicadoresController.GetCantidadCargadorWeb(System.Int32)">
             <summary>
              Lista cantidad de rips cargados en la plataforma WEB y sus estados, 5 años mas actuales en tabla web validacion

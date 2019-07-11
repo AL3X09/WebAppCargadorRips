@@ -510,7 +510,7 @@ if (window.jQuery)(function ($) {
 							//r = $('#drop-zone').append('<div class="MultiFile-label"></div>'),//$('<div class="MultiFile-label"></div>'),
 							r = $('<div class="MultiFile-label"></div>'),//$('<div class="MultiFile-label"></div>'),
 							//b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
-							b = $('<a class="btn-floating btn-small waves-effect waves-light red MultiFile-remove" href="#' + MultiFile.wrapID + '" onclick="limpiardivfiles()" ><i class="material-icons " >clear</i></a>')
+							b = $('<a class="btn waves-effect waves-light red MultiFile-remove" href="#' + MultiFile.wrapID + '" onclick="limpiardivfiles()">Borrar</a>')
 
 								// ********
 								// TODO:
@@ -863,7 +863,7 @@ if (window.jQuery)(function ($) {
 		STRING: {
 			//ALEX EDITO
 			remove: 'X',
-			denied: 'Tú no puedes seleccionar un archivo tipo $ext .\nIntente de nuevo...',
+			denied: 'No puede seleccionar un archivo tipo $ext .\nIntente de nuevo...',
 			file: '$file',
 			selected: 'Archivo seleccionado: $file',
 			duplicate: 'Este Archivo ya ha sido seleccionado:\n$file',

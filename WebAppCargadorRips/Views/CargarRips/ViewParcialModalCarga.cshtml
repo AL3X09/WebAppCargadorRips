@@ -59,6 +59,7 @@
             <div class="card-panel blue lighten-4">SEMESTRAL</div>
 
             <div class="row">
+                <h5 class="lighten-3">Debe seleccionar todos los archivos</h5>
             </div>
             <div class="row">
 
@@ -101,7 +102,7 @@
         <div class="row">
 
             <div class="col-md-6">
-
+                 <h5 class="lighten-3">Debe seleccionar todos los archivos a cargar(*)</h5>
             </div>
 
             <div class="col l12 s12">
@@ -110,7 +111,7 @@
                     <p></p>
                     <div id="clickHere">
                         Seleccione <span class="red-text">*</span><i class="fa fa-upload"></i>
-                        <input type="file" name="rips" id="rips" multiple accept=".txt" />
+                        <input type="file" name="rips" id="rips" multiple accept=".txt" onChange="readFile(this);" />
                     </div>
                     <div id='aqui'></div>
                     <div id='filename'></div>
