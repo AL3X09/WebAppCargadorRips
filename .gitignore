@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 WebAppCargadorRips/Web.config
+WebAppCargadorRips/App_Start/WebApiConfig.cs
