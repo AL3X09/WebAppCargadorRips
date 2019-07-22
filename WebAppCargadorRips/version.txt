@@ -19,3 +19,6 @@ Version-1.3.0
 Plataforma desarrollada por Alex Cifuentes Sánchez 08/07/2019
 Version-1.4.0
 2019
+Plataforma desarrollada por Alex Cifuentes Sánchez 22/07/2019
+Version-1.4.3
+2019

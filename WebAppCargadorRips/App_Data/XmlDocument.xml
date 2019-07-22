@@ -540,6 +540,12 @@
             </summary>
             <returns>Respuesta "SI" o "NO" fue satisfactorio el envio</returns>
         </member>
+        <member name="M:WebAppCargadorRips.Controllers.APIS.EnviarCorreoController.EnviarCorreoLogs(System.String)">
+            <summary>
+            Envia correo de logs dentro del servidor de la aplicación a un email especifico.
+            </summary>
+            <returns>Respuesta "SI" o "NO" fue satisfactorio el envio</returns>
+        </member>
         <member name="M:WebAppCargadorRips.Controllers.APIS.EstructuraController.Get">
             <summary>
             Gets some very important data from the server.

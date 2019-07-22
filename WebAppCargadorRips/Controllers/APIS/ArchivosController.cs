@@ -345,7 +345,15 @@ namespace WebAppCargadorRips.Controllers.APIS
                 tipoUsuario = "2";
                 categoria = "1";
             }
-
+            //valido si selecciona la opción de extranjero
+            if (!String.IsNullOrEmpty(extranjero))
+            {
+                extranjero = "true";
+            }
+            else
+            {
+                extranjero = "false";
+            }
             //Valido que el formulario sea enviado con el formato permitido.
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
@@ -363,7 +371,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             try
             {
                 //inserto en la tabla web_validacion
-                //3 es estado aprobado con errores de estructura
+                //4 es estado con errores de estructura
                 var result = bd.SP_Web_Insert_Datos_Rips_a_Validar(tipoUsuario, categoria, Convert.ToBoolean(extranjero), fechaInicio, fechaFin, idUsuario,"4").First();
                 
                 //si la respuesta del porcedimeinto de insercion a la tabla validacion, es satisfactoria realizo el almacenamiento de los archivos
@@ -382,11 +390,12 @@ namespace WebAppCargadorRips.Controllers.APIS
             }
             catch (Exception e)
             {
+                //envio al archivo 
                 LogsController log = new LogsController(e.ToString());
                 log.createFolder();
                 //TODO enviar a la base de datos 
-                MSG.Add(new { type = "error", value = e.ToString() });
-                //todo enviar error a la  base de datos
+                MSG.Add(new { type = "Error no se pudo almacenar la información de los errores, por favor intente mas tarde."});
+                
             }
 
             return Json(MSG);
@@ -450,7 +459,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                           || VLR.estado_radicacion.ToString().ToLower().Contains(sSearch.ToString())
                           )
                           where VLR.FK_usuario == fktoken
-                          orderby VLR.fecha_cargo descending
+                          orderby VLR.fecha_cargo ascending
                           select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
@@ -459,8 +468,8 @@ namespace WebAppCargadorRips.Controllers.APIS
             {
                 result = (from VLR in bd.VW_Listado_Estado_Rips
                          where VLR.FK_usuario == fktoken
-                         orderby VLR.fecha_cargo descending
-                         select VLR).ToList();
+                         orderby VLR.fecha_cargo ascending
+                          select VLR).ToList();
                 // Call Funcion de ordenado  y proveer sorted Data, then Skip using iDisplayStart  
                 result = SortFunction(iSortCol, sortOrder, result).Skip(iDisplayStart).Take(iDisplayLength).ToList();
             }

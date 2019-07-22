@@ -31,4 +31,12 @@ namespace WebAppCargadorRips.Models
         public string token { get; set; } //esta es la nueva contraseña cifrada
 
     }
+
+    
+    public class EnviarCorreoLogsModel
+    {
+        //public int codPlantilla { get; set; }
+        public string usercorreo { get; set; }
+       
+    }
 }

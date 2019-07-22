@@ -98,12 +98,30 @@ namespace WebAppCargadorRips.Controllers.APIS
                     //sw.WriteLine(texto);
                     //}
                 }
+                sendemail();
             }
             catch (Exception e)
             {
                 Console.Write(e);
             }
         }
+
+        //agrego texto al archivo y texto
+        public async void sendemail()
+        {
+            try
+            {
+                
+                EnviarCorreoController correo = new EnviarCorreoController();
+                object x = await correo.EnviarCorreoLogs("a1cifuentes@saludcapital.gov.co");
+                //correo.EnviarCorreoLogs();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+        }
+
 
     }
 }

@@ -14,7 +14,7 @@
     @Styles.Render("~/Content/fuentescss")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="icon" href="@Url.Content("~/Img/logo.ico")" />
-    <noscript>Tu navegador no soporta JavaScript, la aplicación requiere que tengas activado javascript</noscript>
+    <noscript>Su navegador no soporta JavaScript, la aplicación requiere que tengas activado javascript</noscript>
     @Scripts.Render("~/bundles/jquery")
 
 </head>
@@ -30,8 +30,16 @@
                         <img src="@Url.Content("~/Img/sidemenu-hero.jpg")">
                     </div>
                     <a href="#!user"><img class="circle" id="imguser"></a>
+                    <a href="#!" class="dropdown-button dropdown" data-activates="droupdown1">
+                        <span class="white-text email">
+                            Más acciones
+                            <i class="material-icons tooltipped" data-position="bottom" data-delay="20" data-tooltip="Más acciones">arrow_drop_down_circle</i>
+                        </span>
+                    </a>
                     <a href="#!name"><span class="white-text name" id="nombreuserspan"></span></a>
-                    <a href="#!" class="dropdown-button dropdown" data-activates="droupdown1"><span class="white-text email"><b id="emailspan"> </b><i class="material-icons tooltipped" data-position="bottom" data-delay="20" data-tooltip="Más acciones">arrow_drop_down_circle</i></span></a>
+                        <span class="white-text email">
+                            <b id="emailspan"></b>
+                        </span>
                     <span class="white-text hide"><b id="codigospan">@HttpContext.Current.User.Identity.Name </b></span>
                     @Html.Partial("_DropdownUserPartial")
                 </div>
@@ -54,7 +62,7 @@
         <!--Navbar-->
         <nav class="nav-extended deep-cyan cyan darken-1">
             <div class="nav-wrapper">
-                <a id="logo-container" href="#!" class="brand-logo"><img src="@Url.Content("~/Img/logo2.png")" alt="logo" width="auto" height="60"></a>
+                <a id="logo-container" href="#!" class="brand-logo"><img src="@Url.Content("~/Img/logo2.png")" alt="logo" width="auto" height="65"></a>
             </div>
             <div class="nav-content" id="contenidoNav">
                 <div id="tabsNav">
@@ -90,7 +98,7 @@
                         <li><a class="grey-text text-lighten-3" href="#!">Cra 32 # 12-81 Bogotá, Colombia</a></li>
                         <li><a class="grey-text text-lighten-3" href="#!">Teléfono: (571) 3649090</a></li>
                         <li><a class="grey-text text-lighten-3" href="#!">Código Postal: 111611</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">contactenos@saludcapital.gov.co</a></li>
+                        <!--<li><a class="grey-text text-lighten-3" href="#!">contactenos@saludcapital.gov.co</a></li>-->
                     </ul>
                 </div>
                 <div class="col l4 s12">
@@ -145,7 +153,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col l12 s12 center-align">
-                        &copy; - @DateTime.Now.Year | Versión 1.4.0
+                        &copy; - @DateTime.Now.Year | Versión 1.4.3
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebAppCargadorRips.EF_Models;
+using System.IO;
 
 
 //PARA ESTA API ES RECOMENDABLE ARMAR LOS CORREOS POR EL LINK
@@ -114,9 +115,16 @@ namespace WebAppCargadorRips.Controllers.APIS
             //se arma cuerpo del correo
             msg.Body = string.Format(result.cuerpo,datos.usernombre,datos.codigocarga);
 
+            /*multiples correos
+             * var mails = lista.Text.Split(';');
+            foreach (string dir in mails)
+                email.To.Add(dir);*/
+
+
             try
             {
                 await client.SendMailAsync(msg);
+                client.Dispose();
                 //USO linq para consultar la tabla de mensajes y dejar el mensaje modificable para el usuario
                 var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();
                 MSG.Add(new { type = linq1.tipo, value = linq1.cuerpo, codigo = linq1.codigo });
@@ -194,6 +202,7 @@ namespace WebAppCargadorRips.Controllers.APIS
             try
             {
                 await client.SendMailAsync(msg);
+                client.Dispose();
                 //USO linq para consultar la tabla de mensajes y dejar el mensaje modificable para el usuario
                 var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1008).First();
                 MSG.Add(new { type = linq1.tipo, value = linq1.cuerpo, codigo = linq1.codigo });
@@ -261,6 +270,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                 try
                 {
                     await client.SendMailAsync(msg);
+                    client.Dispose();
                     //USO linq para consultar la tabla de mensajes y dejar el mensaje modificable para el usuario
                     //TODO el mensaje esta erroneo
                     var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();
@@ -283,6 +293,85 @@ namespace WebAppCargadorRips.Controllers.APIS
             return BadRequest();
             
         }
-        
+
+
+        /// <summary>
+        /// Envia correo de logs dentro del servidor de la aplicación a un email especifico.
+        /// </summary>
+        /// <returns>Respuesta "SI" o "NO" fue satisfactorio el envio</returns>
+        [AllowAnonymous]
+        [Route("SendEmailCorreoLogs")]
+        [HttpGet]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public async Task<Object> EnviarCorreoLogs(String usercorreo)
+        {
+            
+                //Valido que los valores no lleguen vacios
+                if (usercorreo == null)
+                {
+                    usercorreo = "a1cifuentes@saludcapital.gov.co";
+                }
+                else {
+                
+                var mappedPath = HttpContext.Current.Server.MapPath("~/Logs/log_2019.txt");
+
+                //invoco metodo que permite obtener los datos del smtp del correo
+                SmtpCorreos();
+                //creo una variable para manejar los mensajes
+                var MSG = new List<object>();
+
+                SmtpClient client = new SmtpClient();
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.EnableSsl = true;
+                client.Host = Host;
+                client.Port = Puerto;//587;
+                client.EnableSsl = true;
+                FileStream fs = new FileStream(mappedPath, FileMode.Open, FileAccess.Read);
+                Attachment a = new Attachment(fs, "log_2019.txt", MediaTypeNames.Application.Octet);
+                //email.Attachments.Add(a);
+                // setup Smtp authentication
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(SmtpCorreo, PassCorreo);
+                client.UseDefaultCredentials = false;
+                client.Credentials = credentials;
+                //can be obtained from your model
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress(FromCorreo);
+                msg.To.Add(new MailAddress(usercorreo));
+                //consulto el procedimiento para traer la información de la plantilla solicitada
+                //var result = bd.SP_GetPlantillaCorreo(datos.codPlantilla).First();
+                //agrego el asunto
+                msg.Subject = "errores LOG";//result.asunto;
+                msg.IsBodyHtml = true;
+                msg.Priority = MailPriority.Normal;
+                //se arma cuerpo del correo                
+                msg.Body = "PSI";
+                msg.Attachments.Add(a);
+                try
+                {
+                    await client.SendMailAsync(msg);
+                    client.Dispose();
+                    //USO linq para consultar la tabla de mensajes y dejar el mensaje modificable para el usuario
+                    //TODO el mensaje esta erroneo
+                    var linq1 = bd.Web_Mensaje.Where(s => s.codigo == 1009).First();
+                    MSG.Add(new { type = linq1.tipo, value = linq1.cuerpo, codigo = linq1.codigo });
+
+                }
+                catch (Exception e)
+                {
+                    //envio a la carpeta logs
+                    LogsController log = new LogsController(e + "//" + Host.ToString());
+                    log.createFolder();
+                    return BadRequest();
+                }
+
+                return Json(MSG);
+
+            }//fin if Valida que los valores no lleguen vacios
+            return BadRequest();
+
+        }
+
+
+
     }
 }
