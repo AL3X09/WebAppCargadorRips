@@ -266,7 +266,7 @@ namespace WebAppCargadorRips.Controllers.APIS
                 msg.Subject = result.asunto;
                 msg.IsBodyHtml = true;
                 //se arma cuerpo del correo                
-                msg.Body = String.Format(@result.cuerpo, mappedPath, datos.id,datos.token);
+                msg.Body = String.Format(@result.cuerpo.ToString(), mappedPath.ToString(), datos.id.ToString(),datos.token.ToString());
                 try
                 {
                     await client.SendMailAsync(msg);

@@ -250,7 +250,8 @@ function readlines(lineas, namefile, cantidad) {
             numeroColumas = textoAreaDividido.length;
 
             if (nombrecorto == 'AF') {
-                var codprestador = $('#codigospan').text();
+                var codprestador = "'" + $('#codigospan').text().replace(/ /g, "")+"'";
+                var codprestador2 = "'"+v.split(",", 1)+"'";
                 var fechainicio1 = document.getElementById('fechaInicio').value;//$('#fechaInicio') valor;
                 var fechafin1 = document.getElementById('fechaFin').value;//$('#fechaFin') valor;
                 
@@ -284,9 +285,9 @@ function readlines(lineas, namefile, cantidad) {
                     return false;
                 }
 
-                
-                if (v.split(",", 1) != codprestador) {
 
+                if (codprestador.localeCompare(codprestador2) != 0) {
+                    
                     iziToast.warning({
                         title: 'Alerta',
                         message: 'Sus estructuras presentan un código de prestador diferente, al identificado en la plataforma.',
