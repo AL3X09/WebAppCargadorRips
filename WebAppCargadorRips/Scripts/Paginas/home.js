@@ -575,9 +575,9 @@ function loadRIPS() {
 
 //Función que me permite limpiar los campos
 function limpiardivfiles() {
-  $('#filename').html("");
-
-  zonaarchvos();
+    $('#filename').html("");
+    nombre = [];
+    zonaarchvos();
   //$('#rips').val('');
   //$('#archivos').val('');
 }

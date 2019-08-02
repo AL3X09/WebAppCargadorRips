@@ -72,7 +72,7 @@ $(document).ready(function () {
 
 //Función pre lee los archivos antes de cargarlos, con el fin de notificar al usuario
 function readFile() {
-  //console.log("leiendoXD");
+    console.log(nombre);
   let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
   var fileInput = document.getElementById('rips');
   var fileDisplayArea = document.getElementById('fileDisplayArea');
