@@ -87,7 +87,7 @@ function readFile() {
 
     //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
     //ya que son obligatorios
-    if (nombre.includes('US') == true && nombre.includes('AF') == true) {
+    if (nombre.includes('US') == true && nombre.includes('AF') == true && nombre.length > 2) {
 
         //Valido que el usuario no seleccione archivos iguales
         //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
@@ -149,6 +149,7 @@ function readFile() {
                 'info'
             )
             nombre.length = 0;
+            nombre = [];
             //limpiarCampos();
         }
 
@@ -156,10 +157,10 @@ function readFile() {
     } else { //de lo contrario envio alerta para obligar cargar los archivos
         swal(
             'Precaución',
-            'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), por favor elimine los archivos e intente cargar nuevamente.',
+            'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), o le hace falta una estructura de atención, por favor elimine los archivos e intente cargar nuevamente.',
             'info'
         )
-        nombre.length = 0; //Limpio el vector de nombres
+        nombre = [];//Limpio el vector de nombres
 
     } //fin else archivos obligatorios 
 
@@ -345,7 +346,7 @@ function modalprogres() {
 }
 
 function terminaLectura() {
-  //valido que si se presentan errores en la validacion
+    //valido que si se presentan errores en la validacion
     //console.log(erroresEstructura);
     if (erroresEstructura.length > 0) {
         //envio notificación del error
@@ -395,8 +396,9 @@ function terminaLectura() {
                 throw dismiss;
             }
         })
-     
-    }else {
+
+    } else if (nombre.includes("US") == true && nombre.includes("AF") == true && nombre.length > 2) {
+     //console.log('pasa');
     //llamo funcio de carga de los 
     loadRIPS();
   }
