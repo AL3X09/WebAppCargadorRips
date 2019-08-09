@@ -74,6 +74,13 @@ namespace WebAppCargadorRips
                       ));
             // Fin Estilos acciones externas
 
+            //MOMENTJS
+
+            bundles.Add(new ScriptBundle("~/bundles/momentjs").Include(
+                      "~/Scripts/moment/moment.js",
+                      "~/Scripts/moment/locale/es.js"
+                      ));
+
             //JSGRID
 
             bundles.Add(new StyleBundle("~/Content/jsgridcss").Include(

@@ -121,7 +121,7 @@ $(document).ready(function () {
         $('#categoria').val('');
         $("select").material_select();
     }
-  });
+    });
 
   /**
    * FIN FUNCIONES ANONIMAS
@@ -286,7 +286,7 @@ function inicilizoDatepicker() {
   //iniciaizo el de fecha inicio para que tome siempre el primer dia del mes
   //console.log(new Date(currentDate1.getFullYear() - 2, 0, 1));
   //console.log(maxday);
-  var $input = $("#fechaInicio").pickadate({
+  var inputi = $("#fechaInicio").pickadate({
     selectMonths: true,
     selectYears: true,
     format: 'dd/mm/yyyy',
@@ -294,7 +294,20 @@ function inicilizoDatepicker() {
     hiddenName: true,
     min: new Date(currentDate1.getFullYear() - 3 ,0, 1),//new Date(currentDate1.getFullYear()-2,0, 1),
     max: maxday,
-    disable: daysOfYear
+    disable: daysOfYear,
+      onSet: function (e) {
+          var fec = inputi.get();
+          var fec1 = moment(fec[0].value).format('YYYY-MM-DD');
+          console.log(fec1); 
+          //moment(fec1).endOf('month');
+          console.log(moment(fec1).add('months', 1).date(0));
+          //console.log((fec[0].value).toString());
+          //console.log(new Date(fec1.getFullYear(), fec1.getMonth() + 1, 0));
+          var inputf = $('#fechaFin').pickadate('picker');
+          inputf.set('select', dateText);
+          //console.log(dateText);          
+      }
+
   });
   //iniciaizo el de fecha inicio para que tome siempre el primer dia del mes
   var $input = $("#fechaFin").pickadate({

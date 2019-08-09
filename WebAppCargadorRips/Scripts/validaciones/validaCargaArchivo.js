@@ -18,6 +18,8 @@ var erroresCaracteres = []; //new Array(100);
 var poslec = 0;
 //Variable para buscar caracteres especiales en los archivos
 var buscar;
+//Variable para buscar puntos y comas (;)  en los archivos
+var buscarpc;
 
 $(document).ready(function () {
   var container = document.getElementById('divcontainer');//$('div.container');
@@ -72,7 +74,7 @@ $(document).ready(function () {
 
 //Función pre lee los archivos antes de cargarlos, con el fin de notificar al usuario
 function readFile() {
-    console.log(nombre);
+    
   let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
   var fileInput = document.getElementById('rips');
   var fileDisplayArea = document.getElementById('fileDisplayArea');
@@ -171,8 +173,9 @@ function readFile() {
 //Función lee linea por linea los archivos antes de cargarlos
 function readlines(lineas, namefile, cantidad) {
 
+    //extraigo los nombres
     var nombrecorto = namefile.substring(2, 0).toUpperCase();
-
+    
     //valido que el nombre del archivo sea el permitido de las estructuras definidas en la norma
     if (TipoEstructuraArray[nombrecorto] === undefined && nombrecorto !== 'CT' && nombrecorto !== 'AD') {
         modalButtonOnly.close();
@@ -189,10 +192,15 @@ function readlines(lineas, namefile, cantidad) {
          # valido si hay caracteres especiales
          # y el archivo es diferente a la estrutura AM envio errores
          */
+        if (nombrecorto !== 'CT' && nombrecorto !== 'AD') //validación para Procedimientos
+        {
+            buscarpc = new RegExp(/;/); //buscar caracteres especiales            
+        }
         if (nombrecorto !== 'CT' && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP' && nombrecorto !== 'AU')
         {
             buscar = new RegExp(/[~`!#$%;\^&*+=\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales
-        } else if (nombrecorto == 'AM') //validación para Medicamentos
+        }
+        else if (nombrecorto == 'AM') //validación para Medicamentos
         {
             buscar = new RegExp(/[~`!#$;\^&\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
         }
@@ -211,9 +219,12 @@ function readlines(lineas, namefile, cantidad) {
         //valido liena por linea que no tenga caracteres especiales
         $.each(lineas, function (i, v) {
             //console.log(v.replace("\r",""));           
-            
+
+            //busco si los archivos tiene puntos y comas
+            var puntocoma = buscarpc.test(v);
+            //busco caracteres especiales
             var res = buscar.test(v);
-           
+            
             textoAreaDividido = v.split(",");
             numeroColumas = textoAreaDividido.length;
 
@@ -224,11 +235,14 @@ function readlines(lineas, namefile, cantidad) {
              * EL VALIDADOR EXTRAE SU PROPIA VALIDACIÓN
              */
                 //valido la cantidad de campos permitidos para cada estructura
-                if (numeroColumas > 1) {
-                    if (nombrecorto !== 'CT' && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
+            if (numeroColumas > 1 || puntocoma == true) {
+                if (nombrecorto !== 'CT' && puntocoma == false && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
                         erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene " + numeroColumas + " campos, la cantidad correcta de campos es de " + TipoEstructuraArray[nombrecorto]);
-                    }
                 }
+                if (nombrecorto !== 'CT' && puntocoma == true && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
+                    erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene el caracter punto y coma (;), elimine el caracter.");
+                }
+            }
             //fin valido la cantidad de campos permitidos para cada estructura
 
             /*
@@ -238,8 +252,6 @@ function readlines(lineas, namefile, cantidad) {
             if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT') {
                 erroresCaracteres.push("error" + (i + 1) + ": La estructura " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
             }
-
-            //console.log("nom" + nombrecorto+ "-");
 
         });
 
@@ -352,7 +364,7 @@ function terminaLectura() {
         //envio notificación del error
         swal({
             title: 'Error',
-            text: 'Sus estructuras presentan Errores de estructura!! se enviara un correo con los diferentes ' +
+            text: 'Sus estructuras presentan Errores de estructura y/o divisiones por punto y coma (;) !! se enviara un correo con los diferentes ' +
                 'errores encontrados, por favor corrijalos e intente nuevamente.',
             type: 'warning',
             showCancelButton: false,
