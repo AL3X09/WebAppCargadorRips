@@ -296,29 +296,31 @@ function inicilizoDatepicker() {
     max: maxday,
     disable: daysOfYear,
       onSet: function (e) {
+          //OJO AQUI SETEA LA FECHA PARA ENVIARLA AL CAMPO FECHA
           var fec = inputi.get();
-          var fec1 = moment(fec[0].value).format('YYYY-MM-DD');
-          console.log(fec1); 
+          var fec1 = moment(fec[0].value).format('YYYY-DD-MM');
+          var fec2 = moment(fec1).endOf('month').format('YYYY/MM/DD');//moment(fec1).add('months', 1).date(0);
+          //console.log(fec1); 
           //moment(fec1).endOf('month');
-          console.log(moment(fec1).add('months', 1).date(0));
+          //console.log(new Date(fec2)); 
           //console.log((fec[0].value).toString());
           //console.log(new Date(fec1.getFullYear(), fec1.getMonth() + 1, 0));
           var inputf = $('#fechaFin').pickadate('picker');
-          inputf.set('select', dateText);
+          inputf.set('select', new Date(fec2));
           //console.log(dateText);          
       }
 
   });
   //iniciaizo el de fecha inicio para que tome siempre el primer dia del mes
-  var $input = $("#fechaFin").pickadate({
-    selectMonths: true,
-    selectYears: true,
-    format: 'dd/mm/yyyy',
-    formatSubmit: 'yyyy/mm/dd',
-    hiddenName: true,
-    min: new Date(currentDate1.getFullYear() - 3, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),
-    max: maxday,
-    disable: EnddaysOfYear
+    var $input = $("#fechaFin").pickadate({
+        selectMonths: true,
+        selectYears: true,
+        format: 'dd/mm/yyyy',
+        formatSubmit: 'yyyy/mm/dd',
+        hiddenName: true,
+        min: new Date(currentDate1.getFullYear() - 3, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),
+        max: maxday,
+        disable: EnddaysOfYear
   });
 
 }
