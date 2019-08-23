@@ -302,12 +302,8 @@ function inicilizoDatepicker() {
           var fec2 = moment(fec1).endOf('month').format('YYYY/MM/DD');//moment(fec1).add('months', 1).date(0);
           //console.log(fec1); 
           //moment(fec1).endOf('month');
-          //console.log(new Date(fec2)); 
-          //console.log((fec[0].value).toString());
-          //console.log(new Date(fec1.getFullYear(), fec1.getMonth() + 1, 0));
           var inputf = $('#fechaFin').pickadate('picker');
           inputf.set('select', new Date(fec2));
-          //console.log(dateText);          
       }
 
   });

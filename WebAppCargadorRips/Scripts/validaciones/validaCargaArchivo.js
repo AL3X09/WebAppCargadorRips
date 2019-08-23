@@ -194,9 +194,9 @@ function readlines(lineas, namefile, cantidad) {
          */
         if (nombrecorto !== 'CT' && nombrecorto !== 'AD') //validación para Procedimientos
         {
-            buscarpc = new RegExp(/;/); //buscar caracteres especiales            
+           buscarpc = new RegExp(/;/); //buscar caracteres especiales            
         }
-        if (nombrecorto !== 'CT' && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP' && nombrecorto !== 'AU')
+        if (nombrecorto !== 'CT' && nombrecorto !== 'AD'  && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP' && nombrecorto !== 'AU')
         {
             buscar = new RegExp(/[~`!#$%;\^&*+=\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales
         }
@@ -221,9 +221,19 @@ function readlines(lineas, namefile, cantidad) {
             //console.log(v.replace("\r",""));           
 
             //busco si los archivos tiene puntos y comas
-            var puntocoma = buscarpc.test(v);
-            //busco caracteres especiales
-            var res = buscar.test(v);
+            var puntocoma = false;
+
+            //busco si el valor trae un dato de bool
+            var res = false;
+
+            if (buscar === undefined) {
+                puntocoma = false;
+                res = false;
+            }
+            else {
+                puntocoma = buscarpc.test(v);
+                res = buscar.test(v);
+            }
             
             textoAreaDividido = v.split(",");
             numeroColumas = textoAreaDividido.length;
@@ -258,6 +268,8 @@ function readlines(lineas, namefile, cantidad) {
 
         //valido liena por linea encontrar codigo de prestador diferente, y solo notifico
         $.each(lineas, function (i, v) {
+
+            buscar = undefined; //limpio la variable
 
             textoAreaDividido = v.split(",");
             numeroColumas = textoAreaDividido.length;

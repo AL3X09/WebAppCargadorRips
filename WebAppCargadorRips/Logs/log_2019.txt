@@ -1,0 +1,9 @@
+
+-------------------------------------- 21/08/2019 08:11:45 a. m. --------------------------
+System.InvalidOperationException: No se puede establecer la propiedad 'ultimoIdInsert' de 'SP_Web_Insert_Datos_Rips_a_Validar_Result' en un valor 'System.String'. Debe establecer esta propiedad en un valor que no sea NULL de tipo 'System.Int32'. 
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   en lambda_method(Closure , Shaper )
+   en System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   en System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en WebAppCargadorRips.Controllers.APIS.ArchivosController.<UploadSingleFile>d__9.MoveNext() en B:\NETAPPS\WebAppCargadorRips\WebAppCargadorRips\Controllers\APIS\ArchivosController.cs:línea 121
