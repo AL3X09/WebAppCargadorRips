@@ -2,8 +2,8 @@
  * Created by Alex on 11/03/2017.
  */
 const getUrl = window.location;
-//const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
-const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
+const baseURL = getUrl.protocol + "//" + getUrl.host + "/"; // lineas servidor local
+//const baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor publicación
 
 $(document).ready(function () {
   // Initialize collapse button del menu

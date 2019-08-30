@@ -8,7 +8,7 @@
 var nombre = []; //variable almacena los nombre de los archivos a cargar
 var TipoEstructuraArray = []; //variable que almacena las estructuras existentes en la norma 
 var currentDate1 = new Date();
-var currentDate2 = new Date()
+var currentDate2 = new Date();
 var minday = new Date();
 var maxday = new Date();
 //obtengo la fecha minima para enviarla al calendario
