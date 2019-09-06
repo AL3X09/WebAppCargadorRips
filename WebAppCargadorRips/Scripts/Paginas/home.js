@@ -348,7 +348,7 @@ function inicilizoMultifile() {
 
 function cancelado() {
   swal({
-    title: '¿Estas seguro?',
+    title: '¿Está seguro?',
     text: 'Desea cancelar la operación de carga',
     type: 'warning',
     showCancelButton: true,
@@ -508,7 +508,7 @@ function callCategoria(objeto, idtipousuario) {
         option = $('<option></option>').attr("value", v.categoria_id).text(v.nombre);
         $("#categoria").append(option);
       });
-      //console.log(option);
+     
 
       $("#categoria").material_select();
     }
@@ -558,7 +558,7 @@ function loadRIPS() {
             enviarCorreo(1,v.consec);
           }
           //cambio el tititulo si es diferente de error
-          console.log(v.type);
+          //console.log(v.type);
           if(v.type!=="error"){
             //titulo="Mensaje";
           }else{
@@ -611,14 +611,14 @@ function zonaarchvos() {
   document.getElementById(dropZoneId).addEventListener("dragover", function (e) {
     e.preventDefault();
     e.stopPropagation();
-    //dropZone.addClass(mouseOverClass);
+    dropZone.addClass(mouseOverClass);
     var x = e.pageX;
     var y = e.pageY;
 
     if (!(x < ooleft || x > ooright || y < ootop || y > oobottom)) {
       inputFile.offset({
         top: y - 15,
-        left: x - 100
+        left: x - 165
       });
     } else {
       inputFile.offset({
@@ -630,7 +630,7 @@ function zonaarchvos() {
   }, true);
 
   if (buttonId != "") {
-    var clickZone = $("#" + buttonId);
+      var clickZone = $("#drop-zone");
 
     var oleft = clickZone.offset().left;
     var oright = clickZone.outerWidth() + oleft;
@@ -641,11 +641,11 @@ function zonaarchvos() {
     $("#" + buttonId).mousemove(function (e) {
       var x = e.pageX;
       var y = e.pageY;
-      inputFile.offset({
+      /*inputFile.offset({
         top: y - 15,
         left: x - 160
-      });
-      /*if (!(x < oleft || x > oright || y < otop || y > obottom)) {
+      });*/
+      if (!(x < oleft || x > oright || y < otop || y > obottom)) {
           inputFile.offset({
               top: y - 15,
               left: x - 160
@@ -653,9 +653,9 @@ function zonaarchvos() {
       } else {
           inputFile.offset({
               top: -400,
-              left: -400
+              left: -1000
           });
-      }*/
+      }/**/
     });
   }
 
@@ -676,11 +676,18 @@ function zonaarchvos() {
     $.each(this.files, function (idx, elm) {
       finalFiles[idx] = elm;
 
-    });
+      });
+
+      if (fileNum > 0){
+          readFile();
+      }
 
     for (initial; initial < fileNum; initial++) {
       counter = counter + 1;
-      $('#filename').append('<div id="file_' + initial + '"><span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i><strong class="fa-stack-1x" style="color:#FFF; font-size:12px; margin-top:2px;">' + counter + '</strong></span> ' + this.files[initial].name + '</div>');
+        $('#filename').append(
+                       '<div id="file_' + initial + '"><span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i><strong class="fa-stack-1x" style="color:#FFF; font-size:12px; margin-top:2px;">' + counter + '</strong></span> ' + this.files[initial].name + '</div>'
+        );
+        //readFile();
     }
   });
 

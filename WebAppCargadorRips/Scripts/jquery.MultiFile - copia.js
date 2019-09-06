@@ -6,8 +6,10 @@
  * Licensed under http://en.wikipedia.org/wiki/MIT_License
  */
 /*# AVOID COLLISIONS #*/
-;
-if (window.jQuery)(function ($) {
+//jQuery.noConflict();
+//if (window.jQuery)(function ($) {
+//$(function() {
+function loaddatas() {
 	"use strict";
 	/*# AVOID COLLISIONS #*/
 
@@ -504,7 +506,8 @@ if (window.jQuery)(function ($) {
 						;
 					});
 
-					//$.each(files, function (i, file) {
+                    //este each presenta  botones de borrar por la cantidad de archivos que se cargan por eso se inhabilita
+					//$.each(files, function (i, file) { 
 						// Create label elements
 						var
 							//r = $('#drop-zone').append('<div class="MultiFile-label"></div>'),//$('<div class="MultiFile-label"></div>'),
@@ -581,7 +584,8 @@ if (window.jQuery)(function ($) {
 								});
 
 						// Insert label
-						MultiFile.list.append(
+                        MultiFile.list.append(
+                            
 							//r.append(b, ' ') //original
 							//r.append(b, ' ').appendTo('#filename') //original
 							$('#aqui').append(r.append(b, ' '))
@@ -917,10 +921,11 @@ if (window.jQuery)(function ($) {
 	*/
 	$(function () {
 		//$("input:file.multi").MultiFile();
-		//$("input[type=file].multi").MultiFile();
+		$("input[type=file].multi").MultiFile();
 	});
 
 
 	/*# AVOID COLLISIONS #*/
-})(jQuery);
+}
+/**(jQuery);
 /*# AVOID COLLISIONS #*/

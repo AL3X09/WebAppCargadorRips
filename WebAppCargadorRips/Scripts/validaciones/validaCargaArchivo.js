@@ -75,98 +75,100 @@ $(document).ready(function () {
 //Función pre lee los archivos antes de cargarlos, con el fin de notificar al usuario
 function readFile() {
     
-  let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
-  var fileInput = document.getElementById('rips');
-  var fileDisplayArea = document.getElementById('fileDisplayArea');
-  var cantidad = fileInput.childNodes[0].files.length;
 
-  //almaceno el nombre de los archivos en un array para su posterior validacion, ya que no se pueden enviar repetidos
+        let bandera = true;//variable buleana bandera que me permitira controlar las validaciones
+        var fileInput = document.getElementById('rips');
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
+        var cantidad = fileInput.childNodes[0].files.length;
+
+        //almaceno el nombre de los archivos en un array para su posterior validacion, ya que no se pueden enviar repetidos
 
 
-  for (let i = 0; i < cantidad; i++) {
-      nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0).toUpperCase());
-    }
+        for (let i = 0; i < cantidad; i++) {
+            nombre.push((fileInput.childNodes[0].files[i]['name']).substring(2, 0).toUpperCase());
+        }
 
-    //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
-    //ya que son obligatorios
-    if (nombre.includes('US') == true && nombre.includes('AF') == true && nombre.length > 2) {
+        //Valido si  los archivos de USUARIOS Y FACTURACIÓN se encuentran para ser cargados
+        //ya que son obligatorios
+        if (nombre.includes('US') == true && nombre.includes('AF') == true && nombre.length > 2) {
 
-        //Valido que el usuario no seleccione archivos iguales
-        //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
-        for (let i = 0; i < cantidad - 1; i++) {
-            for (let j = i + 1; j < cantidad; j++) {
+            //Valido que el usuario no seleccione archivos iguales
+            //aplico un ordenamiento burbuja para validar que no existan archivos repetidos
+            for (let i = 0; i < cantidad - 1; i++) {
+                for (let j = i + 1; j < cantidad; j++) {
 
-                if (nombre[i] == nombre[j]) {
-                    //Cambio el balor de la variable de validación
-                    bandera = false;
+                    if (nombre[i] == nombre[j]) {
+                        //Cambio el balor de la variable de validación
+                        bandera = false;
+                    }
                 }
             }
-        }
 
-        //valido que la variable de validacion no cambio
-        if (bandera === true) {
-            modalprogres();
-            // si la variable bandera no cambio envio lectura de archivos
-            for (let i = 0; i < cantidad; i++) {
+            //valido que la variable de validacion no cambio
+            if (bandera === true) {
+                modalprogres();
+                // si la variable bandera no cambio envio lectura de archivos
+                for (let i = 0; i < cantidad; i++) {
 
-                var file = fileInput.childNodes[0].files[i];
-                var textType = /text.*/;
-                //var buscarpuntos=null;
-                var namefile = null;
-                if (file.type.match(textType)) { //si los archivos no son de formato txt no los permite leer
-                    var reader = new FileReader();
+                    var file = fileInput.childNodes[0].files[i];
+                    var textType = /text.*/;
+                    //var buscarpuntos=null;
+                    var namefile = null;
+                    if (file.type.match(textType)) { //si los archivos no son de formato txt no los permite leer
+                        var reader = new FileReader();
 
-                    reader.onload = function (e) {
+                        reader.onload = function (e) {
 
-                        namefile = fileInput.childNodes[0].files[i]['name'];
+                            namefile = fileInput.childNodes[0].files[i]['name'];
 
-                        // Por lineas
-                        var lines = this.result.split('\n');
+                            // Por lineas
+                            var lines = this.result.split('\n');
 
-                        //envio a una función las lienas del archivo a subir
-                        readlines(lines, namefile, cantidad);
+                            //envio a una función las lienas del archivo a subir
+                            readlines(lines, namefile, cantidad);
 
+                        }
+                        reader.readAsText(file);
+                        //delete reader;
+                    } else {
+                        swal(
+                            'Precaución',
+                            'Parece que intenta cargar archivos ilegibles, por favor elimine e intente nuevamente',
+                            'info'
+                        )
+                        //fileDisplayArea.innerText = "Archivos No Soportados!"
+                        nombre.length = 0; //Limpio el vector de nombres
                     }
-                    reader.readAsText(file);
-                    //delete reader;
-                } else {
-                    swal(
-                        'Precaución',
-                        'Parece que intenta cargar archivos ilegibles, por favor elimine e intente nuevamente',
-                        'info'
-                    )
-                    //fileDisplayArea.innerText = "Archivos No Soportados!"
-                    nombre.length = 0; //Limpio el vector de nombres
-                }
-            }//fin for
-            //cuando termina de leer todos los archivos llamo funcion para que realice las operaciones siguentes
-            //terminaLectura();
-        } else {
-            //si cambio la variable bandera
-            //evito la carga innesaria de los archivos
-            //le indico al usuario que por favor revice la info a cargar
+                }//fin for
+                //cuando termina de leer todos los archivos llamo funcion para que realice las operaciones siguentes
+                //terminaLectura();
+            } else {
+                //si cambio la variable bandera
+                //evito la carga innesaria de los archivos
+                //le indico al usuario que por favor revice la info a cargar
+                swal(
+                    'Precaución',
+                    'Parece que intenta cargar el mismo tipo de estructura, por favor elimine e intente nuevamente',
+                    'info'
+                )
+                nombre.length = 0;
+                nombre = [];
+                //limpiarCampos();
+            }
+
+
+        } else { //de lo contrario envio alerta para obligar cargar los archivos
             swal(
                 'Precaución',
-                'Parece que intenta cargar el mismo tipo de estructura, por favor elimine e intente nuevamente',
+                'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), o le hace falta una estructura de atención, por favor elimine los archivos e intente cargar nuevamente.',
                 'info'
             )
-            nombre.length = 0;
-            nombre = [];
-            //limpiarCampos();
-        }
+            nombre = [];//Limpio el vector de nombres
+
+        } //fin else archivos obligatorios 
 
 
-    } else { //de lo contrario envio alerta para obligar cargar los archivos
-        swal(
-            'Precaución',
-            'No se encuentran las estructuras de USUARIOS (US) y/o FACTURACIÓN(AF), o le hace falta una estructura de atención, por favor elimine los archivos e intente cargar nuevamente.',
-            'info'
-        )
-        nombre = [];//Limpio el vector de nombres
-
-    } //fin else archivos obligatorios 
-
-  
+    
 
 }
 
