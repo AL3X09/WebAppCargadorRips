@@ -87,8 +87,8 @@ namespace WebAppCargadorRips.Controllers.APIS
 
             if (!String.IsNullOrEmpty(NOPOS))
             {
-                tipoUsuario = "2";
-                categoria = "1";
+                tipoUsuario = "3";
+                categoria = "5";
             }
             //valido si selecciona la opción de extranjero
             if (!String.IsNullOrEmpty(extranjero))
