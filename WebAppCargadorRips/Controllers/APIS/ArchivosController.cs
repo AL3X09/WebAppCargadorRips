@@ -339,11 +339,17 @@ namespace WebAppCargadorRips.Controllers.APIS
                 tipoUsuario = "1";
                 categoria = "6";
             }
-
+            /*
             if (!String.IsNullOrEmpty(NOPOS))
             {
                 tipoUsuario = "2";
                 categoria = "1";
+            }
+            */
+            if (!String.IsNullOrEmpty(NOPOS))
+            {
+                tipoUsuario = "3";
+                categoria = "5";
             }
             //valido si selecciona la opción de extranjero
             if (!String.IsNullOrEmpty(extranjero))

@@ -17,6 +17,8 @@ var erroresCaracteres = []; //new Array(100);
 //variable mantiene la posicion de lectura
 var poslec = 0;
 //Variable para buscar caracteres especiales en los archivos
+var buscarcoma;
+//Variable para buscar caracteres especiales en los archivos
 var buscar;
 //Variable para buscar puntos y comas (;)  en los archivos
 var buscarpc;
@@ -80,7 +82,7 @@ function readFile() {
         var fileInput = document.getElementById('rips');
         var fileDisplayArea = document.getElementById('fileDisplayArea');
         var cantidad = fileInput.childNodes[0].files.length;
-
+    
         //almaceno el nombre de los archivos en un array para su posterior validacion, ya que no se pueden enviar repetidos
 
 
@@ -120,12 +122,19 @@ function readFile() {
                         reader.onload = function (e) {
 
                             namefile = fileInput.childNodes[0].files[i]['name'];
-
+                            
                             // Por lineas
                             var lines = this.result.split('\n');
-
-                            //envio a una función las lienas del archivo a subir
-                            readlines(lines, namefile, cantidad);
+                            //tomo el nombre corto de los archivos
+                            var nombrecorto = namefile.substring(2, 0).toUpperCase();
+                            //valido
+                            if (nombrecorto !== 'CT' && nombrecorto !== 'AD') {
+                                //envio a una función las lienas del archivo a subir
+                                readlines(lines, namefile, cantidad);
+                            } else {
+                                modalButtonOnly.close();
+                            }
+                            
 
                         }
                         reader.readAsText(file);
@@ -173,11 +182,12 @@ function readFile() {
 }
 
 //Función lee linea por linea los archivos antes de cargarlos
-function readlines(lineas, namefile, cantidad) {
-
+async function readlines(lineas, namefile, cantidad) {
+    lineas = lineas.filter(Boolean);
+    
     //extraigo los nombres
     var nombrecorto = namefile.substring(2, 0).toUpperCase();
-    
+    //console.log(nombrecorto);
     //valido que el nombre del archivo sea el permitido de las estructuras definidas en la norma
     if (TipoEstructuraArray[nombrecorto] === undefined && nombrecorto !== 'CT' && nombrecorto !== 'AD') {
         modalButtonOnly.close();
@@ -188,7 +198,18 @@ function readlines(lineas, namefile, cantidad) {
             'Esta intentando cargar estructuras con un nombre no permitido, por favor corrijalos e intente nuevamente!',
             'error'
         )
-    }else {
+    }
+    else if (nombrecorto !== 'CT' && nombrecorto !== 'AD' && lineas.length === 0) {
+        modalButtonOnly.close();
+        poslec = 0;
+        erroresEstructura.push("Sus estructuras al parecer no cumplen con el formato solicitado, por favor cancele el proceso y verifique el contenido de los archivos e intente cargar nuevamente.");
+        swal(
+            'Error',
+            'Sus estructuras al parecer no  cumplen con el formato solicitado, por favor  y verifique el contenido de los archivos e intente cargar nuevamente.',
+            'error'
+        )
+    }
+    else {
         
         /*
          # valido si hay caracteres especiales
@@ -196,7 +217,7 @@ function readlines(lineas, namefile, cantidad) {
          */
         if (nombrecorto !== 'CT' && nombrecorto !== 'AD') //validación para Procedimientos
         {
-           buscarpc = new RegExp(/;/); //buscar caracteres especiales            
+           buscarpc = new RegExp(/;/); //buscar caracteres puntos y comas            
         }
         if (nombrecorto !== 'CT' && nombrecorto !== 'AD'  && nombrecorto !== 'AM' && nombrecorto !== 'AT' && nombrecorto !== 'AP' && nombrecorto !== 'AU')
         {
@@ -214,6 +235,7 @@ function readlines(lineas, namefile, cantidad) {
         {
             buscar = new RegExp(/[~`!#$%;\^&*\[\]\\'{}|\\"<>\?]/); //buscar caracteres especiales            
         }
+       
         
         //var pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"; //buscar fecha
         //var pattern2 =/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; //para validar el formato de la fecha
@@ -221,6 +243,7 @@ function readlines(lineas, namefile, cantidad) {
         //valido liena por linea que no tenga caracteres especiales
         $.each(lineas, function (i, v) {
             //console.log(v.replace("\r",""));           
+            //console.log(v);
 
             //busco si los archivos tiene puntos y comas
             var puntocoma = false;
@@ -239,6 +262,8 @@ function readlines(lineas, namefile, cantidad) {
             
             textoAreaDividido = v.split(",");
             numeroColumas = textoAreaDividido.length;
+            //console.log(nombrecorto);
+            //console.log(numeroColumas);
 
             /**
              * SE TIENE EN CUENTA QUE EL ARCHIVO CT NO LO ENVIAN MUCHOS PRESTADORES POR LO TANTO SE EXCLUYE DE LA
@@ -247,13 +272,25 @@ function readlines(lineas, namefile, cantidad) {
              * EL VALIDADOR EXTRAE SU PROPIA VALIDACIÓN
              */
                 //valido la cantidad de campos permitidos para cada estructura
-            if (numeroColumas > 1 || puntocoma == true) {
-                if (nombrecorto !== 'CT' && puntocoma == false && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
-                        erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene " + numeroColumas + " campos, la cantidad correcta de campos es de " + TipoEstructuraArray[nombrecorto]);
+            if (numeroColumas >= 1 || puntocoma === true) {
+                //console.log('entra0');
+                
+                if (nombrecorto !== 'CT' && nombrecorto !== 'AD' && TipoEstructuraArray[nombrecorto] > 0 && TipoEstructuraArray[nombrecorto] !== numeroColumas && puntocoma == false) {
+                    erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene " + numeroColumas + " campos, la cantidad correcta de campos es de " + TipoEstructuraArray[nombrecorto]);
+                    //console.log('entra1');
                 }
-                if (nombrecorto !== 'CT' && puntocoma == true && TipoEstructuraArray[nombrecorto] !== numeroColumas && TipoEstructuraArray[nombrecorto] > 0) {
+                if (nombrecorto !== 'CT' && nombrecorto !== 'AD' && TipoEstructuraArray[nombrecorto] > 0 && TipoEstructuraArray[nombrecorto] !== numeroColumas && puntocoma == true ) {
                     erroresEstructura.push("ERROR: La estructura " + namefile + " en la linea " + (i + 1) + " tiene el caracter punto y coma (;), elimine el caracter.");
+                    //console.log('entra2');
                 }
+            } else {
+                erroresEstructura.push("Sus estructuras al parecer no  cumplen con el formato solicitado, por favor cancele el proceso y verifique el contenido de los archivos e intente cargar nuevamente.");
+                swal(
+                    'Precaución',
+                    'Sus estructuras al parecer no  cumplen con el formato solicitado, por favor eliminelas o verifique el contenido de los archivos e intente cargar nuevamente.',
+                    'info'
+                )
+                //console.log('entra3');
             }
             //fin valido la cantidad de campos permitidos para cada estructura
 
@@ -261,7 +298,7 @@ function readlines(lineas, namefile, cantidad) {
                # valido si hay caracteres especiales
                # y el archivo es diferente a la estrutura AM envio errores
            */
-            if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT') {
+            if (res == true && nombrecorto !== 'CT' && nombrecorto !== 'AT' && nombrecorto !== 'AD') {
                 erroresCaracteres.push("error" + (i + 1) + ": La estructura " + namefile + " contiene valores no permitidos en la linea " + (i + 1));
             }
 
@@ -279,11 +316,12 @@ function readlines(lineas, namefile, cantidad) {
             if (nombrecorto == 'AF') {
                 var codprestador = "'" + $('#codigospan').text().replace(/ /g, "")+"'";
                 var codprestador2 = "'"+v.split(",", 1)+"'";
-                var fechainicio1 = document.getElementById('fechaInicio').value;//$('#fechaInicio') valor;
-                var fechafin1 = document.getElementById('fechaFin').value;//$('#fechaFin') valor;
+                //var fechainicio1 = document.getElementById('fechaInicio').value;//$('#fechaInicio') valor;
+                //var fechafin1 = document.getElementById('fechaFin').value;//$('#fechaFin') valor;
                 
                 //Valido que la fechas de periodo de inicio seleccionado concuerden con el de los archivos de AF
-                if (v.indexOf(fechainicio1.toString(10), 7) == -1) {
+                //SE elimina ya que no importa la fecha de la factura
+                /*if (v.indexOf(fechainicio1.toString(10), 7) == -1) {
 
                     iziToast.warning({
                         title: 'Alerta',
@@ -310,7 +348,7 @@ function readlines(lineas, namefile, cantidad) {
                         close: true,
                     });
                     return false;
-                }
+                }*/
 
 
                 if (codprestador.localeCompare(codprestador2) != 0) {
@@ -374,6 +412,7 @@ function modalprogres() {
 function terminaLectura() {
     //valido que si se presentan errores en la validacion
     //console.log(erroresEstructura);
+    //console.log(erroresCaracteres);
     if (erroresEstructura.length > 0) {
         //envio notificación del error
         swal({
@@ -394,7 +433,7 @@ function terminaLectura() {
             //}
         })
 
-    }else if (erroresCaracteres.length > 0) { //
+    } else if (erroresCaracteres.length > 0) { //
         //envio notificación de posible error
         swal({
             title: 'Error',
@@ -418,14 +457,22 @@ function terminaLectura() {
             if (dismiss === 'cancel') { // you might also handle 'close' or 'timer' if you used those
                 //envio a la api de errores
                 enviarCorreoErrores(erroresCaracteres.slice(0, 100));
+                //UploadValidacionConErrores(erroresEstructura.slice(0, 100));
             } else {
                 throw dismiss;
             }
         })
 
     } else if (nombre.includes("US") == true && nombre.includes("AF") == true && nombre.length > 2) {
-     //console.log('pasa');
-    //llamo funcio de carga de los 
-    loadRIPS();
-  }
+        //console.log('pasa');
+        //llamo funcio de carga de los 
+        loadRIPS();
+    } else {
+        swal(
+            'Precaución',
+            'Le hace falta información y/o estructuras, por favor elimine los archivos e intente cargar nuevamente o comuniquese con el equipo técnico.',
+            'info'
+        )
+        nombre = [];//Limpio el vector de nombres
+    }
 }

@@ -17,7 +17,7 @@ namespace WebAppCargadorRips.Models
     public class LoginViewModel
     {
         [Required]
-        [StringLength(12, ErrorMessage = "El número de caracteres de {0} debe ser minimo de {2}.", MinimumLength = 12)]
+        [StringLength(12, ErrorMessage = "El número de caracteres de {0} debe ser de {2}.", MinimumLength = 12)]
         [Display(Name = "Código Prestador (*)")]
         public string Usuario { get; set; }
 
@@ -81,7 +81,7 @@ namespace WebAppCargadorRips.Models
         
         [Required]
         [StringLength(12, ErrorMessage = "El número de caracteres de {0} debe ser al menos de {2}.", MinimumLength = 12)]
-        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numéricos, sin espacios y mínimo de 12 caracteres")]
+        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numéricos, sin espacios y de 12 caracteres")]
         [Display(Name = "Código Prestador (*)")]
         public string CodPrestador { get; set; }
 
@@ -146,7 +146,7 @@ namespace WebAppCargadorRips.Models
     {
         [Required]
         [StringLength(12, ErrorMessage = "El número de caracteres de {0} debe ser mínimo de {2}.", MinimumLength = 12)]
-        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numericos, sin espacios y máximo de 12 caracteres")]
+        [RegularExpression(@"^(11001.[0-9]{6})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numericos, sin espacios y de 12 caracteres")]
         [Display(Name = "Código Prestador (*)")]
         //[RegularExpression("^[0-9]?(11001.{7})*$", ErrorMessage = "Para {0} debe empezar con 11001, solo valores numericos y sin espacios")]
         public string Usuario { get; set; }
