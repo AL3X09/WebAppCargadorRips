@@ -292,7 +292,7 @@ function inicilizoDatepicker() {
     format: 'dd/mm/yyyy',
     formatSubmit: 'yyyy/mm/dd',
     hiddenName: true,
-    min: new Date(currentDate1.getFullYear() - 3 ,0, 1),//new Date(currentDate1.getFullYear()-2,0, 1),
+    min: new Date(currentDate1.getFullYear() - 4 ,0, 1),//new Date(currentDate1.getFullYear()-2,0, 1),
     max: maxday,
     disable: daysOfYear,
       onSet: function (e) {
@@ -314,7 +314,7 @@ function inicilizoDatepicker() {
         format: 'dd/mm/yyyy',
         formatSubmit: 'yyyy/mm/dd',
         hiddenName: true,
-        min: new Date(currentDate1.getFullYear() - 3, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),
+        min: new Date(currentDate1.getFullYear() - 4, 0, 1),//new Date(currentDate1.getFullYear() - 2, currentDate1.getMonth() - 1, 1),
         max: maxday,
         disable: EnddaysOfYear
   });
